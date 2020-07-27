@@ -1,0 +1,232 @@
+---
+version: 2.1
+executors:
+  besu_plugins_docker_executor:
+    docker:
+      - image: circleci/openjdk:11.0.4-jdk-stretch
+    working_directory: ~/project
+    environment:
+      TERM: dumb
+      JAVA_TOOL_OPTIONS: -Xmx2048m
+      GRADLE_OPTS: -Dorg.gradle.daemon=false -Dorg.gradle.parallel=true -Dorg.gradle.workers.max=2
+      GRADLE_MAX_TEST_FORKS: 2
+
+commands:
+  prepare:
+    description: "Prepare node"
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restoring cached gradle dependencies
+          keys:
+            - v1-dependencies-{{ checksum "build.gradle" }}-{{ .Branch }}
+            - v1-dependencies-{{ checksum "build.gradle" }}
+            - v1-dependencies-
+      - attach_workspace:
+          at: ~/project
+
+jobs:
+  build:
+    executor: besu_plugins_docker_executor
+    steps:
+      - prepare
+
+      - run:
+          name: Spotless checks
+          command: ./gradlew spotlesscheck
+
+      - run:
+          name: Downloading dependencies
+          command: ./gradlew dependencies checkLicenses
+
+      - run:
+          name: Compiling
+          command: ./gradlew assemble
+
+      - run:
+          name: Collecting license reports
+          command: |
+            mkdir -p ~/reports/license
+            (cd ./build/reports/license && tar c .) | (cd ~/reports/license && tar x)
+              find . -type d -regex ".*/build/reports/tests/test" | while read dir; do
+                  module=`echo $dir | sed -e 's/build\/reports\/tests\/test//'`
+                  mkdir -p ~/reports/test/"$module"
+                  (cd "$dir" && tar c .) | (cd ~/reports/test/"$module" && tar x)
+              done
+
+      - store_artifacts:
+          name: Uploading license reports
+          path: ~/reports
+          destination: reports
+
+      - store_artifacts:
+          name: Uploading artifacts
+          path: build/distributions
+          destination: distributions
+          when: always
+
+      - save_cache:
+          name: Caching gradle dependencies
+          paths:
+            - ./.gradle
+            - ~/.gradle
+          key: v1-dependencies-{{ checksum "build.gradle" }}-{{ .Branch }}
+
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - ./
+
+  test:
+    executor: besu_plugins_docker_executor
+    steps:
+      - prepare
+
+      - run:
+          name: Running unit tests
+          command: ./gradlew --stacktrace test
+
+      - run:
+          name: Running integration tests
+          command: ./gradlew --stacktrace integrationTest
+
+      - run:
+          name: Collecting test results
+          command: |
+            ./gradlew jacocoTestReport
+            mkdir -p ~/test-results/
+            find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} ~/test-results/ \;
+          when: always
+
+      - run:
+          name: Collecting reports
+          command: |
+              find . -type d -regex ".*/build/reports/tests/integrationTest" | while read dir; do
+                  module=`echo $dir | sed -e 's/build\/reports\/tests\/integrationTest//'`
+                  mkdir -p ~/reports/integrationTest/"$module"
+                  (cd "$dir" && tar c .) | (cd ~/reports/integrationTest/"$module" && tar x)
+              done
+              find . -type d -regex ".*/build/reports/jacoco/test/html" | while read dir; do
+                  module=`echo $dir | sed -e 's/build\/reports\/jacoco\/test\/html//'`
+                  mkdir -p ~/reports/jacoco/"$module"
+                  (cd "$dir" && tar c .) | (cd ~/reports/jacoco/"$module" && tar x)
+              done
+          when: always
+
+      - store_test_results:
+          name: Uploading test results
+          path: ~/test-results
+          destination: tests
+          when: always
+
+      - store_artifacts:
+          name: Uploading reports
+          path: ~/reports
+          destination: reports
+
+  javaDoc:
+    executor: besu_plugins_docker_executor
+    steps:
+      - prepare
+
+      - run:
+          name: Building JavaDoc
+          command: ./gradlew javadoc
+
+      - run:
+          name: Collecting JavaDoc
+          command: |
+            find . -type d -regex ".*/build/docs/javadoc" | while read dir; do
+                module=`echo $dir | sed -e 's/build\/docs\/javadoc//'`
+                mkdir -p ~/docs/"$module"
+                (cd "$dir" && tar c .) | (cd ~/docs/"$module" && tar x)
+            done
+
+      - store_artifacts:
+          name: Uploading JavaDoc
+          path: ~/docs
+          destination: javadoc
+
+  acceptanceTests:
+    machine: true
+    working_directory: ~/project
+    environment:
+      TERM: dumb
+      JAVA_TOOL_OPTIONS: -Xmx2048m
+      GRADLE_OPTS: -Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2
+      GRADLE_MAX_TEST_FORKS: 2
+    steps:
+      - prepare
+
+      - run:
+          name: Install openjdk 11
+          command: |
+            sudo add-apt-repository -y ppa:openjdk-r/ppa
+            sudo apt update
+            sudo apt install -y openjdk-11-jdk
+            sudo update-java-alternatives -s java-1.11.0-openjdk-amd64
+            java -version
+
+      - run:
+          name: Running acceptance tests
+          command: ./gradlew --stacktrace acceptanceTest
+
+      - run:
+          name: Collecting reports
+          command: |
+              find . -type d -regex ".*/build/reports/tests/acceptanceTest" | while read dir; do
+                  module=`echo $dir | sed -e 's/build\/reports\/tests\/acceptanceTest//'`
+                  mkdir -p ~/reports/acceptanceTest/"$module"
+                  (cd "$dir" && tar c .) | (cd ~/reports/acceptanceTest/"$module" && tar x)
+              done
+          when: always
+
+      - run:
+          name: Collecting test results
+          command: |
+            mkdir -p ~/test-results/
+            find . -type f -regex ".*/build/acceptance-results/.*xml" -exec cp {} ~/test-results/ \;
+          when: always
+
+      - store_artifacts:
+          name: Uploading reports
+          path: ~/reports
+          destination: reports
+
+      - store_test_results:
+          name: Uploading test results
+          path: ~/test-results
+          destination: acceptance-tests
+          when: always
+
+  upload-distribution:
+    executor: besu_plugins_docker_executor
+    steps:
+      - prepare
+
+      - deploy:
+          name: Upload to Bintray
+          command: ./gradlew deploy
+
+workflows:
+  version: 2
+  pipeline:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+      - javaDoc
+      - acceptanceTests:
+          requires:
+            - build
+      - upload-distribution:
+          requires:
+            - build
+            - test
+            - acceptanceTests
+          filters:
+            branches:
+              only: 
+                - master
+                - /release-.*/

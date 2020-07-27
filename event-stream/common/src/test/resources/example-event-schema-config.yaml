@@ -1,0 +1,410 @@
+eventSchemas:
+# Cash contract events
+ - id: cashBalanceUpdate
+   contractAddress: "0xcb4f3cA3777fE16FBF4595Ba48d0eBFAEfEaBEBc"
+   eventSpecification:
+     eventName: CashBalanceUpdate
+     indexedParameterDefinitions:
+       - position: 0
+         type: BYTES32
+       - position: 1
+         type: ADDRESS
+       - position: 2
+         type: ADDRESS
+     nonIndexedParameterDefinitions:
+       - position: 3
+         type: STRING
+       - position: 4
+         type: STRING
+       - position: 5
+         type: STRING
+       - position: 6
+         type: INT256
+       - position: 7
+         type: UINT256
+       - position: 8
+         type: INT256
+       - position: 9
+         type: UINT256
+       - position: 10
+         type: INT256
+       - position: 11
+         type: UINT256
+       - position: 12
+         type: INT256
+       - position: 13
+         type: UINT256
+ - id: cashIssuanceBalanceUpdate
+   contractAddress: "0xcb4f3cA3777fE16FBF4595Ba48d0eBFAEfEaBEBc"
+   eventSpecification:
+     eventName: CashIssuanceUpdate
+     indexedParameterDefinitions:
+       - position: 0
+         type: BYTES32
+       - position: 1
+         type: ADDRESS
+       - position: 2
+         type: ADDRESS
+     nonIndexedParameterDefinitions:
+       - position: 3
+         type: STRING
+       - position: 4
+         type: INT256
+       - position: 5
+         type: UINT256
+# Dvp contract events
+ - id: dvpCashBrokerFeeUpdate
+   contractAddress: "0x1622c3352f54f66E2b86583958D30DB50695ec4c"
+   eventSpecification:
+     eventName: CashBrokerFeeUpdate
+     indexedParameterDefinitions:
+       - position: 0
+         type: BYTES32
+       - position: 1
+         type: ADDRESS
+       - position: 2
+         type: ADDRESS
+     nonIndexedParameterDefinitions:
+       - position: 3
+         type: ADDRESS
+       - position: 4
+         type: STRING
+       - position: 5
+         type: STRING
+       - position: 6
+         type: STRING
+       - position: 7
+         type: INT256
+       - position: 8
+         type: UINT256
+ - id: dvpSecurityBalanceUpdate
+   contractAddress: "0x1622c3352f54f66E2b86583958D30DB50695ec4c"
+   eventSpecification:
+     eventName: SecurityBalanceUpdate
+     indexedParameterDefinitions:
+       - position: 0
+         type: BYTES32
+       - position: 1
+         type: ADDRESS
+     nonIndexedParameterDefinitions:
+       - position: 2
+         type: STRING
+       - position: 3
+         type: STRING
+       - position: 4
+         type: STRING
+       - position: 5
+         type: INT256
+       - position: 6
+         type: UINT256
+       - position: 7
+         type: INT256
+       - position: 8
+         type: UINT256
+       - position: 9
+         type: INT256
+       - position: 10
+         type: UINT256
+ - id: dvpCashBalanceUpdate
+   contractAddress: "0x1622c3352f54f66E2b86583958D30DB50695ec4c"
+   eventSpecification:
+     eventName: CashBalanceUpdate
+     indexedParameterDefinitions:
+       - position: 0
+         type: BYTES32
+       - position: 1
+         type: ADDRESS
+       - position: 2
+         type: ADDRESS
+     nonIndexedParameterDefinitions:
+       - position: 3
+         type: STRING
+       - position: 4
+         type: STRING
+       - position: 5
+         type: STRING
+       - position: 6
+         type: INT256
+       - position: 7
+         type: UINT256
+       - position: 8
+         type: INT256
+       - position: 9
+         type: UINT256
+       - position: 10
+         type: INT256
+       - position: 11
+         type: UINT256
+       - position: 12
+         type: INT256
+       - position: 13
+         type: UINT256
+ - id: dvpPurchasePowerBalanceUpdate
+   contractAddress: "0x1622c3352f54f66E2b86583958D30DB50695ec4c"
+   eventSpecification:
+     eventName: PurchasePowerBalanceUpdate
+     indexedParameterDefinitions:
+       - position: 0
+         type: BYTES32
+       - position: 1
+         type: ADDRESS
+       - position: 2
+         type: ADDRESS
+     nonIndexedParameterDefinitions:
+       - position: 3
+         type: STRING
+       - position: 4
+         type: STRING
+       - position: 5
+         type: STRING
+       - position: 6
+         type: INT256
+       - position: 7
+         type: UINT256
+       - position: 8
+         type: INT256
+       - position: 9
+         type: UINT256
+       - position: 10
+         type: INT256
+       - position: 11
+         type: UINT256
+# PurchasePower contract events
+ - id: purchasePowerCashBalanceUpdate
+   contractAddress: "0x3bCA05EeDe696ae836C45E1Ed928cDB06D33fb9E"
+   eventSpecification:
+     eventName: CashBalanceUpdate
+     indexedParameterDefinitions:
+       - position: 0
+         type: BYTES32
+       - position: 1
+         type: ADDRESS
+       - position: 2
+         type: ADDRESS
+     nonIndexedParameterDefinitions:
+       - position: 3
+         type: STRING
+       - position: 4
+         type: STRING
+       - position: 5
+         type: STRING
+       - position: 6
+         type: INT256
+       - position: 7
+         type: UINT256
+       - position: 8
+         type: INT256
+       - position: 9
+         type: UINT256
+       - position: 10
+         type: INT256
+       - position: 11
+         type: UINT256
+       - position: 12
+         type: INT256
+       - position: 13
+         type: UINT256
+ - id: purchasePowerPurchasePowerBalanceUpdate
+   contractAddress: "0x3bCA05EeDe696ae836C45E1Ed928cDB06D33fb9E"
+   eventSpecification:
+     eventName: PurchasePowerBalanceUpdate
+     indexedParameterDefinitions:
+       - position: 0
+         type: BYTES32
+       - position: 1
+         type: ADDRESS
+       - position: 2
+         type: ADDRESS
+     nonIndexedParameterDefinitions:
+       - position: 3
+         type: STRING
+       - position: 4
+         type: STRING
+       - position: 5
+         type: STRING
+       - position: 6
+         type: INT256
+       - position: 7
+         type: UINT256
+       - position: 8
+         type: INT256
+       - position: 9
+         type: UINT256
+       - position: 10
+         type: INT256
+       - position: 11
+         type: UINT256
+# Reservations contract events
+ - id: reservationsSecurityBalanceUpdate
+   contractAddress: "0x80742a9f6FFdaDE2Cc578e5d23A1de84661E4822"
+   eventSpecification:
+     eventName: SecurityBalanceUpdate
+     indexedParameterDefinitions:
+       - position: 0
+         type: BYTES32
+       - position: 1
+         type: ADDRESS
+     nonIndexedParameterDefinitions:
+       - position: 2
+         type: STRING
+       - position: 3
+         type: STRING
+       - position: 4
+         type: STRING
+       - position: 5
+         type: INT256
+       - position: 6
+         type: UINT256
+       - position: 7
+         type: INT256
+       - position: 8
+         type: UINT256
+       - position: 9
+         type: INT256
+       - position: 10
+         type: UINT256
+ - id: reservationsCashBalanceUpdate
+   contractAddress: "0x80742a9f6FFdaDE2Cc578e5d23A1de84661E4822"
+   eventSpecification:
+     eventName: CashBalanceUpdate
+     indexedParameterDefinitions:
+       - position: 0
+         type: BYTES32
+       - position: 1
+         type: ADDRESS
+       - position: 2
+         type: ADDRESS
+     nonIndexedParameterDefinitions:
+       - position: 3
+         type: STRING
+       - position: 4
+         type: STRING
+       - position: 5
+         type: STRING
+       - position: 6
+         type: INT256
+       - position: 7
+         type: UINT256
+       - position: 8
+         type: INT256
+       - position: 9
+         type: UINT256
+       - position: 10
+         type: INT256
+       - position: 11
+         type: UINT256
+       - position: 12
+         type: INT256
+       - position: 13
+         type: UINT256
+ - id: reservationsPurchasePowerBalanceUpdate
+   contractAddress: "0x80742a9f6FFdaDE2Cc578e5d23A1de84661E4822"
+   eventSpecification:
+     eventName: PurchasePowerBalanceUpdate
+     indexedParameterDefinitions:
+       - position: 0
+         type: BYTES32
+       - position: 1
+         type: ADDRESS
+       - position: 2
+         type: ADDRESS
+     nonIndexedParameterDefinitions:
+       - position: 3
+         type: STRING
+       - position: 4
+         type: STRING
+       - position: 5
+         type: STRING
+       - position: 6
+         type: INT256
+       - position: 7
+         type: UINT256
+       - position: 8
+         type: INT256
+       - position: 9
+         type: UINT256
+       - position: 10
+         type: INT256
+       - position: 11
+         type: UINT256
+# Securities contract events
+ - id: securitiesSecurityBalanceUpdate
+   contractAddress: "0x3efc4Ed3D2BB2D1eE577fA546d8453a6d67d7467"
+   eventSpecification:
+     eventName: SecurityBalanceUpdate
+     indexedParameterDefinitions:
+       - position: 0
+         type: BYTES32
+       - position: 1
+         type: ADDRESS
+     nonIndexedParameterDefinitions:
+       - position: 2
+         type: STRING
+       - position: 3
+         type: STRING
+       - position: 4
+         type: STRING
+       - position: 5
+         type: INT256
+       - position: 6
+         type: UINT256
+       - position: 7
+         type: INT256
+       - position: 8
+         type: UINT256
+       - position: 9
+         type: INT256
+       - position: 10
+         type: UINT256
+# Issuance contract events
+ - id: issuanceIssuanceBalanceUpdate
+   contractAddress: "0x464c01295B7a736CE04974301683000f333cF142"
+   eventSpecification:
+     eventName: IssuanceBalanceUpdate
+     indexedParameterDefinitions:
+       - position: 0
+         type: BYTES32
+       - position: 1
+         type: ADDRESS
+     nonIndexedParameterDefinitions:
+       - position: 2
+         type: STRING
+       - position: 3
+         type: INT256
+       - position: 4
+         type: UINT256
+       - position: 5
+         type: INT256
+       - position: 6
+         type: UINT256
+       - position: 7
+         type: INT256
+       - position: 8
+         type: UINT256
+ - id: issuanceSecurityCreation
+   contractAddress: "0x464c01295B7a736CE04974301683000f333cF142"
+   eventSpecification:
+     eventName: SecurityCreation
+     indexedParameterDefinitions:
+       - position: 0
+         type: BYTES32
+       - position: 1
+         type: ADDRESS
+       - position: 2
+         type: ADDRESS
+     nonIndexedParameterDefinitions:
+       - position: 3
+         type: STRING
+       - position: 4
+         type: UINT256
+ - id: anonymousTestEvent
+   contractAddress: "0x464c01295B7a736CE04974301683000f333cF142"
+   eventSpecification:
+     indexedParameterDefinitions:
+       - position: 0
+         type: ADDRESS
+       - position: 1
+         type: ADDRESS
+     nonIndexedParameterDefinitions:
+       - position: 2
+         type: UINT256
