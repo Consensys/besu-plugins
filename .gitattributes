@@ -2,3 +2,4 @@
 *.bat -text
 *.jar binary
 *.so binary
+*.gif binary
