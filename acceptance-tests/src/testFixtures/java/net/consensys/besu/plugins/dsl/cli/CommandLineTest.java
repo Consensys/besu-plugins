@@ -23,7 +23,7 @@ import picocli.CommandLine.Model.CommandSpec;
 @CommandLine.Command
 public class CommandLineTest implements Runnable, PicoCLIOptions {
 
-  private static final Logger LOG = LogManager.getLogger();
+  private static final Logger LOG = LogManager.getLogger(CommandLineTest.class);
 
   private final String namespace;
   private final Object options;
