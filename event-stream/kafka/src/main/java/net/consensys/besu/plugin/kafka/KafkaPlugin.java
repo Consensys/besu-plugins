@@ -26,10 +26,10 @@ import com.google.common.annotations.VisibleForTesting;
 import org.hyperledger.besu.plugin.BesuPlugin;
 
 /**
- * Besu plugin entrypoint
+ * Kafka Besu plugin entrypoint. This defines the Kafka specific implementations required to be used
+ * as an event streaming plugin.
  *
  * @see BesuPlugin
- * @since 0.1
  */
 @AutoService(BesuPlugin.class)
 public class KafkaPlugin extends EventStreamPlugin<KafkaPluginConfiguration> implements BesuPlugin {

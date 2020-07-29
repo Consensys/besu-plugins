@@ -77,6 +77,12 @@ public abstract class EventStreamPlugin<T extends EventStreamConfiguration> impl
     this(name, configuration, publisherFactory, EventStreamPlugin::noopHealthCheck);
   }
 
+  /**
+   * Retrieves the {@link PicoCLIOptions} service to add specific configuration object as a command
+   * line object.
+   *
+   * @param context the {@link BesuContext} to use
+   */
   @Override
   public void register(final BesuContext context) {
     LOGGER.debug("Registering plugin for {}", name);
@@ -87,6 +93,10 @@ public abstract class EventStreamPlugin<T extends EventStreamConfiguration> impl
     LOGGER.debug("Plugin registered for {}", name);
   }
 
+  /**
+   * Checks the health of the underlying message broker, subscribes to different listeners and
+   * starts the plugin.
+   */
   @Override
   public void start() {
     if (!configuration.isEnabled()) {
