@@ -35,6 +35,20 @@ import org.hyperledger.besu.plugin.data.Address;
 import org.hyperledger.besu.plugin.services.BesuEvents;
 import org.hyperledger.besu.plugin.services.PicoCLIOptions;
 
+/**
+ * EventStreamPlugins is a class that provides basic plugin lifecycle operations that are common and
+ * agnostic to the message broker implementation.
+ *
+ * <p>Plugin lifecycle steps:
+ *
+ * <ul>
+ *   <li>register
+ *   <li>start
+ *   <li>stop
+ * </ul>
+ *
+ * @param <T> the type of the configuration object
+ */
 public abstract class EventStreamPlugin<T extends EventStreamConfiguration> implements BesuPlugin {
 
   private static final Logger LOGGER = LogManager.getLogger();
