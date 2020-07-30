@@ -37,6 +37,8 @@ public class DefaultEvent<T> implements Event {
   private String rawJSONPayload;
 
   /**
+   * Creates a {@link DefaultEvent} object using the specified serializer.
+   *
    * @param <T> type of payload object
    * @param type event type
    * @param event event payload object

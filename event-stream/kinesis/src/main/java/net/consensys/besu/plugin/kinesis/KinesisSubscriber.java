@@ -100,11 +100,9 @@ public class KinesisSubscriber implements Subscriber {
   /**
    * Returns an Optional wrapping the consumer ARN if consumer is ACTIVE, empty Optional otherwise.
    *
-   * @param consumerName
-   * @param consumerStreamARN
-   * @return
-   * @throws ExecutionException
-   * @throws InterruptedException
+   * @param consumerName the name of the consumer
+   * @param consumerStreamARN the consumer stream ARN
+   * @return the ARN of the consumer if possible, empty optional otherwise
    */
   private Optional<String> consumerExists(
       final String consumerName, final String consumerStreamARN) {

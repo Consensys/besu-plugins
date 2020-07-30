@@ -19,6 +19,7 @@ dependencyManagement {
     }
 
     dependencies {
+        dependency 'org.web3j:core:4.5.15'
         dependency 'org.web3j:abi:4.5.15'
         dependency 'org.apache.tuweni:tuweni-bytes:1.0.0'
         dependency 'org.apache.tuweni:tuweni-units:1.0.0'
@@ -31,39 +32,39 @@ dependencyManagement {
         dependency "org.hyperledger.besu:plugin-api:${besuVersion}"
 
         // Error prone dependencies
-        dependency 'com.google.errorprone:error_prone_check_api:2.3.3'
-        dependency 'com.google.errorprone:error_prone_core:2.3.3'
-        dependency 'com.google.errorprone:error_prone_annotation:2.3.3'
-        dependency 'com.google.errorprone:error_prone_test_helpers:2.3.3'
+        dependency 'com.google.errorprone:error_prone_annotation:2.4.0'
+        dependency 'com.google.errorprone:error_prone_check_api:2.4.0'
+        dependency 'com.google.errorprone:error_prone_core:2.4.0'
+        dependency 'com.google.errorprone:error_prone_test_helpers:2.4.0'
         dependency 'com.google.errorprone:javac:9+181-r4173-1'
 
         // Logging dependencies
-        dependency 'org.apache.logging.log4j:log4j-api:2.13.2'
-        dependency 'org.apache.logging.log4j:log4j-core:2.13.2'
-        dependency 'org.apache.logging.log4j:log4j-slf4j-impl:2.13.2'
+        dependency 'org.apache.logging.log4j:log4j-api:2.13.3'
+        dependency 'org.apache.logging.log4j:log4j-core:2.13.3'
+        dependency 'org.apache.logging.log4j:log4j-slf4j-impl:2.13.3'
 
         dependency 'info.picocli:picocli:4.1.4'
         dependency 'com.fasterxml.jackson.core:jackson-databind:2.11.0'
         dependency 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.11.0'
-        dependency 'com.google.auto.service:auto-service:1.0-rc6'
+        dependency 'com.google.auto.service:auto-service:1.0-rc7'
         dependency 'com.google.code.gson:gson:2.8.5'
         dependency 'com.jayway.jsonpath:json-path:2.4.0'
-        dependency 'io.vertx:vertx-core:3.8.5'
+        dependency 'io.vertx:vertx-core:3.9.1'
         dependency 'javax.xml.bind:jaxb-api:2.2.11'
 
         // Testing dependencies
         dependency 'com.github.docker-java:docker-java:3.1.5'
         dependency 'javax.activation:activation:1.1.1'
 // this was added to eliminate lots of stacktraces by docker-java, might be possible to remove this when there is a new version of docker-java available
-        dependency 'org.assertj:assertj-core:3.14.0'
-        dependency 'org.awaitility:awaitility:4.0.1'
+        dependency 'org.assertj:assertj-core:3.16.1'
+        dependency 'org.awaitility:awaitility:4.0.3'
         dependency 'junit:junit:4.13'
         dependency 'org.junit.jupiter:junit-jupiter-engine:5.5.0'
         dependency 'org.junit.jupiter:junit-jupiter-api:5.5.0'
         dependency 'org.junit.jupiter:junit-jupiter-params:5.4.2'
         dependency 'org.junit.platform:junit-platform-runner:1.5.1'
         dependency 'org.mockito:mockito-all:1.10.19'
-        dependency 'org.mockito:mockito-core:3.2.4'
+        dependency 'org.mockito:mockito-core:3.3.3'
         dependency 'org.mockito:mockito-junit-jupiter:3.2.4'
         dependency 'org.mock-server:mockserver-netty:5.6.1'
 
@@ -79,7 +80,5 @@ dependencyManagement {
         dependency 'org.rocksdb:rocksdbjni:6.4.6'
 
         dependency 'tech.pegasys.signers.internal:keystorage-hashicorp:0.0.1-SNAPSHOT'
-
-        dependency 'org.web3j:core:4.5.15'
     }
 }

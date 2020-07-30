@@ -27,6 +27,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.BooleanNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.tuweni.bytes.Bytes;
 import org.hyperledger.besu.plugin.data.Address;
 import org.hyperledger.besu.plugin.data.BlockHeader;
@@ -35,6 +37,7 @@ import org.hyperledger.besu.plugin.data.SyncStatus;
 import org.hyperledger.besu.plugin.data.Transaction;
 
 public interface Serializer {
+  Logger LOG = LogManager.getLogger();
 
   static JsonNode serialize(final ObjectMapper mapper, final Optional<SyncStatus> maybeSyncStatus) {
     if (maybeSyncStatus.isPresent()) {
@@ -144,7 +147,8 @@ public interface Serializer {
 
     try {
       result.put("decoded", ((DecodedLogWithMetadata) logWithMetadata).getDecoded());
-    } catch (final ClassCastException __) {
+    } catch (final ClassCastException e) {
+      LOG.warn(e);
     }
     return result;
   }

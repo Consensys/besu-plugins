@@ -28,15 +28,27 @@ public interface Event {
 
   String type();
 
-  /** @return A string representation of the event. */
+  /**
+   * Returns the string representation of the event.
+   *
+   * @return A string representation of the event.
+   */
   String string();
 
-  /** @return A byte array corresponding to the UTF-8 string representation of the event. */
+  /**
+   * Returns a byte array corresponding to the UTF-8 string representation of the event.
+   *
+   * @return A byte array corresponding to the UTF-8 string representation of the event.
+   */
   default byte[] bytes() {
     return string().getBytes(UTF_8);
   }
 
-  /** @return A {@link ByteBuffer} used by KPL library to publish in kinesis stream. */
+  /**
+   * Returns a {@link ByteBuffer} used by KPL library to publish in kinesis stream.
+   *
+   * @return A {@link ByteBuffer} used by KPL library to publish in kinesis stream.
+   */
   default ByteBuffer buffer() {
     return wrap(bytes());
   }
