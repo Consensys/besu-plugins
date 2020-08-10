@@ -88,7 +88,7 @@ To build, clone this repo and run with `gradle`:
 
 ```shell script
 git clone https://github.com/ConsenSys/besu-plugins.git
-cd teku && ./gradlew
+cd besu-plugins && ./gradlew
 ```
 
 After a successful build, distribution packages are available in `build/distributions`.
