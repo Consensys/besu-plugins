@@ -1,4 +1,4 @@
-# Hyperledger Besu plugins
+# Quorum plugins
 
 [![CircleCI](https://circleci.com/gh/ConsenSys/besu-plugins/tree/master.svg?style=svg)](https://circleci.com/gh/ConsenSys/besu-plugins/tree/master)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/PegasysEng/besu/blob/master/LICENSE)
@@ -20,7 +20,7 @@ These plugins can help add more monitoring functionality or stream event data to
 
 * [Besu User Documentation](https://besu.hyperledger.org)
 * [Quorum Plugins User Documentation](https://docs.quorumplugins.consensys.net/en/stable)
-* [Quorum Plugins_Issues](https://github.com/ConsenSys/besu-plugins/issues)
+* [Quorum Plugins Issues](https://github.com/ConsenSys/besu-plugins/issues)
 * [Contribution guidelines](CONTRIBUTING.md)
 * [Quorum Plugins Changelog](CHANGELOG.md)
 
