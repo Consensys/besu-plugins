@@ -34,6 +34,10 @@ import org.hyperledger.besu.plugin.BesuPlugin;
 public class RabbitMqPlugin extends EventStreamPlugin<RabbitMqPluginConfiguration>
     implements BesuPlugin {
 
+  public RabbitMqPlugin() {
+    super("rabbitmq", new RabbitMqPluginConfiguration(), RabbitMqPublisher::build);
+  }
+
   @VisibleForTesting
   RabbitMqPlugin(
       final String name,

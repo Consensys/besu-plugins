@@ -14,6 +14,9 @@
  */
 package net.consensys.besu.plugin.rabbitmq;
 
+import net.consensys.besu.plugins.stream.core.DomainObjectTopicResolver;
+import net.consensys.besu.plugins.stream.model.DomainObjectType;
+
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
@@ -35,13 +38,19 @@ public class RabbitMqChannelFactory {
     factory.setPassword(configuration.getPassword());
     final Connection connection = factory.newConnection();
     final Channel channel = connection.createChannel();
-    final AMQP.Queue.DeclareOk declareOk =
-        channel.queueDeclare(configuration.getTopic(), true, false, false, null);
-    LOGGER.debug(
-        "Queue: {}, consumer count: {}, message count: {}",
-        declareOk.getQueue(),
-        declareOk.getConsumerCount(),
-        declareOk.getMessageCount());
+    final DomainObjectTopicResolver domainObjectTopicResolver =
+        new DomainObjectTopicResolver(configuration::getTopic);
+    for (DomainObjectType domainObjectType : DomainObjectType.values()) {
+      final AMQP.Queue.DeclareOk declareOk =
+          channel.queueDeclare(
+              domainObjectTopicResolver.resolve(domainObjectType, null), true, false, false, null);
+      LOGGER.debug(
+          "Queue: {}, consumer count: {}, message count: {}",
+          declareOk.getQueue(),
+          declareOk.getConsumerCount(),
+          declareOk.getMessageCount());
+    }
+
     return channel;
   }
 }
