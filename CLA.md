@@ -14,6 +14,6 @@ Individual Contributor License Agreement.
 
 If you have any questions, you can reach us on [Discord].
  
-[Discord]: (TODO-ADD-LINK)
+[Discord]: (https://discord.gg/ZBxu4c)
 [GitHub]: https://github.com/
 [the current version of the CLA]: https://gist.github.com/rojotek/978b48a5e8b68836856a8961d6887992
