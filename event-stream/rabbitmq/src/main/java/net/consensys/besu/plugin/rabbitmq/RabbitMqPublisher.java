@@ -37,7 +37,7 @@ public class RabbitMqPublisher implements Publisher {
   private static final Charset CHARSET = StandardCharsets.UTF_8;
   private final Channel channel;
 
-  private RabbitMqPublisher(final Channel channel) {
+  public RabbitMqPublisher(final Channel channel) {
     this.channel = channel;
   }
 
