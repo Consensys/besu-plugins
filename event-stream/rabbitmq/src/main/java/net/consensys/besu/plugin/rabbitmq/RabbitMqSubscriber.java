@@ -32,7 +32,7 @@ public class RabbitMqSubscriber implements Subscriber {
   private static final Logger LOGGER = LogManager.getLogger(RabbitMqSubscriber.class);
   private final Channel channel;
 
-  private RabbitMqSubscriber(final Channel channel) {
+  public RabbitMqSubscriber(final Channel channel) {
     this.channel = channel;
   }
 
