@@ -2,7 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/ConsenSys/besu-plugins/tree/master.svg?style=svg)](https://circleci.com/gh/ConsenSys/besu-plugins/tree/master)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/PegasysEng/besu/blob/master/LICENSE)
-[![Discord](https://img.shields.io/badge/Chat-on%20Discord-blue)](https://discord.gg/B4yx9SQ)
+[![Discord](https://img.shields.io/badge/Chat-on%20Discord-blue)](https://discord.com/invite/TCtK3YM)
 
 List of plugins allowing to extend the Hyperledger Besu functionality. These use the Plugin API to retrieve data from any Besu network, public or permissioned and feed it into an application or system.
 

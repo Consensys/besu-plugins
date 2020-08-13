@@ -24,7 +24,7 @@ This project and everyone participating in it is governed by the [Quorum Plugins
 
 ## I just have a quick question
 
-You'll find us on [Discord](https://discord.gg/B4yx9SQ) and that's the fastest way to get an answer. 
+You'll find us on [Discord](https://discord.com/invite/TCtK3YM) and that's the fastest way to get an answer. 
 
 ## How To Contribute
 
@@ -123,5 +123,5 @@ We have a set of [coding conventions](https://wiki.hyperledger.org/display/BESU/
 * Reference issues and pull requests liberally
 
 [private@pegasys.tech]: mailto:private@pegasys.tech
-[Discord]: (https://discord.gg/B4yx9SQ)
+[Discord]: (https://discord.com/invite/TCtK3YM)
 [CLA.md]: /CLA.md
