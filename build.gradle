@@ -379,7 +379,11 @@ def bintrayPackage = bintray.pkg {
   repo = 'consensys'
   name = 'besu-plugins'
   userOrg = 'consensys'
-
+  desc = "Besu plugins"
+  licenses = ['Apache-2.0']
+  websiteUrl = 'https://github.com/ConsenSys/besu-plugins'
+  issueTrackerUrl = 'https://github.com/ConsenSys/besu-plugins/issues'
+  vcsUrl = 'https://github.com/ConsenSys/besu-plugins.git'
   version {
     name = project.version
     released = new Date()

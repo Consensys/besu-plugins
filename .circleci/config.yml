@@ -220,13 +220,14 @@ workflows:
       - acceptanceTests:
           requires:
             - build
-      - upload-distribution:
-          requires:
-            - build
-            - test
-            - acceptanceTests
-          filters:
-            branches:
-              only: 
-                - master
-                - /release-.*/
+      # TODO ACTIVATE
+      #- upload-distribution:
+      #    requires:
+      #      - build
+      #      - test
+      #      - acceptanceTests
+      #    filters:
+      #      branches:
+      #        only:
+      #          - master
+      #          - /release-.*/
