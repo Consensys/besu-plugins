@@ -14,6 +14,7 @@
  */
 package net.consensys.besu.plugin.kafka;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.verify;
@@ -25,17 +26,22 @@ import net.consensys.besu.plugins.stream.model.DefaultEvent;
 import net.consensys.besu.plugins.stream.model.DomainObjectType;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 @RunWith(JUnitPlatform.class)
+@SuppressWarnings("rawtypes")
 public class KafkaPublisherTest {
   @Mock private KafkaProducer<String, String> producer;
+  @Captor private ArgumentCaptor<ProducerRecord> record;
 
   @Test
   void build() {
@@ -44,7 +50,7 @@ public class KafkaPublisherTest {
   }
 
   @Test
-  @SuppressWarnings("MockitoInternalUsage")
+  @SuppressWarnings({"MockitoInternalUsage", "unchecked"})
   void publish() throws Exception {
     final Publisher kafkaPublisher = new KafkaPublisher(producer);
     final Event blockAddedEvent =
@@ -54,6 +60,7 @@ public class KafkaPublisherTest {
             (mapper, payload) -> mapper.createObjectNode());
     kafkaPublisher.publish(
         DomainObjectType.BLOCK, new TopicResolver.Fixed(() -> "test-topic"), blockAddedEvent);
-    verify(producer).send(any(), any());
+    verify(producer).send(record.capture(), any());
+    assertThat(record.getValue().value()).isEqualTo(blockAddedEvent.string());
   }
 }
