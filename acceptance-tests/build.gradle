@@ -34,9 +34,6 @@ dependencies {
   testRuntimeOnly 'org.apache.logging.log4j:log4j-slf4j-impl'
   testImplementation 'org.hyperledger.besu:plugin-api'
   testImplementation project(":event-stream:kafka")
-  testImplementation project(":event-stream:kinesis")
-  testImplementation project(":event-stream:nats")
-  testImplementation project(":event-stream:rabbitmq")
   testImplementation sourceSets.testFixtures.output
 
   testImplementation 'com.github.docker-java:docker-java'

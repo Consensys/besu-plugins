@@ -1,9 +1,0 @@
-version: '3.5'
-
-services:
-  kinesis:
-    image: vsouza/kinesis-local:latest
-    command: --port 4567 --createStreaMs 5
-    restart: always
-    ports:
-      - 4567:4567
