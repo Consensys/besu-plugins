@@ -72,8 +72,6 @@ dependencyManagement {
         dependency 'software.amazon.awssdk:kinesis:2.9.5'
         dependency 'software.amazon.awssdk:netty-nio-client:2.9.14'
 
-        dependency 'com.rabbitmq:amqp-client:5.7.3'
-        dependency 'io.nats:jnats:2.6.0'
         dependency 'org.apache.kafka:kafka-clients:2.3.0'
 
         // Acceptance Testing dependencies
