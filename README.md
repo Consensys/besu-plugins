@@ -16,7 +16,9 @@ These plugins can help add more monitoring functionality or stream event data to
 - Logs
 - Syncing state.
 
-**The Besu recommended version is `1.5`**
+**The current Besu recommended version is 1.5**
+
+We recommend using plugins with the last minor (i.e. 1.X) Besu version in production. That version will have undergone the most extensive testing with plugins. While patch releases of Besu should work with plugins, they are not put through the same QA cycle and are only tested by automatic tests. If you have a problem using plugins with a Besu patch release, please open an issue.
 
 ## Useful Links
 
@@ -28,7 +30,7 @@ These plugins can help add more monitoring functionality or stream event data to
 
 ## Plugins 
 
- ### Event stream 
+ ### Event streams
  
 These plugins will listen to events occurring on the Ethereum network and will broadcast these events to your message broker.
 
