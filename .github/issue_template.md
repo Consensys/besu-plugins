@@ -24,7 +24,7 @@ As an [Actor], I want [feature] so that [why].
 **Frequency:** [What percentage of the time does it occur?]
 
 ### Versions (Add all that apply)
-* Software version (Besu and Quorum Plugins)
+* Software version (Besu and Plugins)
 * Java version: [`java -version`]
 * OS Name & Version: [`cat /etc/*release`]
 * Kernel Version: [`uname -a`]

@@ -1,7 +1,7 @@
-# Contributing to Quorum Plugins
+# Contributing to Quorum Besu Plugins
 :+1::tada: First off, thanks for taking the time to contribute! :tada::+1:
 
-Welcome to the Quorum Plugins repository!  The following is a set of guidelines for contributing to this repo and its packages. These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request.
+Welcome to the Quorum Besu Plugins repository!  The following is a set of guidelines for contributing to this repo and its packages. These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request.
 
 #### Table Of Contents
 
@@ -20,7 +20,7 @@ Welcome to the Quorum Plugins repository!  The following is a set of guidelines 
 
 ## Code of Conduct
 
-This project and everyone participating in it is governed by the [Quorum Plugins Code of Conduct](CODE-OF-CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [private@pegasys.tech].
+This project and everyone participating in it is governed by the [Quorum Besu Plugins Code of Conduct](CODE-OF-CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [info@consensys.net].
 
 ## I just have a quick question
 
@@ -79,7 +79,7 @@ Following these guidelines helps maintainers and the community understand your r
 Explain the problem and include additional details to help maintainers reproduce the problem:
 
 * **Use a clear and descriptive title** for the issue to identify the problem.
-* **Describe the exact steps which reproduce the problem** in as many details as possible. For example, start by explaining how you started Besu with the Quorum Plugins, e.g. which command exactly you used in the terminal, or how you started it otherwise. 
+* **Describe the exact steps which reproduce the problem** in as many details as possible. For example, start by explaining how you started Besu with Plugins, e.g. which command exactly you used in the terminal, or how you started it otherwise. 
 * **Provide specific examples to demonstrate the steps**. Include links to files or GitHub projects, or copy/pasteable snippets, which you use in those examples. If you're providing snippets in the issue, use [Markdown code blocks](https://help.github.com/articles/markdown-basics/#multiple-lines).
 * **Describe the behavior you observed after following the steps** and point out what exactly is the problem with that behavior.
 * **Explain which behavior you expected to see instead and why.**
@@ -93,7 +93,7 @@ Provide more context by answering these questions:
 
 Include details about your configuration and environment:
 
-* **Which version of the software are you using (Besu and Quorum Plugins) ?** You can get the exact version of Besu by running `besu -v` in your terminal.
+* **Which version of the software are you using (Besu and Plugins) ?** You can get the exact version of Besu by running `besu -v` in your terminal.
 * **What OS & Version are you running?**
   * **For Linux - What kernel are you running?** You can get the exact version by running `uname -a` in your terminal.
 * **Are you running in a virtual machine?** If so, which VM software are you using and which operating systems and versions are used for the host and the guest?
@@ -122,6 +122,6 @@ We have a set of [coding conventions](https://wiki.hyperledger.org/display/BESU/
 * Provide a summary on the first line with more details on additional lines as needed
 * Reference issues and pull requests liberally
 
-[private@pegasys.tech]: mailto:private@pegasys.tech
+[info@consensys.net]: mailto:info@consensys.net
 [Discord]: (https://discord.com/invite/TCtK3YM)
 [CLA.md]: /CLA.md

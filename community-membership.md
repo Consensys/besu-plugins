@@ -6,11 +6,11 @@ this project.
 | Role | Responsibilities | Defined by |
 | -----| ---------------- | ---------- |
 | Everyone | none | anybody with a belly button
-| Member | everyone who contributes - code or otherwise | Quorum Plugins GitHub org member
+| Member | everyone who contributes - code or otherwise | Quorum Besu Plugins GitHub org member
 | Approver | approve accepting contributions | write permissions on master
-| Project Sponsor | contribute developer resources | PegaSys
-| Project Evangelist | promote the project | PegaSys
-| Benevolent Dictator | decision tie-breaker | PegaSys
+| Project Sponsor | contribute developer resources | ConsenSys
+| Project Evangelist | promote the project | ConsenSys
+| Benevolent Dictator | decision tie-breaker | ConsenSys
 
 ## Everyone
 Any person from the public is able to access the code.  The standard permissions grant the ability to view the code, view open bugs, access the wiki, download binaries, view CI results and comment on pull requests.
@@ -41,7 +41,7 @@ issues and PRs assigned to them.
     - Authoring or reviewing PRs on GitHub
     - Filing or commenting on issues on GitHub
     - Contributing to community discussions (e.g. meetings, Slack, email discussion forums, Stack Overflow)
-- Joined [Quorum Plugins Discord]
+- Joined [Discord]
 - Have read the [contributor guide]
 - Signed ICLA, as described in [CLA.md]
 
@@ -82,7 +82,7 @@ Code approvers are members that have signed an ICLA and have been granted additi
 ## Project Sponsor
 The Project Sponsor role provides a user with the ability to contribute additional developer resources to the project.  Project Sponsors must sign the ICLA.
 
-**Defined by:** PegaSys
+**Defined by:** ConsenSys
 
 ### Requirements
 - Signed ICLA, as described in [CLA.md]
@@ -94,7 +94,7 @@ The Project Sponsor role provides a user with the ability to contribute addition
 
 ## Project Evangelist
 The Project Evangelist role is for those who wish to promote the project to the outside world, but not actively contribute to it.  
-**Defined by:** PegaSys
+**Defined by:** ConsenSys
 
 ### Requirements
 - Includes all of the requirements of a Member user
@@ -128,4 +128,4 @@ This document is adapted from the following sources:
 [contributor guide]: /CONTRIBUTING.md
 [New contributors]: /CONTRIBUTING.md
 [two-factor authentication]: https://help.github.com/articles/about-two-factor-authentication
-[Quorum Plugins Discord]: (https://discord.com/invite/TCtK3YM)
+[Discord]: (https://discord.com/invite/TCtK3YM)

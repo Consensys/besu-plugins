@@ -1,6 +1,11 @@
-# Quorum Plugins Bug Triage Process
+# Bug Triage Process
 
-In the Quorum Plugins repository, we have a well-defined policy regarding bug categorization. 
+In the Quorum Besu Plugins repository, we have a well-defined policy regarding bug categorization. 
+
+Our policy is inspired by the Besu Defect Prioritization Policy & Bug Triage Process : 
+* [Besu Bug Triage Process](https://wiki.hyperledger.org/display/BESU/Bug+Triage+Process)
+* [Besu Defect Prioritisation Policy](https://wiki.hyperledger.org/display/BESU/Defect+Prioritisation+Policy)
+
 
 #### Deciding Priority
 When deciding how to respond to a bug, consider the two variables of probability and severity, and apply them to a risk matrix to determine the priority and corresponding action.
@@ -199,9 +204,3 @@ It is a combination of being polite and reasonable. :)
 
 ##### What if I don't have enough knowledge of a specific area to prioritize a bug?
 That's ok! Deeper understanding of the impact of a bug will come from the people that work closer to the affected area of the code. Leave it to them!
-
-
-
-_Mostly taken from Besu Docs_: 
-* [Besu Bug Triage Process](https://wiki.hyperledger.org/display/BESU/Bug+Triage+Process)
-* [Besu Defect Prioritisation Policy](https://wiki.hyperledger.org/display/BESU/Defect+Prioritisation+Policy)

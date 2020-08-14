@@ -79,6 +79,5 @@ dependencyManagement {
         // Acceptance Testing dependencies
         dependency 'org.rocksdb:rocksdbjni:6.4.6'
 
-        dependency 'tech.pegasys.signers.internal:keystorage-hashicorp:0.0.1-SNAPSHOT'
     }
 }

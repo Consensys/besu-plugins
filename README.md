@@ -1,7 +1,7 @@
-# Quorum plugins for Besu
+# Quorum Besu Plugins
 
 [![CircleCI](https://circleci.com/gh/ConsenSys/besu-plugins/tree/master.svg?style=svg)](https://circleci.com/gh/ConsenSys/besu-plugins/tree/master)
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/PegasysEng/besu/blob/master/LICENSE)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/ConsenSys/besu-plugins/blob/master/LICENSE)
 [![Discord](https://img.shields.io/badge/Chat-on%20Discord-blue)](https://discord.com/invite/TCtK3YM)
 
 List of plugins allowing to extend the Hyperledger Besu functionality. These use the Plugin API to retrieve data from any Besu network, public or permissioned and feed it into an application or system.
@@ -21,10 +21,10 @@ These plugins can help add more monitoring functionality or stream event data to
 ## Useful Links
 
 * [Besu User Documentation](https://besu.hyperledger.org)
-* [Quorum Plugins User Documentation](https://consensys.net/quorum/docs/plugins)
-* [Quorum Plugins Issues](https://github.com/ConsenSys/besu-plugins/issues)
+* [Plugins User Documentation](https://consensys.net/quorum/docs/plugins)
+* [Plugins Issues](https://github.com/ConsenSys/besu-plugins/issues)
 * [Contribution guidelines](CONTRIBUTING.md)
-* [Quorum Plugins Changelog](CHANGELOG.md)
+* [Plugins Changelog](CHANGELOG.md)
 
 ## Plugins 
 
@@ -48,11 +48,11 @@ These plugins will listen to events occurring on the Ethereum network and will b
 - Sync Status Changed
 - Log Emitted
 
-## Quorum Plugins users 
+## Quorum Besu Plugins users 
 
 See our [user documentation](https://consensys.net/quorum/docs/plugins). 
 
-## Quorum Plugins developers 
+## Quorum Besu Plugins developers 
 
 * [Contribution Guidelines](CONTRIBUTING.md)
 * [Coding Conventions](https://github.com/hyperledger/besu/blob/master/CODING-CONVENTIONS.md)
