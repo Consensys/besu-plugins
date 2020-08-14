@@ -4,9 +4,11 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/ConsenSys/besu-plugins/blob/master/LICENSE)
 [![Discord](https://img.shields.io/badge/Chat-on%20Discord-blue)](https://discord.com/invite/TCtK3YM)
 
-List of plugins allowing to extend the Hyperledger Besu functionality. These use the Plugin API to retrieve data from any Besu network, public or permissioned and feed it into an application or system.
+**Quorum Besu Plugins** allows to extend the Hyperledger Besu functionality. It uses the Plugin API to retrieve data from any Besu network, public or permissioned and feed it into an application or system.
 
-These plugins can help add more monitoring functionality or stream event data to a third party application. The API exposes data about the following components:
+- Kafka plugin 
+
+This plugin can help add more monitoring functionality or stream event data to a third party application. The API exposes data about the following components:
 
 - Blocks
 - Balances
