@@ -17,6 +17,13 @@ plugins {
   // Apply the java plugin to add support for Java
   id 'java-library' }
 
+sourceSets {
+  test {
+    resources {
+      sourceSets.test.resources.srcDir "../common/src/test/resources"
+    }
+  }
+}
 
 group 'net.consensys.besu.plugins'
 version '0.0.5-SNAPSHOT'
@@ -34,6 +41,8 @@ dependencies {
 
   annotationProcessor 'com.google.auto.service:auto-service'
 
+
+  testImplementation 'org.assertj:assertj-core'
   testImplementation 'org.junit.jupiter:junit-jupiter-engine'
   testImplementation 'org.junit.jupiter:junit-jupiter-api'
   testImplementation 'org.mockito:mockito-core'

@@ -17,6 +17,14 @@ plugins {
   // Apply the java plugin to add support for Java
   id 'java-library' }
 
+sourceSets {
+  test {
+    resources {
+      sourceSets.test.resources.srcDir "../common/src/test/resources"
+    }
+  }
+}
+
 dependencies {
   compile project(':event-stream:common')
   compile 'io.nats:jnats'
