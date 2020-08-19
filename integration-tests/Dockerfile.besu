@@ -1,0 +1,3 @@
+FROM hyperledger/besu:latest
+USER root
+ADD ./build/distributions/install/besu-plugins/plugins/ /opt/besu/plugins/
