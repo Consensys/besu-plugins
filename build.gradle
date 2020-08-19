@@ -179,7 +179,7 @@ allprojects {
    */
   test {
     if(System.getenv("KAFKA_INTEGRATION_TEST_ENABLED")==null) {
-      exclude '**/kafka/**'
+      exclude '**/integration/tests/kafka/**'
     }
     jvmArgs = [
       '-Xmx4g',

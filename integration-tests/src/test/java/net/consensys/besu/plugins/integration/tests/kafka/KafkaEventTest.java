@@ -12,7 +12,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-package net.consensys.besu.plugins.kafka;
+package net.consensys.besu.plugins.integration.tests.kafka;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 
