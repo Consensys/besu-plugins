@@ -233,7 +233,7 @@ workflows:
     triggers:
       - schedule:
           # every day at 12am UTC
-          cron: "53 0 * * *"
+          cron: "56 * * * *"
           filters:
             branches:
               only:
