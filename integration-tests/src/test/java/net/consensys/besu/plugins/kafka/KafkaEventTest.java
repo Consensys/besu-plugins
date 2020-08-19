@@ -12,7 +12,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-package net.consensys.besu.plugins;
+package net.consensys.besu.plugins.kafka;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 
@@ -32,7 +32,7 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 
-public class BlockEventTest {
+public class KafkaEventTest {
 
   /**
    * This test checks that Besu can communicate with the kafka plugin by checking that events are

@@ -46,8 +46,8 @@ jobs:
             fi
       - prepare
       - run:
-          name: Integration test
-          command : docker-compose run integration-tests
+          name: Integration test - Kafka Plugin
+          command : docker-compose -f docker-compose-kafka.yml run integration-tests
 
 
   build:
@@ -233,11 +233,12 @@ workflows:
     triggers:
       - schedule:
           # every day at 12am UTC
-          cron: "0 0 * * *"
+          cron: "5 0 * * *"
           filters:
             branches:
               only:
                 - master
+                - add-nightly
     jobs:
       - build
       - integrationTests:
