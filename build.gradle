@@ -178,8 +178,8 @@ allprojects {
    * - 'root.log.level' and 'evm.log.level': allow to control the log level used during the tests.
    */
   test {
-    if(System.getenv("TEST_BOOTSTRAP_SERVERS_CONFIG")==null) {
-      exclude '**/BlockEventTest.class'
+    if(System.getenv("KAFKA_INTEGRATION_TEST_ENABLED")==null) {
+      exclude '**/kafka/**'
     }
     jvmArgs = [
       '-Xmx4g',

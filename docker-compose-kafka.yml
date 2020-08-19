@@ -31,6 +31,7 @@ services:
             dockerfile: ./integration-tests/Dockerfile.tests
         container_name: besu-integration-tests-module
         environment:
+            - KAFKA_INTEGRATION_TEST_ENABLED=true
             - TEST_BOOTSTRAP_SERVERS_CONFIG=kafka:9092
             - TOPIC=event.block
         entrypoint: ./gradlew :integration-tests:test
