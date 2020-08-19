@@ -233,12 +233,11 @@ workflows:
     triggers:
       - schedule:
           # every day at 12am UTC
-          cron: "5 * * * *"
+          cron: "0 0 * * *"
           filters:
             branches:
               only:
                 - master
-                - create-nightly
     jobs:
       - build
       - integrationTests:
