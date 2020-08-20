@@ -20,7 +20,7 @@ Welcome to the Quorum Besu Plugins repository!  The following is a set of guidel
 
 ## Code of Conduct
 
-This project and everyone participating in it is governed by the [Quorum Besu Plugins Code of Conduct](CODE-OF-CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [info@consensys.net].
+This project and everyone participating in it is governed by the [Quorum Besu Plugins Code of Conduct](CODE-OF-CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [quorum@consensys.net].
 
 ## I just have a quick question
 
@@ -122,6 +122,6 @@ We have a set of [coding conventions](https://wiki.hyperledger.org/display/BESU/
 * Provide a summary on the first line with more details on additional lines as needed
 * Reference issues and pull requests liberally
 
-[info@consensys.net]: mailto:info@consensys.net
+[quorum@consensys.net]: mailto:quorum@consensys.net
 [Discord]: (https://discord.com/invite/TCtK3YM)
 [CLA.md]: /CLA.md
