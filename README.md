@@ -33,7 +33,7 @@ We recommend using plugins with the last minor (i.e. 1.X) Besu version in produc
 
  ### Event streams
  
-This plugin will listen to events occurring on the Ethereum network and will broadcast them to Kafka. Core broadcasting logic has been extracted to a [common folder](https://github.com/ConsenSys/besu-plugins/tree/master/event-stream/common)) to facilitate the addition of support for other message brokers.
+This plugin will listen to events occurring on the Ethereum network and will broadcast them to Kafka. Core broadcasting logic has been extracted to a [common folder](https://github.com/ConsenSys/besu-plugins/tree/master/event-stream/common) to facilitate the addition of support for other message brokers.
 
 **List of compatible message brokers:**
 - [Kafka](https://github.com/ConsenSys/besu-plugins/tree/master/event-stream/kafka)
