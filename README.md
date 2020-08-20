@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/ConsenSys/besu-plugins/blob/master/LICENSE)
 [![Discord](https://img.shields.io/badge/Chat-on%20Discord-blue)](https://discord.com/invite/TCtK3YM)
 
-**Quorum Besu Plugins** allows to extend the Hyperledger Besu functionality. 
+**Quorum Besu Plugins** extends the Hyperledger Besu functionality. 
 It uses the Plugin API to retrieve data from any Besu network, public or permissioned and feed it into an application or system.
 
 This API exposes data about the following components:
@@ -33,7 +33,7 @@ We recommend using plugins with the last minor (i.e. 1.X) Besu version in produc
 
  ### Event streams
  
-This plugin will listen to events occurring on the Ethereum network and will broadcast them to Kafka. Core broadcasting logic has been extracted to a common folder to facilitate the addition of support for other message brokers.
+This plugin will listen to events occurring on the Ethereum network and will broadcast them to Kafka. Core broadcasting logic has been extracted to a [common folder](https://github.com/ConsenSys/besu-plugins/tree/master/event-stream/common)) to facilitate the addition of support for other message brokers.
 
 **List of compatible message brokers:**
 - [Kafka](https://github.com/ConsenSys/besu-plugins/tree/master/event-stream/kafka)
