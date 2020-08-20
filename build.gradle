@@ -265,6 +265,9 @@ dependencies {
   installedJars (
     project(":event-stream:common"),
     project(":event-stream:kafka"),
+    project(":event-stream:nats"),
+    project(":event-stream:rabbitmq"),
+    project(":event-stream:kinesis"),
     )}
 
 task downloadLatestBesu(type: Download) {
@@ -292,6 +295,9 @@ task distTar(type: Tar) {
   from(configurations.installedJars) {
     into "plugins"
     exclude "**/common*.jar"
+    exclude "**/nats*.jar"
+    exclude "**/rabbitmq*.jar"
+    exclude "**/kinesis*.jar"
   }
   into besuPluginsIdentifier
   archiveBaseName = distributionIdentifier
@@ -326,6 +332,9 @@ task deployPlugins(type: Copy) {
   from(configurations.installedJars) {
     into new File(distributionIdentifier, "plugins")
     exclude "**/common*.jar"
+    exclude "**/nats*.jar"
+    exclude "**/rabbitmq*.jar"
+    exclude "**/kinesis*.jar"
   }
 
   into tasks.getByName("installDist").destinationDir
