@@ -274,6 +274,21 @@ task distTar(type: Tar) {
 }
 
 
+task checkSpdxHeader(type: CheckSpdxHeader) {
+  apply plugin: 'groovy'
+
+  rootPath = "${projectDir}"
+  spdxHeader = "* SPDX-License-Identifier: Apache-2.0"
+  filesRegex = "(.*.java)|(.*.groovy)"
+  excludeRegex = [
+    "(.*/.gradle/.*)",
+    "(.*/.idea/.*)",
+    "(.*/out/.*)",
+    "(.*/build/.*)",
+    "(.*/src/[^/]+/generated/.*)",
+  ].join("|")
+
+}
 task installDist(type: Copy) {
   dependsOn distTar
 
@@ -396,6 +411,7 @@ bintray {
   pkg = bintrayPackage
 }
 
+check.dependsOn checkSpdxHeader
 bintrayUpload.dependsOn verifyDistributions
 bintrayUpload.mustRunAfter(distTar)
 bintrayUpload.mustRunAfter(distZip)
