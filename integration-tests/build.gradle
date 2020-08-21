@@ -1,0 +1,12 @@
+plugins {
+  id 'java'
+}
+
+dependencies {
+
+  testImplementation group: 'junit', name: 'junit', version: '4.12'
+  testImplementation 'org.assertj:assertj-core'
+  testImplementation 'org.junit.jupiter:junit-jupiter-api'
+  testImplementation 'org.junit.jupiter:junit-jupiter-engine'
+  testImplementation project(":event-stream:kafka")
+}

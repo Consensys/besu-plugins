@@ -1,0 +1,40 @@
+version: '2'
+
+services:
+
+    kafka:
+        image: openzipkin/zipkin-kafka
+        container_name: kafka
+        ports:
+            - 2181:2181
+            - 9092:9092
+            - 19092:19092
+
+    besu:
+        build:
+            context: .
+            dockerfile: ./integration-tests/Dockerfile.besu
+        environment:
+            - JAVA_OPTS="-Dbesu.plugins.dir=/opt/besu/plugins"
+            - BESU_LOGGING=DEBUG
+            - BESU_NETWORK=DEV
+            - BESU_MINER_ENABLED=true
+            - BESU_MINER_COINBASE=0x0000000000000000000000000000000000000000
+        container_name: besu
+        entrypoint: besu --plugin-kafka-enabled --plugin-kafka-url=kafka:9092 --plugin-kafka-stream=event.
+        depends_on:
+            - kafka
+
+    integration-tests:
+        build:
+            context : .
+            dockerfile: ./integration-tests/Dockerfile.tests
+        container_name: besu-integration-tests-module
+        environment:
+            - KAFKA_INTEGRATION_TEST_ENABLED=true
+            - TEST_BOOTSTRAP_SERVERS_CONFIG=kafka:9092
+            - TOPIC=event.block
+        entrypoint: ./gradlew :integration-tests:test
+        depends_on:
+            - kafka
+            - besu

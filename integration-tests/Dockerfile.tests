@@ -1,0 +1,3 @@
+FROM circleci/openjdk:11.0.4-jdk-stretch
+USER root
+ADD . /

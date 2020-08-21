@@ -1,6 +1,9 @@
 ---
 version: 2.1
 executors:
+  machine_executor:
+    machine: true
+    working_directory: ~/project
   besu_plugins_docker_executor:
     docker:
       - image: circleci/openjdk:11.0.4-jdk-stretch
@@ -26,11 +29,31 @@ commands:
           at: ~/project
 
 jobs:
+
+  integrationTests:
+    executor: machine_executor
+    steps:
+      - run:
+          name: Local build handling
+          command: |
+            if [[ ${CIRCLE_SHELL_ENV} =~ "localbuild" ]]; then
+            if [ -d /workdir ]; then
+            ln -s /workdir /tmp/_circleci_local_build_repo
+            else
+            echo "Run this local build using: circleci build -v \$(pwd):/workdir"
+            exit 1
+            fi
+            fi
+      - prepare
+      - run:
+          name: Integration test - Kafka Plugin
+          command : docker-compose -f docker-compose-kafka.yml run integration-tests
+
+
   build:
     executor: besu_plugins_docker_executor
     steps:
       - prepare
-
       - run:
           name: Spotless checks
           command: ./gradlew spotlesscheck
@@ -85,10 +108,6 @@ jobs:
       - run:
           name: Running unit tests
           command: ./gradlew --stacktrace test
-
-      - run:
-          name: Running integration tests
-          command: ./gradlew --stacktrace integrationTest
 
       - run:
           name: Collecting test results
@@ -210,6 +229,20 @@ jobs:
 
 workflows:
   version: 2
+  nightly:
+    triggers:
+      - schedule:
+          # every day at 12am UTC
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - build
+      - integrationTests:
+          requires:
+            - build
   pipeline:
     jobs:
       - build
