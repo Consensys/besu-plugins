@@ -24,7 +24,7 @@ We recommend using plugins with the last minor (i.e. 1.X) Besu version in produc
 ## Useful Links
 
 * [Besu User Documentation](https://besu.hyperledger.org)
-* [Plugins User Documentation](https://consensys.net/quorum/docs/plugins)
+* [Plugins User Documentation](https://doc.quorumplugins.consensys.net)
 * [Plugins Issues](https://github.com/ConsenSys/besu-plugins/issues)
 * [Contribution guidelines](CONTRIBUTING.md)
 * [Plugins Changelog](CHANGELOG.md)
@@ -50,7 +50,7 @@ This plugin will listen to events occurring on the Ethereum network and will bro
 
 ## Quorum Besu Plugins users 
 
-See our [user documentation](https://consensys.net/quorum/docs/plugins). 
+See our [user documentation](https://doc.quorumplugins.consensys.net/en/latest/Concepts/Besu-Plugins/Event-Streams/). 
 
 ## Quorum Besu Plugins developers 
 
