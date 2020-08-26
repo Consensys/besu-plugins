@@ -1,5 +1,9 @@
 ---
 version: 2.1
+
+orbs:
+  slack: circleci/slack@3.4.1
+
 executors:
   machine_executor:
     machine: true
@@ -27,6 +31,11 @@ commands:
             - v1-dependencies-
       - attach_workspace:
           at: ~/project
+  notify:
+    description: "Notify Slack"
+    steps:
+      - slack/status:
+          fail_only: true
 
 jobs:
 
@@ -48,6 +57,7 @@ jobs:
       - run:
           name: Integration test - Kafka Plugin
           command : docker-compose -f docker-compose-kafka.yml run integration-tests
+      - notify
 
 
   build:
@@ -65,7 +75,7 @@ jobs:
       - run:
           name: Compiling
           command: ./gradlew assemble
-
+      - notify
       - run:
           name: Collecting license reports
           command: |

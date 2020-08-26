@@ -84,6 +84,7 @@ public class CommonConfiguration implements EventStreamConfiguration {
 
   @Override
   public void loadEventSchemas() {
+    int fai
     this.eventSchemas =
         Optional.ofNullable(getEventSchemasFile())
             .map(
