@@ -253,14 +253,13 @@ workflows:
       - acceptanceTests:
           requires:
             - build
-      # TODO ACTIVATE
-      #- upload-distribution:
-      #    requires:
-      #      - build
-      #      - test
-      #      - acceptanceTests
-      #    filters:
-      #      branches:
-      #        only:
-      #          - master
-      #          - /release-.*/
+      - upload-distribution:
+          requires:
+            - build
+            - test
+            - acceptanceTests
+          filters:
+            branches:
+              only:
+                - master
+                - /release-.*/
