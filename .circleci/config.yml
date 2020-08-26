@@ -36,6 +36,7 @@ commands:
     steps:
       - slack/status:
           fail_only: true
+          only_for_branches : feature/add-nightly-notification
 
 jobs:
 
