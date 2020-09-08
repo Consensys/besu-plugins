@@ -36,7 +36,7 @@ commands:
     steps:
       - slack/status:
           fail_only: false
-          only_for_branches: pull/14
+          only_for_branches: add-nightly-alert
 
 jobs:
 
