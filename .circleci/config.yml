@@ -37,7 +37,7 @@ commands:
       - slack/status:
           fail_only: true
           failure_message: ":alert: The besu-plugins nightly failed"
-          only_for_branches: add-nightly-alert
+          only_for_branches: master
 
 jobs:
 
@@ -77,7 +77,6 @@ jobs:
       - run:
           name: Compiling
           command: ./gradlew assemble
-      - notify
       - run:
           name: Collecting license reports
           command: |
