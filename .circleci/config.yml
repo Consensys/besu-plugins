@@ -31,12 +31,12 @@ commands:
             - v1-dependencies-
       - attach_workspace:
           at: ~/project
-    notify:
-      description: "Notify Slack"
-      steps:
-        - slack/status:
-            fail_only: false
-            only_for_branches: pull/14
+  notify:
+    description: "Notify Slack"
+    steps:
+      - slack/status:
+          fail_only: false
+          only_for_branches: pull/14
 
 jobs:
 
