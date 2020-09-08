@@ -84,6 +84,7 @@ public class CommonConfiguration implements EventStreamConfiguration {
 
   @Override
   public void loadEventSchemas() {
+    force failed
     this.eventSchemas =
         Optional.ofNullable(getEventSchemasFile())
             .map(

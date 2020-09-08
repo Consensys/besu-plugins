@@ -35,9 +35,8 @@ commands:
     description: "Notify Slack"
     steps:
       - slack/status:
-          fail_only: false
-          failure_message: ":alert: :alert: :alert:  The nightly just failed :alert: :alert: :alert:"
-          success_message: ":alert: :alert: :alert:  The nightly just failed :alert: :alert: :alert:"
+          fail_only: true
+          failure_message: ":alert: The besu-plugins nightly failed"
           only_for_branches: add-nightly-alert
 
 jobs:
