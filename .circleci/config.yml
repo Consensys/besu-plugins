@@ -32,11 +32,11 @@ commands:
       - attach_workspace:
           at: ~/project
   notify:
-    description: ":alert: :alert: :alert:  The nightly just failed :alert: :alert: :alert: "
+    description: "Notify Slack"
     steps:
       - slack/status:
           fail_only: false
-          message: "
+          message: ":alert: :alert: :alert:  The nightly just failed :alert: :alert: :alert:"
           only_for_branches: add-nightly-alert
 
 jobs:
