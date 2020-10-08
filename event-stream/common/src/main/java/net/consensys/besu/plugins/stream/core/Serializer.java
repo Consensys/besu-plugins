@@ -145,10 +145,8 @@ public interface Serializer {
             .put("removed", logWithMetadata.isRemoved())
             .put("logIndex", QuantityFormatter.format(logWithMetadata.getLogIndex()));
 
-    try {
+    if (logWithMetadata instanceof DecodedLogWithMetadata) {
       result.put("decoded", ((DecodedLogWithMetadata) logWithMetadata).getDecoded());
-    } catch (final ClassCastException e) {
-      LOG.warn(e);
     }
     return result;
   }

@@ -183,6 +183,8 @@ public abstract class EventStreamPlugin<T extends EventStreamConfiguration> impl
                                 listener),
                         events::removeLogListener) // add log listener from config file
                     .subscribeAll());
+
+    configuration.loadEventSchemas();
   }
 
   @Override
