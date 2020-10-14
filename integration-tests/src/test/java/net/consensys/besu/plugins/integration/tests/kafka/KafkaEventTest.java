@@ -59,7 +59,7 @@ public class KafkaEventTest {
 
     // polling
     final ArrayList<String> eventsToCheck = new ArrayList<>();
-    eventsToCheck.add(Event.Type.BLOCK_ADDED);
+    eventsToCheck.add(Event.Type.LOG_EMITTED);
     eventsToCheck.add(Event.Type.BLOCK_PROPAGATED);
 
     while (!eventsToCheck.isEmpty()) {
