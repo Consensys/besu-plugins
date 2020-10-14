@@ -59,7 +59,10 @@ jobs:
       - run:
           name: Integration test - Kafka Plugin
           command : docker-compose -f docker-compose-kafka.yml run integration-tests
-      - notify
+      - run:
+          name: "Failure: output container logs to console"
+          command: |
+            docker-compose -f cdocker-compose-kafka.yml logs integration-tests
 
 
   build:
@@ -257,20 +260,6 @@ workflows:
   pipeline:
     jobs:
       - build
-      - test:
+      - integrationTests:
           requires:
             - build
-      - javaDoc
-      - acceptanceTests:
-          requires:
-            - build
-      - upload-distribution:
-          requires:
-            - build
-            - test
-            - acceptanceTests
-          filters:
-            branches:
-              only:
-                - master
-                - /release-.*/
