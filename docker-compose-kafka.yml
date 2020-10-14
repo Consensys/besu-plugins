@@ -8,6 +8,12 @@ services:
         ports:
             - 2181:2181
             - 9092:9092
+        healthcheck:
+            test: nc -z localhost 9092 || exit -1
+            interval: 10s
+            timeout: 5s
+            retries: 3
+            start_period: 10s
     besu:
         build:
             context: .
