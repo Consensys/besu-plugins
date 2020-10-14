@@ -140,6 +140,7 @@ public abstract class EventStreamPlugin<T extends EventStreamConfiguration> impl
         .ifPresent(
             events -> {
               final List<DomainObjectType> enabledTopics = configuration.getEnabledTopics();
+              LOGGER.info("Enabled Kafka topics {}", enabledTopics);
               if (enabledTopics.contains(BLOCK)) {
                 subscriptionManager
                     .addSubscription(
