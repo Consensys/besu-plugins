@@ -16,11 +16,14 @@ package net.consensys.besu.plugin.kafka;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import net.consensys.besu.plugins.stream.model.DomainObjectType;
+
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.jupiter.api.Test;
+import picocli.CommandLine;
 
 public class KafkaPluginConfigurationTest {
 
@@ -45,5 +48,34 @@ public class KafkaPluginConfigurationTest {
     assertThat(configuration.properties().get(KafkaPluginConfiguration.SASL_CONFIG_PROPERTY_KEY))
         .isEqualTo(
             "org.apache.kafka.common.security.plain.PlainLoginModule required username=\"DUMMY_USERNAME\" password=\"DUMMY_PASSWORD\";");
+  }
+
+  @Test
+  public void pluginKafkaEnabledTopicIsParsedCorrectly() {
+    final KafkaPluginConfiguration kafkaPluginConfiguration = new KafkaPluginConfiguration();
+    final CommandLine commandLine = new CommandLine(kafkaPluginConfiguration);
+
+    commandLine.parseArgs("--plugin-kafka-enabled-topic", "BLOCK");
+    assertThat(kafkaPluginConfiguration.getEnabledTopics()).containsExactly(DomainObjectType.BLOCK);
+
+    commandLine.parseArgs("--plugin-kafka-enabled-topic", "block");
+    assertThat(kafkaPluginConfiguration.getEnabledTopics()).containsExactly(DomainObjectType.BLOCK);
+
+    commandLine.parseArgs("--plugin-kafka-enabled-topics", "block,log");
+    assertThat(kafkaPluginConfiguration.getEnabledTopics())
+        .containsExactlyInAnyOrder(DomainObjectType.LOG, DomainObjectType.BLOCK);
+  }
+
+  @Test
+  public void allTopicsShouldBeEnabledByDefault() {
+    final KafkaPluginConfiguration kafkaPluginConfiguration = new KafkaPluginConfiguration();
+    final CommandLine commandLine = new CommandLine(kafkaPluginConfiguration);
+
+    assertThat(kafkaPluginConfiguration.getEnabledTopics())
+        .containsExactly(DomainObjectType.values());
+
+    commandLine.parseArgs();
+    assertThat(kafkaPluginConfiguration.getEnabledTopics())
+        .containsExactly(DomainObjectType.values());
   }
 }

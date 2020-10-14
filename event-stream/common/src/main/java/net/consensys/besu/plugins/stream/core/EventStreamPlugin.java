@@ -15,12 +15,17 @@
 package net.consensys.besu.plugins.stream.core;
 
 import static java.util.stream.Collectors.toUnmodifiableList;
+import static net.consensys.besu.plugins.stream.model.DomainObjectType.BLOCK;
+import static net.consensys.besu.plugins.stream.model.DomainObjectType.LOG;
+import static net.consensys.besu.plugins.stream.model.DomainObjectType.NODE;
+import static net.consensys.besu.plugins.stream.model.DomainObjectType.TRANSACTION;
 
 import net.consensys.besu.plugins.stream.api.config.EventStreamConfiguration;
 import net.consensys.besu.plugins.stream.api.event.Publisher;
 import net.consensys.besu.plugins.stream.api.event.TopicResolver;
 import net.consensys.besu.plugins.stream.api.monitoring.HealthCheck;
 import net.consensys.besu.plugins.stream.core.config.EventSchema;
+import net.consensys.besu.plugins.stream.model.DomainObjectType;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -133,7 +138,9 @@ public abstract class EventStreamPlugin<T extends EventStreamConfiguration> impl
     context
         .getService(BesuEvents.class)
         .ifPresent(
-            events ->
+            events -> {
+              final List<DomainObjectType> enabledTopics = configuration.getEnabledTopics();
+              if (enabledTopics.contains(BLOCK)) {
                 subscriptionManager
                     .addSubscription(
                         "block propagated",
@@ -146,7 +153,10 @@ public abstract class EventStreamPlugin<T extends EventStreamConfiguration> impl
                     .addSubscription(
                         "block reorg",
                         events::addBlockReorgListener,
-                        events::removeBlockReorgListener)
+                        events::removeBlockReorgListener);
+              }
+              if (enabledTopics.contains(TRANSACTION)) {
+                subscriptionManager
                     .addSubscription(
                         "transaction added",
                         events::addTransactionAddedListener,
@@ -154,11 +164,10 @@ public abstract class EventStreamPlugin<T extends EventStreamConfiguration> impl
                     .addSubscription(
                         "transaction dropped",
                         events::addTransactionDroppedListener,
-                        events::removeTransactionDroppedListener)
-                    .addSubscription(
-                        "sync status",
-                        events::addSyncStatusListener,
-                        events::removeSyncStatusListener)
+                        events::removeTransactionDroppedListener);
+              }
+              if (enabledTopics.contains(LOG)) {
+                subscriptionManager
                     .addSubscription(
                         "log",
                         listener ->
@@ -181,8 +190,14 @@ public abstract class EventStreamPlugin<T extends EventStreamConfiguration> impl
                                         .map(EventSchema::getTopic)
                                         .collect(toUnmodifiableList())),
                                 listener),
-                        events::removeLogListener) // add log listener from config file
-                    .subscribeAll());
+                        events::removeLogListener); // add log listener from config file
+              }
+              if (enabledTopics.contains(NODE)) {
+                subscriptionManager.addSubscription(
+                    "sync status", events::addSyncStatusListener, events::removeSyncStatusListener);
+              }
+              subscriptionManager.subscribeAll();
+            });
 
     configuration.loadEventSchemas();
   }

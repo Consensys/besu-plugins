@@ -16,12 +16,14 @@ package net.consensys.besu.plugins.stream.api.config;
 
 import net.consensys.besu.plugins.stream.core.config.EventSchemas;
 import net.consensys.besu.plugins.stream.core.config.LogFilterTopicsWrapper;
+import net.consensys.besu.plugins.stream.model.DomainObjectType;
 import net.consensys.besu.plugins.types.Address;
 
 import java.io.File;
 import java.io.IOException;
 import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,8 +38,9 @@ public class CommonConfiguration implements EventStreamConfiguration {
   protected String topic = "pegasys-stream";
   protected String brokerUrl = "127.0.0.1:9092";
   protected boolean metadataDBEnabled = true;
-  protected LogFilterTopicsWrapper logFilterTopicsWrapper = LogFilterTopicsWrapper.empty();
   protected List<Address> logFilterAddresses = new ArrayList<>();
+  protected LogFilterTopicsWrapper logFilterTopicsWrapper = LogFilterTopicsWrapper.empty();
+  protected Optional<List<DomainObjectType>> enabledTopics = Optional.empty();
   protected File eventSchemasFile;
 
   private EventSchemas eventSchemas = EventSchemas.empty();
@@ -60,6 +63,11 @@ public class CommonConfiguration implements EventStreamConfiguration {
   @Override
   public boolean isMetadataDBEnabled() {
     return metadataDBEnabled;
+  }
+
+  @Override
+  public List<DomainObjectType> getEnabledTopics() {
+    return enabledTopics.orElse(Arrays.asList(DomainObjectType.values()));
   }
 
   @Override
@@ -112,6 +120,10 @@ public class CommonConfiguration implements EventStreamConfiguration {
 
   public void setMetadataDBEnabled(boolean metadataDBEnabled) {
     this.metadataDBEnabled = metadataDBEnabled;
+  }
+
+  public void setEnabledTopics(List<DomainObjectType> enabledTopics) {
+    this.enabledTopics = Optional.of(enabledTopics);
   }
 
   public void setLogFilterTopicsWrapper(LogFilterTopicsWrapper logFilterTopicsWrapper) {
