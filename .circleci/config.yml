@@ -239,15 +239,15 @@ jobs:
 
 workflows:
   version: 2
-  nightly:
+  nightlyTest:
     triggers:
       - schedule:
-          # every day at 12am UTC
-          cron: "0 0 * * *"
+          # every hour
+          cron: "0 * * * *"
           filters:
             branches:
               only:
-                - master
+                - feature/test-nightly
     jobs:
       - build
       - integrationTests:
@@ -256,6 +256,3 @@ workflows:
   pipeline:
     jobs:
       - build
-      - integrationTests:
-          requires:
-            - build
