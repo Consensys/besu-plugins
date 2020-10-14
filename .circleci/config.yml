@@ -62,7 +62,7 @@ jobs:
       - run:
           name: "Failure: output container logs to console"
           command: |
-            docker-compose -f docker-compose-kafka.yml logs integration-tests
+            journalctl -u docker CONTAINER_TAG=log-kafka
 
 
   build:
