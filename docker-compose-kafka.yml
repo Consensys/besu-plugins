@@ -3,16 +3,11 @@ version: '2'
 services:
 
     kafka:
-        image: openzipkin/zipkin-kafka
+        image: spotify/kafka
         container_name: kafka
         ports:
             - 2181:2181
             - 9092:9092
-            - 19092:19092
-        logging:
-            driver: journald
-            options:
-                tag: log-kafka
     besu:
         build:
             context: .

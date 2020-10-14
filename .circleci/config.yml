@@ -58,11 +58,7 @@ jobs:
       - prepare
       - run:
           name: Integration test - Kafka Plugin
-          command : docker-compose -f docker-compose-kafka.yml run integration-tests
-      - run:
-          name: "Failure: output container logs to console"
-          command: |
-            journalctl -u docker CONTAINER_TAG=log-kafka
+          command: docker-compose -f docker-compose-kafka.yml run integration-tests
 
 
   build:
@@ -134,16 +130,16 @@ jobs:
       - run:
           name: Collecting reports
           command: |
-              find . -type d -regex ".*/build/reports/tests/integrationTest" | while read dir; do
-                  module=`echo $dir | sed -e 's/build\/reports\/tests\/integrationTest//'`
-                  mkdir -p ~/reports/integrationTest/"$module"
-                  (cd "$dir" && tar c .) | (cd ~/reports/integrationTest/"$module" && tar x)
-              done
-              find . -type d -regex ".*/build/reports/jacoco/test/html" | while read dir; do
-                  module=`echo $dir | sed -e 's/build\/reports\/jacoco\/test\/html//'`
-                  mkdir -p ~/reports/jacoco/"$module"
-                  (cd "$dir" && tar c .) | (cd ~/reports/jacoco/"$module" && tar x)
-              done
+            find . -type d -regex ".*/build/reports/tests/integrationTest" | while read dir; do
+                module=`echo $dir | sed -e 's/build\/reports\/tests\/integrationTest//'`
+                mkdir -p ~/reports/integrationTest/"$module"
+                (cd "$dir" && tar c .) | (cd ~/reports/integrationTest/"$module" && tar x)
+            done
+            find . -type d -regex ".*/build/reports/jacoco/test/html" | while read dir; do
+                module=`echo $dir | sed -e 's/build\/reports\/jacoco\/test\/html//'`
+                mkdir -p ~/reports/jacoco/"$module"
+                (cd "$dir" && tar c .) | (cd ~/reports/jacoco/"$module" && tar x)
+            done
           when: always
 
       - store_test_results:
@@ -207,11 +203,11 @@ jobs:
       - run:
           name: Collecting reports
           command: |
-              find . -type d -regex ".*/build/reports/tests/acceptanceTest" | while read dir; do
-                  module=`echo $dir | sed -e 's/build\/reports\/tests\/acceptanceTest//'`
-                  mkdir -p ~/reports/acceptanceTest/"$module"
-                  (cd "$dir" && tar c .) | (cd ~/reports/acceptanceTest/"$module" && tar x)
-              done
+            find . -type d -regex ".*/build/reports/tests/acceptanceTest" | while read dir; do
+                module=`echo $dir | sed -e 's/build\/reports\/tests\/acceptanceTest//'`
+                mkdir -p ~/reports/acceptanceTest/"$module"
+                (cd "$dir" && tar c .) | (cd ~/reports/acceptanceTest/"$module" && tar x)
+            done
           when: always
 
       - run:
