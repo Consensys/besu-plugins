@@ -244,10 +244,6 @@ workflows:
       - schedule:
           # every hour
           cron: "0 * * * *"
-          filters:
-            branches:
-              only:
-                - feature/test-nightly
     jobs:
       - build
       - integrationTests:
