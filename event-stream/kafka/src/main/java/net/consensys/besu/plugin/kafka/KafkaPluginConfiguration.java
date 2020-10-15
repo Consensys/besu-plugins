@@ -16,8 +16,10 @@ package net.consensys.besu.plugin.kafka;
 
 import net.consensys.besu.plugins.stream.api.config.CommonConfiguration;
 import net.consensys.besu.plugins.stream.core.config.AddressTypeConverter;
+import net.consensys.besu.plugins.stream.core.config.DomainObjectTypeConverter;
 import net.consensys.besu.plugins.stream.core.config.LogFilterTopicsWrapper;
 import net.consensys.besu.plugins.stream.core.config.TopicTypeConverter;
+import net.consensys.besu.plugins.stream.model.DomainObjectType;
 import net.consensys.besu.plugins.types.Address;
 
 import java.io.File;
@@ -125,6 +127,18 @@ public final class KafkaPluginConfiguration extends CommonConfiguration {
   @Override
   public void setMetadataDBEnabled(final boolean metadataDBEnabled) {
     super.setMetadataDBEnabled(metadataDBEnabled);
+  }
+
+  @Option(
+      names = {"--plugin-kafka-enabled-topic", "--plugin-kafka-enabled-topics"},
+      paramLabel = "<topic name>",
+      split = ",",
+      arity = "1..*",
+      description = "Comma separated list of topics to enable",
+      converter = DomainObjectTypeConverter.class)
+  @Override
+  public void setEnabledTopics(final List<DomainObjectType> enabledTopics) {
+    super.setEnabledTopics(enabledTopics);
   }
 
   @Option(names = "--plugin-kafka-log-filter-topics", converter = TopicTypeConverter.class)
