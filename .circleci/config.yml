@@ -243,7 +243,11 @@ workflows:
     triggers:
       - schedule:
           # every hour
-          cron: "0 * * * *"
+          cron: "42 * * * *"
+          filters:
+            branches:
+              only:
+                - /feature.*/
     jobs:
       - build
       - integrationTests:
