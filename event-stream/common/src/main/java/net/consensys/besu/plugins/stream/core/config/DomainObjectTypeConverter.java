@@ -12,36 +12,16 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-package net.consensys.besu.plugins.stream.api.config;
+package net.consensys.besu.plugins.stream.core.config;
 
-import net.consensys.besu.plugins.stream.core.config.EventSchemas;
 import net.consensys.besu.plugins.stream.model.DomainObjectType;
-import net.consensys.besu.plugins.types.Address;
 
-import java.io.File;
-import java.util.List;
+import picocli.CommandLine.ITypeConverter;
 
-import org.apache.tuweni.bytes.Bytes32;
+public class DomainObjectTypeConverter implements ITypeConverter<DomainObjectType> {
 
-public interface EventStreamConfiguration {
-
-  String getBrokerUrl();
-
-  String getTopic();
-
-  boolean isEnabled();
-
-  boolean isMetadataDBEnabled();
-
-  List<DomainObjectType> getEnabledTopics();
-
-  List<Address> getLogFilterAddresses();
-
-  List<List<Bytes32>> getLogFilterTopics();
-
-  EventSchemas getEventSchemas();
-
-  File getEventSchemasFile();
-
-  void loadEventSchemas();
+  @Override
+  public DomainObjectType convert(String value) throws Exception {
+    return DomainObjectType.valueOf(value.toUpperCase());
+  }
 }
