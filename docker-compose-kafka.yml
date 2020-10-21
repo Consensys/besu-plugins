@@ -1,15 +1,18 @@
-version: '2'
+version: '3.0'
 
 services:
 
     kafka:
-        image: openzipkin/zipkin-kafka
+        image: spotify/kafka
         container_name: kafka
         ports:
             - 2181:2181
             - 9092:9092
-            - 19092:19092
-
+        healthcheck:
+            test: nc -z localhost 9092 || exit -1
+            interval: 10s
+            timeout: 5s
+            retries: 10
     besu:
         build:
             context: .
