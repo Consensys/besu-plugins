@@ -147,7 +147,13 @@ public final class KafkaPluginConfiguration extends CommonConfiguration {
     super.setLogFilterTopicsWrapper(logFilterTopicsWrapper);
   }
 
-  @Option(names = "--plugin-kafka-log-filter-addresses", converter = AddressTypeConverter.class)
+  @Option(
+      names = "--plugin-kafka-log-filter-addresses",
+      paramLabel = "<address>",
+      split = ",",
+      arity = "1..*",
+      description = "Comma separated list of addresses",
+      converter = AddressTypeConverter.class)
   @Override
   public void setLogFilterAddresses(final List<Address> logFilterAddresses) {
     super.setLogFilterAddresses(logFilterAddresses);
