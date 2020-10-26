@@ -17,9 +17,9 @@ This API exposes data about the following components:
 - Logs
 - Syncing state.
 
-**The current Besu recommended version is 1.5**
+**The current Besu recommended version is 20.10.0**
 
-We recommend using plugins with the last minor (i.e. 1.X) Besu version in production. That version will have undergone the most extensive testing with plugins. While patch releases of Besu should work with plugins, they are not put through the same QA cycle and are only tested by automatic tests. If you have a problem using plugins with a Besu patch release, please open an issue.
+We recommend using plugins with the last minor (i.e. 20.X) Besu version in production. That version will have undergone the most extensive testing with plugins. While patch releases of Besu should work with plugins, they are not put through the same QA cycle and are only tested by automatic tests. If you have a problem using plugins with a Besu patch release, please open an issue.
 
 ## Useful Links
 
