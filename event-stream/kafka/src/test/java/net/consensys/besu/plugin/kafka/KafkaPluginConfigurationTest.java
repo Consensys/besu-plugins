@@ -17,9 +17,12 @@ package net.consensys.besu.plugin.kafka;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import net.consensys.besu.plugins.stream.model.DomainObjectType;
+import net.consensys.besu.plugins.types.Address;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.Test;
@@ -64,6 +67,27 @@ public class KafkaPluginConfigurationTest {
     commandLine.parseArgs("--plugin-kafka-enabled-topics", "block,log");
     assertThat(kafkaPluginConfiguration.getEnabledTopics())
         .containsExactlyInAnyOrder(DomainObjectType.LOG, DomainObjectType.BLOCK);
+  }
+
+  @Test
+  public void pluginKafkaLogFilterAddressesIsParsedCorrectly() {
+    final KafkaPluginConfiguration kafkaPluginConfiguration = new KafkaPluginConfiguration();
+    final CommandLine commandLine = new CommandLine(kafkaPluginConfiguration);
+
+    List<Address> addresses =
+        Arrays.asList(
+            Address.fromHexString("0xF216B6b2D9E76F94f97bE597e2Cec81730520585"),
+            Address.fromHexString("0xDDDDB6b2D9E76F94f97bE597e2Cec81730520572"));
+
+    commandLine.parseArgs("--plugin-kafka-log-filter-addresses", addresses.get(0).toHexString());
+    assertThat(kafkaPluginConfiguration.getLogFilterAddresses()).containsExactly(addresses.get(0));
+
+    commandLine.parseArgs(
+        "--plugin-kafka-log-filter-addresses",
+        addresses.get(0).toHexString(),
+        addresses.get(1).toHexString());
+    assertThat(kafkaPluginConfiguration.getLogFilterAddresses())
+        .containsExactlyInAnyOrderElementsOf(addresses);
   }
 
   @Test
