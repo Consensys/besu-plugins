@@ -235,8 +235,8 @@ jobs:
       - prepare
 
       - deploy:
-          name: Upload to Bintray
-          command: ./gradlew deploy
+          name: Upload to Cloudsmith
+          command: ./gradlew cloudsmithUpload
 
 workflows:
   version: 2
