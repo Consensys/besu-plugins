@@ -362,7 +362,7 @@ publishing {
   repositories {
     maven {
       name = "cloudsmith"
-      url = "https://api-g.cloudsmith.io/maven/consensys/besu-plugins/"
+      url = "https://api-g.cloudsmith.io/maven/consensys/quorum-besu-plugins/"
       credentials {
         username = cloudsmithUser
         password = cloudsmithKey
@@ -383,7 +383,7 @@ publishing {
       suppressPomMetadataWarningsFor('testFixturesApiElements')
       suppressPomMetadataWarningsFor('testFixturesRuntimeElements')
       pom {
-        name = "Teku - ${project.name}"
+        name = "Besu plugins - ${project.name}"
         url = 'https://github.com/ConsenSys/besu-plugins'
         licenses {
           license {
