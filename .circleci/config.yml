@@ -17,6 +17,13 @@ executors:
       JAVA_TOOL_OPTIONS: -Xmx2048m
       GRADLE_OPTS: -Dorg.gradle.daemon=false -Dorg.gradle.parallel=true -Dorg.gradle.workers.max=2
       GRADLE_MAX_TEST_FORKS: 2
+  small_executor:
+    docker:
+      - image: circleci/openjdk:11.0.8-jdk-buster
+    working_directory: ~/project
+    environment:
+      JAVA_TOOL_OPTIONS: -Xmx2g
+      GRADLE_OPTS: -Dorg.gradle.daemon=false -Dorg.gradle.parallel=true -Dorg.gradle.workers.max=2
 
 commands:
   prepare:
@@ -230,7 +237,7 @@ jobs:
           when: always
 
   upload-distribution:
-    executor: besu_plugins_docker_executor
+    executor: small_executor
     steps:
       - prepare
       - run:
@@ -273,3 +280,8 @@ workflows:
             - build
             - test
             - acceptanceTests
+          filters:
+            branches:
+              only:
+                - master
+                - /release-.*/
