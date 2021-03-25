@@ -273,8 +273,3 @@ workflows:
             - build
             - test
             - acceptanceTests
-          filters:
-            branches:
-              only:
-                - master
-                - /release-.*/
