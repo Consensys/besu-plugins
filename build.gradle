@@ -247,7 +247,7 @@ dependencies {
 task downloadLatestBesu(type: Download) {
   ext.besuIdentifier = "besu-" + besuVersion
   def besuFilename = besuIdentifier + ".tar.gz"
-  def besuUrl = distributionBaseUrl + besuFilename;
+  def besuUrl = distributionBaseUrl + besuVersion+"/"+besuFilename;
 
   src besuUrl
   dest new File(buildDir, besuFilename)
