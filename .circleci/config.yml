@@ -280,5 +280,10 @@ workflows:
             - build
             - test
             - acceptanceTests
+          filters:
+            branches:
+              only:
+                - master
+                - /release-.*/
           context:
             - cloudsmith-protocols
