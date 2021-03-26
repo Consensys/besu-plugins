@@ -248,8 +248,6 @@ jobs:
       - deploy:
           name: Upload to Cloudsmith
           command: ./gradlew --no-daemon --parallel cloudSmithUpload
-          context:
-            - cloudsmith-protocols
 
 workflows:
   version: 2
@@ -282,3 +280,10 @@ workflows:
             - build
             - test
             - acceptanceTests
+          filters:
+            branches:
+              only:
+                - master
+                - /release-.*/
+          context:
+            - cloudsmith-protocols
