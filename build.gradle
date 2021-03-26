@@ -362,7 +362,7 @@ publishing {
   repositories {
     maven {
       name = "cloudsmith"
-      url = "https://api-g.cloudsmith.io/maven/consensys/maven/"
+      url = "https://api-g.cloudsmith.io/maven/consensys/quorum-besu-plugins/"
       credentials {
         username = cloudsmithUser
         password = cloudsmithKey
