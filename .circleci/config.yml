@@ -282,6 +282,7 @@ workflows:
             - acceptanceTests
           filters:
             branches:
+              only:
                 - /release-.*/
           context:
             - cloudsmith-protocols
