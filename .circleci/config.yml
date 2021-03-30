@@ -17,6 +17,13 @@ executors:
       JAVA_TOOL_OPTIONS: -Xmx2048m
       GRADLE_OPTS: -Dorg.gradle.daemon=false -Dorg.gradle.parallel=true -Dorg.gradle.workers.max=2
       GRADLE_MAX_TEST_FORKS: 2
+  small_executor:
+    docker:
+      - image: circleci/openjdk:11.0.8-jdk-buster
+    working_directory: ~/project
+    environment:
+      JAVA_TOOL_OPTIONS: -Xmx2g
+      GRADLE_OPTS: -Dorg.gradle.daemon=false -Dorg.gradle.parallel=true -Dorg.gradle.workers.max=2
 
 commands:
   prepare:
@@ -230,13 +237,17 @@ jobs:
           when: always
 
   upload-distribution:
-    executor: besu_plugins_docker_executor
+    executor: small_executor
     steps:
       - prepare
-
+      - run:
+          name: Install Python3
+          command: |
+            sudo apt update
+            sudo apt install python3 python3-pip python3-venv
       - deploy:
-          name: Upload to Bintray
-          command: ./gradlew deploy
+          name: Upload to Cloudsmith
+          command: ./gradlew --no-daemon --parallel cloudSmithUpload
 
 workflows:
   version: 2
@@ -274,3 +285,5 @@ workflows:
               only:
                 - master
                 - /release-.*/
+          context:
+            - cloudsmith-protocols

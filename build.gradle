@@ -18,13 +18,15 @@ import net.ltgt.gradle.errorprone.CheckSeverity
 
 plugins {
   id 'com.diffplug.gradle.spotless' version '3.25.0'
-  id 'com.jfrog.bintray' version '1.8.4'
   id 'com.github.ben-manes.versions' version '0.26.0'
   id 'com.github.hierynomus.license' version '0.15.0'
-  id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+  id 'io.spring.dependency-management' version '1.0.11.RELEASE'
   id 'net.ltgt.errorprone' version '1.1.1'
   id "de.undercouch.download" version '4.0.0'
+  id "maven-publish"
 }
+
+
 
 if (!JavaVersion.current().java11Compatible) {
   throw new GradleException("Java 11 or later is required.\n" +
@@ -33,9 +35,9 @@ if (!JavaVersion.current().java11Compatible) {
 
 allprojects {
   apply plugin: 'java-library'
-  apply plugin: 'io.spring.dependency-management'
   apply plugin: 'net.ltgt.errorprone'
   apply plugin: 'jacoco'
+  apply plugin: 'io.spring.dependency-management'
   apply from: "${rootDir}/gradle/versions.gradle"
   apply from: "${rootDir}/gradle/check-licenses.gradle"
 
@@ -86,7 +88,8 @@ allprojects {
     maven { url  "https://dl.bintray.com/tuweni/tuweni/" }
   }
 
-  dependencies { errorprone("com.google.errorprone:error_prone_core") }
+  dependencies {
+    errorprone("com.google.errorprone:error_prone_core") }
 
   apply plugin: 'com.diffplug.gradle.spotless'
   spotless {
@@ -244,7 +247,7 @@ dependencies {
 task downloadLatestBesu(type: Download) {
   ext.besuIdentifier = "besu-" + besuVersion
   def besuFilename = besuIdentifier + ".tar.gz"
-  def besuUrl = distributionBaseUrl + besuFilename;
+  def besuUrl = distributionBaseUrl + besuVersion+"/"+besuFilename;
 
   src besuUrl
   dest new File(buildDir, besuFilename)
@@ -352,21 +355,49 @@ def getCheckedOutGitCommitHash() {
   refHead.text.trim().take takeFromHash
 }
 
-apply plugin: 'com.jfrog.bintray'
-def bintrayUser = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
-def bintrayKey = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_KEY')
-def bintrayPackage = bintray.pkg {
-  repo = 'consensys'
-  name = 'besu-plugins'
-  userOrg = 'consensys'
-  desc = "Besu plugins"
-  licenses = ['Apache-2.0']
-  websiteUrl = 'https://github.com/ConsenSys/besu-plugins'
-  issueTrackerUrl = 'https://github.com/ConsenSys/besu-plugins/issues'
-  vcsUrl = 'https://github.com/ConsenSys/besu-plugins.git'
-  version {
-    name = project.version
-    released = new Date()
+def cloudsmithUser = project.hasProperty('cloudsmithUser') ? project.property('cloudsmithUser') : System.getenv('CLOUDSMITH_USER')
+def cloudsmithKey = project.hasProperty('cloudsmithApiKey') ? project.property('cloudsmithApiKey') : System.getenv('CLOUDSMITH_API_KEY')
+
+publishing {
+  repositories {
+    maven {
+      name = "cloudsmith"
+      url = "https://api-g.cloudsmith.io/maven/consensys/quorum-besu-plugins/"
+      credentials {
+        username = cloudsmithUser
+        password = cloudsmithKey
+      }
+    }
+  }
+  publications {
+    mavenJava(MavenPublication) {
+      groupId "net.consensys.besu.plugin"
+      version "${project.version}"
+      from components.java
+      artifact sourcesJar
+
+      versionMapping {
+        usage('java-api') { fromResolutionOf('runtimeClasspath') }
+        usage('java-runtime') { fromResolutionResult() }
+      }
+      suppressPomMetadataWarningsFor('testFixturesApiElements')
+      suppressPomMetadataWarningsFor('testFixturesRuntimeElements')
+      pom {
+        name = "Besu plugins - ${project.name}"
+        url = 'https://github.com/ConsenSys/besu-plugins'
+        licenses {
+          license {
+            name = 'The Apache License, Version 2.0'
+            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+          }
+        }
+        scm {
+          connection = 'scm:git:git://github.com/ConsenSys/besu-plugins.git'
+          developerConnection = 'https://github.com/ConsenSys/besu-plugins.git'
+          url = 'https://github.com/ConsenSys/besu-plugins'
+        }
+      }
+    }
   }
 }
 
@@ -375,8 +406,15 @@ artifacts {
   archives tasks.distZip
 }
 
-task deploy() {}
-deploy.dependsOn bintrayUpload
+task cloudsmithUpload {
+  dependsOn([distTar, distZip])
+  doLast {
+    exec {
+      executable project.file("scripts/cloudsmith-upload.sh")
+      args rootProject.version, distTar.archiveFile.get(), distZip.archiveFile.get()
+    }
+  }
+}
 
 tasks.register("verifyDistributions") {
   dependsOn distTar
@@ -396,23 +434,6 @@ tasks.register("verifyDistributions") {
   }
 }
 
-bintray {
-  user = bintrayUser
-  key = bintrayKey
-
-  filesSpec {
-    from ('build/distributions') { exclude 'install/*' }
-    into '.'
-  }
-
-  override = true
-  publish = true
-
-  pkg = bintrayPackage
-}
 
 check.dependsOn checkSpdxHeader
-bintrayUpload.dependsOn verifyDistributions
-bintrayUpload.mustRunAfter(distTar)
-bintrayUpload.mustRunAfter(distZip)
 apply plugin: 'groovy'
