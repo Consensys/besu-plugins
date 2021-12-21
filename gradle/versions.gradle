@@ -19,38 +19,40 @@ dependencyManagement {
     }
 
     dependencies {
-        dependency 'org.web3j:core:4.5.15'
-        dependency 'org.web3j:abi:4.5.15'
-        dependency 'org.apache.tuweni:tuweni-bytes:1.0.0'
-        dependency 'org.apache.tuweni:tuweni-units:1.0.0'
-        dependency 'org.apache.tuweni:tuweni-toml:1.0.0'
-        dependency 'org.apache.tuweni:tuweni-net:1.0.0'
-        dependency 'org.bouncycastle:bcprov-jdk15on:1.64'
-        dependency 'org.bouncycastle:bcpkix-jdk15on:1.64'
+        dependency('org.web3j:core:4.8.6') {
+            exclude group: 'com.github.jnr', name: 'jnr-unixsocket'
+        }
+        dependency 'org.web3j:abi:4.8.6'
+        dependency 'org.apache.tuweni:tuweni-bytes:2.0.0'
+        dependency 'org.apache.tuweni:tuweni-units:2.0.0'
+        dependency 'org.apache.tuweni:tuweni-toml:2.0.0'
+        dependency 'org.apache.tuweni:tuweni-net:2.0.0'
+        dependency 'org.bouncycastle:bcprov-jdk15on:1.69'
+        dependency 'org.bouncycastle:bcpkix-jdk15on:1.69'
 
         // Besu dependencies
         dependency "org.hyperledger.besu:plugin-api:${besuVersion}"
 
         // Error prone dependencies
-        dependency 'com.google.errorprone:error_prone_annotation:2.4.0'
-        dependency 'com.google.errorprone:error_prone_check_api:2.4.0'
-        dependency 'com.google.errorprone:error_prone_core:2.4.0'
-        dependency 'com.google.errorprone:error_prone_test_helpers:2.4.0'
+        dependency 'com.google.errorprone:error_prone_annotation:2.8.0'
+        dependency 'com.google.errorprone:error_prone_check_api:2.8.0'
+        dependency 'com.google.errorprone:error_prone_core:2.8.0'
+        dependency 'com.google.errorprone:error_prone_test_helpers:2.8.0'
         dependency 'com.google.errorprone:javac:9+181-r4173-1'
 
         // Logging dependencies
-        dependency 'org.apache.logging.log4j:log4j-api:2.13.3'
-        dependency 'org.apache.logging.log4j:log4j-core:2.13.3'
-        dependency 'org.apache.logging.log4j:log4j-slf4j-impl:2.13.3'
+        dependency 'org.apache.logging.log4j:log4j-api:2.17.0'
+        dependency 'org.apache.logging.log4j:log4j-core:2.17.0'
+        dependency 'org.apache.logging.log4j:log4j-slf4j-impl:2.17.0'
 
-        dependency 'info.picocli:picocli:4.1.4'
-        dependency 'com.fasterxml.jackson.core:jackson-databind:2.11.0'
-        dependency 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.11.0'
-        dependency 'com.google.auto.service:auto-service:1.0-rc7'
-        dependency 'com.google.code.gson:gson:2.8.5'
-        dependency 'com.jayway.jsonpath:json-path:2.4.0'
-        dependency 'io.vertx:vertx-core:3.9.1'
-        dependency 'javax.xml.bind:jaxb-api:2.2.11'
+        dependency 'info.picocli:picocli:4.6.1'
+        dependency 'com.fasterxml.jackson.core:jackson-databind:2.12.4'
+        dependency 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.4'
+        dependency 'com.google.auto.service:auto-service:1.0'
+        dependency 'com.google.code.gson:gson:2.8.9'
+        dependency 'com.jayway.jsonpath:json-path:2.6.0'
+        dependency 'io.vertx:vertx-core:4.2.2'
+        dependency 'javax.xml.bind:jaxb-api:2.3.1'
 
         // Testing dependencies
         dependency 'com.github.docker-java:docker-java:3.1.5'
@@ -69,13 +71,13 @@ dependencyManagement {
         dependency 'org.mock-server:mockserver-netty:5.6.1'
 
         // Message broker dependencies
-        dependency 'software.amazon.awssdk:kinesis:2.9.5'
-        dependency 'software.amazon.awssdk:netty-nio-client:2.9.14'
+        dependency 'software.amazon.awssdk:kinesis:2.17.100'
+        dependency 'software.amazon.awssdk:netty-nio-client:2.17.100'
 
-        dependency 'org.apache.kafka:kafka-clients:2.3.0'
+        dependency 'org.apache.kafka:kafka-clients:3.0.0'
 
         // Acceptance Testing dependencies
-        dependency 'org.rocksdb:rocksdbjni:6.4.6'
+        dependency 'org.rocksdb:rocksdbjni:6.26.1'
 
     }
 }
