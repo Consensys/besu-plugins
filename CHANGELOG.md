@@ -6,7 +6,7 @@
 * Update dependencies
 
 ### Bug Fixes
-* Update log4j to 2.167.0.
+* Update log4j to 2.17.0.
 
 ## 20.10.0
 
