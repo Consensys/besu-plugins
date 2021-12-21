@@ -40,7 +40,7 @@ public final class TransactionMockFixture {
 
     when(transactionMock.getNonce()).thenReturn(1L);
     when(transactionMock.getGasPrice())
-        .thenReturn(new BigIntegerQuantity(BigInteger.valueOf(0x7d0)));
+        .thenAnswer(invocation -> Optional.of(new BigIntegerQuantity(BigInteger.valueOf(0x7d0))));
     when(transactionMock.getGasLimit()).thenReturn(3L);
     when(transactionMock.getTo()).thenReturn(Optional.empty());
     when(transactionMock.getValue()).thenReturn(new BigIntegerQuantity(BigInteger.valueOf(0)));
