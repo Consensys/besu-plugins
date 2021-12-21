@@ -16,6 +16,7 @@ package net.consensys.besu.plugins.types;
 
 import java.math.BigInteger;
 
+import org.bouncycastle.util.encoders.Hex;
 import org.hyperledger.besu.plugin.data.Quantity;
 
 public class BigIntegerQuantity implements Quantity {
@@ -31,7 +32,17 @@ public class BigIntegerQuantity implements Quantity {
   }
 
   @Override
+  public BigInteger getAsBigInteger() {
+    return value;
+  }
+
+  @Override
   public String toHexString() {
     return "0x" + value.toString(16);
+  }
+
+  @Override
+  public String toShortHexString() {
+    return Hex.toHexString(value.toByteArray());
   }
 }

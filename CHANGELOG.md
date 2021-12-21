@@ -1,5 +1,13 @@
 # Changelog
 
+## 21.12.0
+
+### Additions and Improvements
+* Update dependencies
+
+### Bug Fixes
+* Update log4j to 2.17.0.
+
 ## 20.10.0
 
 ### Release Format

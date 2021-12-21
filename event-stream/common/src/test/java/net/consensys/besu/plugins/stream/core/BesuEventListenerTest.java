@@ -145,7 +145,7 @@ class BesuEventListenerTest {
     final Hash hashMock = mock(Hash.class);
     when(hashMock.toHexString()).thenReturn(Fixture.HASH);
     when(transactionMock.getNonce()).thenReturn(1L);
-    when(transactionMock.getGasPrice()).thenReturn(quantityMock);
+    when(transactionMock.getGasPrice()).thenAnswer(invocation -> Optional.of(quantityMock));
     when(transactionMock.getGasLimit()).thenReturn(1L);
     when(transactionMock.getValue()).thenReturn(quantityMock);
     when(transactionMock.getV()).thenReturn(BigInteger.ONE);
@@ -179,7 +179,7 @@ class BesuEventListenerTest {
     final Hash hashMock = mock(Hash.class);
     when(hashMock.toHexString()).thenReturn(Fixture.HASH);
     when(transactionMock.getNonce()).thenReturn(1L);
-    when(transactionMock.getGasPrice()).thenReturn(quantityMock);
+    when(transactionMock.getGasPrice()).thenAnswer(invocation -> Optional.of(quantityMock));
     when(transactionMock.getGasLimit()).thenReturn(1L);
     when(transactionMock.getValue()).thenReturn(quantityMock);
     when(transactionMock.getV()).thenReturn(BigInteger.ONE);
