@@ -80,7 +80,6 @@ public interface Serializer {
     final ObjectNode eventNode = mapper.createObjectNode();
     eventNode
         .put("nonce", QuantityFormatter.format(transaction.getNonce()))
-        .put("gasPrice", QuantityFormatter.format(transaction.getGasPrice()))
         .put("gas", QuantityFormatter.format(transaction.getGasLimit()))
         .put("value", QuantityFormatter.format(transaction.getValue()))
         .put("v", QuantityFormatter.format(transaction.getV()))
@@ -89,6 +88,22 @@ public interface Serializer {
         .put("from", transaction.getSender().toHexString())
         .put("input", transaction.getPayload().toHexString())
         .put("hash", transaction.getHash().toHexString());
+    transaction
+        .getGasPrice()
+        .ifPresent(
+            gasPrice -> {
+              eventNode.put("gasPrice", QuantityFormatter.format(transaction.getGasPrice().get()));
+            });
+    transaction
+        .getMaxFeePerGas()
+        .ifPresent(
+            gasPrice -> {
+              eventNode.put(
+                  "maxFeePerGas", QuantityFormatter.format(transaction.getMaxFeePerGas().get()));
+              eventNode.put(
+                  "maxPriorityFeePerGas",
+                  QuantityFormatter.format(transaction.getMaxPriorityFeePerGas().get()));
+            });
     transaction.getTo().map(Address::toHexString).ifPresent(to -> eventNode.put("to", to));
     transaction
         .getChainId()
