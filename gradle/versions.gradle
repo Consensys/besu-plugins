@@ -41,9 +41,9 @@ dependencyManagement {
         dependency 'com.google.errorprone:javac:9+181-r4173-1'
 
         // Logging dependencies
-        dependency 'org.apache.logging.log4j:log4j-api:2.17.0'
-        dependency 'org.apache.logging.log4j:log4j-core:2.17.0'
-        dependency 'org.apache.logging.log4j:log4j-slf4j-impl:2.17.0'
+        dependency 'org.apache.logging.log4j:log4j-api:2.17.1'
+        dependency 'org.apache.logging.log4j:log4j-core:2.17.1'
+        dependency 'org.apache.logging.log4j:log4j-slf4j-impl:2.17.1'
 
         dependency 'info.picocli:picocli:4.6.1'
         dependency 'com.fasterxml.jackson.core:jackson-databind:2.12.4'
