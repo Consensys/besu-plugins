@@ -10,7 +10,7 @@ executors:
     working_directory: ~/project
   besu_plugins_docker_executor:
     docker:
-      - image: circleci/openjdk:11.0.4-jdk-stretch
+      - image: cimg/openjdk:11.0
     working_directory: ~/project
     environment:
       TERM: dumb
@@ -19,7 +19,7 @@ executors:
       GRADLE_MAX_TEST_FORKS: 2
   small_executor:
     docker:
-      - image: circleci/openjdk:11.0.8-jdk-buster
+      - image: cimg/openjdk:11.0
     working_directory: ~/project
     environment:
       JAVA_TOOL_OPTIONS: -Xmx2g
