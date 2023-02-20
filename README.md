@@ -61,7 +61,7 @@ See our [user documentation](https://doc.quorumplugins.consensys.net/en/latest/C
 
 ### Install Prerequisites
 
-* Java 11
+* Java 17
 
 ### Build and Dist
 

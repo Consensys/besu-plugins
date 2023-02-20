@@ -17,20 +17,18 @@
 import net.ltgt.gradle.errorprone.CheckSeverity
 
 plugins {
-  id 'com.diffplug.gradle.spotless' version '3.25.0'
-  id 'com.github.ben-manes.versions' version '0.26.0'
+  id 'com.diffplug.spotless' version '6.12.0'
+  id 'com.github.ben-manes.versions' version '0.42.0'
   id 'com.github.hierynomus.license' version '0.15.0'
   id 'io.spring.dependency-management' version '1.0.11.RELEASE'
   id 'net.ltgt.errorprone' version '1.1.1'
-  id "de.undercouch.download" version '4.0.0'
+  id "de.undercouch.download" version '5.3.1'
   id "maven-publish"
 }
 
-
-
-if (!JavaVersion.current().java11Compatible) {
-  throw new GradleException("Java 11 or later is required.\n" +
-  "  Detected version ${JavaVersion.current()}")
+if (!JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_17)) {
+  throw new GradleException("Java 17 or later is required to build Besu.\n" +
+          "  Detected version ${JavaVersion.current()}")
 }
 
 allprojects {
@@ -76,8 +74,8 @@ allprojects {
     from javadoc.destinationDir
   }
 
-  sourceCompatibility = 11
-  targetCompatibility = 11
+  sourceCompatibility = 17
+  targetCompatibility = 17
 
   repositories {
     jcenter()
@@ -85,13 +83,13 @@ allprojects {
     mavenLocal()
     maven { url "https://hyperledger.jfrog.io/hyperledger/besu-maven" }
     maven { url "https://artifacts.consensys.net/public/maven/maven/" }
-    maven { url  "https://dl.bintray.com/tuweni/tuweni/" }
+    maven { url "https://dl.bintray.com/tuweni/tuweni/" }
   }
 
   dependencies {
     errorprone("com.google.errorprone:error_prone_core") }
 
-  apply plugin: 'com.diffplug.gradle.spotless'
+  apply plugin: 'com.diffplug.spotless'
   spotless {
     java {
       // This path needs to be relative to each project
@@ -100,7 +98,7 @@ allprojects {
         exclude '**/.gradle/**'
       }
       removeUnusedImports()
-      googleJavaFormat('1.7')
+      googleJavaFormat('1.15.0')
       importOrder 'net.consensys', 'java', ''
       trimTrailingWhitespace()
       endWithNewline()
@@ -110,7 +108,6 @@ allprojects {
       target '*.gradle'
       greclipse().configFile(rootProject.file('gradle/formatter.properties'))
       endWithNewline()
-      paddedCell()
     }
 
     // Below this line are currently only license header tasks
@@ -277,6 +274,7 @@ task distTar(type: Tar) {
 }
 
 
+
 task checkSpdxHeader(type: CheckSpdxHeader) {
   apply plugin: 'groovy'
 
@@ -284,11 +282,11 @@ task checkSpdxHeader(type: CheckSpdxHeader) {
   spdxHeader = "* SPDX-License-Identifier: Apache-2.0"
   filesRegex = "(.*.java)|(.*.groovy)"
   excludeRegex = [
-    "(.*/.gradle/.*)",
-    "(.*/.idea/.*)",
-    "(.*/out/.*)",
-    "(.*/build/.*)",
-    "(.*/src/[^/]+/generated/.*)",
+          "(.*/.gradle/.*)",
+          "(.*/.idea/.*)",
+          "(.*/out/.*)",
+          "(.*/build/.*)",
+          "(.*/src/[^/]+/generated/.*)",
   ].join("|")
 
 }

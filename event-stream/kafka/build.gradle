@@ -18,6 +18,10 @@ plugins {
   id 'java-library'
 }
 
+configurations {
+  compile
+}
+
 sourceSets {
   test {
     resources {
@@ -28,7 +32,7 @@ sourceSets {
 
 dependencies {
   compile project(':event-stream:common')
-  compile 'org.apache.kafka:kafka-clients'
+  implementation 'org.apache.kafka:kafka-clients'
 
   implementation 'com.google.auto.service:auto-service'
   implementation 'info.picocli:picocli'
