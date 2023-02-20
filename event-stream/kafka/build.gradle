@@ -27,8 +27,8 @@ sourceSets {
 }
 
 dependencies {
-  compile project(':event-stream:common')
-  compile 'org.apache.kafka:kafka-clients'
+  api project(':event-stream:common')
+  api 'org.apache.kafka:kafka-clients'
 
   implementation 'com.google.auto.service:auto-service'
   implementation 'info.picocli:picocli'
