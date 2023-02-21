@@ -21,8 +21,8 @@ plugins {
   id 'com.github.ben-manes.versions' version '0.26.0'
   id 'com.github.hierynomus.license' version '0.15.0'
   id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-  id 'net.ltgt.errorprone' version '1.1.1'
-  id "de.undercouch.download" version '4.0.0'
+  id 'net.ltgt.errorprone' version '2.0.2'
+  id "de.undercouch.download" version '5.3.1'
   id "maven-publish"
 }
 
@@ -63,7 +63,7 @@ allprojects {
   version = rootProject.version
 
   jacoco {
-    toolVersion = '0.8.5'
+    toolVersion = '0.8.8'
   }
 
   task sourcesJar(type: Jar, dependsOn: classes) {
@@ -80,7 +80,6 @@ allprojects {
   targetCompatibility = 11
 
   repositories {
-    jcenter()
     mavenCentral()
     mavenLocal()
     maven { url "https://hyperledger.jfrog.io/hyperledger/besu-maven" }
@@ -110,7 +109,6 @@ allprojects {
       target '*.gradle'
       greclipse().configFile(rootProject.file('gradle/formatter.properties'))
       endWithNewline()
-      paddedCell()
     }
 
     // Below this line are currently only license header tasks
