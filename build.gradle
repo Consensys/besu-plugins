@@ -273,7 +273,6 @@ task distTar(type: Tar) {
 }
 
 
-
 task checkSpdxHeader(type: CheckSpdxHeader) {
   apply plugin: 'groovy'
 
