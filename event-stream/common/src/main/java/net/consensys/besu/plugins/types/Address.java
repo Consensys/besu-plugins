@@ -21,23 +21,52 @@ import java.nio.ByteBuffer;
 import org.apache.tuweni.bytes.Bytes;
 import org.apache.tuweni.bytes.DelegatingBytes;
 
+/** A {@link Bytes} that also represents an Ethereum account address. */
 public class Address extends DelegatingBytes implements org.hyperledger.besu.plugin.data.Address {
 
+  /** The constant SIZE. */
   public static final int SIZE = 20;
 
+  /**
+   * Instantiates a new Address.
+   *
+   * @param bytes the bytes
+   */
   private Address(final byte[] bytes) {
     super(Bytes.wrap(bytes));
   }
 
+  /**
+   * Parse a hexadecimal string representing an account address.
+   *
+   * @param hex A hexadecimal string (with or without the leading '0x') representing a valid account
+   *     address.
+   * @return The parsed address: {@code null} if the provided string is {@code null}.
+   * @throws IllegalArgumentException if the string is either not hexadecimal, or not the valid
+   *     representation of an address.
+   */
   public static Address fromHexString(final String hex) {
     if (hex == null) return null;
     return wrap(Bytes.fromHexStringLenient(hex, SIZE));
   }
 
+  /**
+   * Parse an unsigned long representing an account address.
+   *
+   * @param value An unsigned long representing a valid account address.
+   * @return The parsed address
+   * @throws IllegalArgumentException if the long is not the valid representation of an address.
+   */
   public static Address fromUnsignedLong(final long value) {
     return new Address(ByteBuffer.allocate(20).position(12).putLong(value).array());
   }
 
+  /**
+   * Wrap address.
+   *
+   * @param value the value
+   * @return the address
+   */
   public static Address wrap(final Bytes value) {
     checkArgument(
         value.size() == SIZE,

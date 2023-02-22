@@ -23,6 +23,7 @@ import org.hyperledger.besu.plugin.data.Address;
 import org.hyperledger.besu.plugin.data.Hash;
 import org.hyperledger.besu.plugin.data.LogWithMetadata;
 
+/** Decoded Log with Metadata */
 public class DecodedLogWithMetadata implements LogWithMetadata {
 
   private final int logIndex;
@@ -36,6 +37,20 @@ public class DecodedLogWithMetadata implements LogWithMetadata {
   private final List<? extends Bytes32> topics;
   private final String decoded;
 
+  /**
+   * Construct a Decoded Log with Metadata from the given inputs
+   *
+   * @param logIndex the log index
+   * @param blockNumber the block number
+   * @param blockHash the block hash
+   * @param transactionHash the transaction hash
+   * @param transactionIndex the transaction index
+   * @param address the address
+   * @param data the data
+   * @param topics the topics
+   * @param removed boolean indicating removed
+   * @param decoded boolean indicating decoded
+   */
   DecodedLogWithMetadata(
       final int logIndex,
       final long blockNumber,
@@ -59,6 +74,12 @@ public class DecodedLogWithMetadata implements LogWithMetadata {
     this.decoded = decoded;
   }
 
+  /**
+   * Construct a Decoded Log with Metadata from the given Log with Metadata
+   *
+   * @param baseLogWithMetadata the log including representing the metadata
+   * @param decoded boolean indicating decoded
+   */
   public DecodedLogWithMetadata(final LogWithMetadata baseLogWithMetadata, final String decoded) {
     this(
         baseLogWithMetadata.getLogIndex(),
@@ -134,6 +155,11 @@ public class DecodedLogWithMetadata implements LogWithMetadata {
     return removed;
   }
 
+  /**
+   * getter for decoded
+   *
+   * @return decoded
+   */
   public String getDecoded() {
     return decoded;
   }

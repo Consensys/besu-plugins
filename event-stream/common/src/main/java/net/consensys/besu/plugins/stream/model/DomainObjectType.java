@@ -27,6 +27,11 @@ public enum DomainObjectType {
     this.name = name;
   }
 
+  /**
+   * The name of the object type
+   *
+   * @return A string representing the name of the object type
+   */
   public String getName() {
     return name;
   }
