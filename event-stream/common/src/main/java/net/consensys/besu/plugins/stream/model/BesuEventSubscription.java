@@ -54,6 +54,7 @@ public class BesuEventSubscription {
    * @param listenerName String identifying the subscriber
    * @param subscriber function to apply on subscribe
    * @param unsubscriber function to apply on unsubscribe
+   * @return the event subscription
    */
   public static BesuEventSubscription of(
       final String listenerName,
