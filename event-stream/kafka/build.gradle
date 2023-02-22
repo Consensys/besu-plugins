@@ -18,10 +18,6 @@ plugins {
   id 'java-library'
 }
 
-configurations {
-  compile
-}
-
 sourceSets {
   test {
     resources {
@@ -31,8 +27,8 @@ sourceSets {
 }
 
 dependencies {
-  compile project(':event-stream:common')
-  implementation 'org.apache.kafka:kafka-clients'
+  api project(':event-stream:common')
+  api 'org.apache.kafka:kafka-clients'
 
   implementation 'com.google.auto.service:auto-service'
   implementation 'info.picocli:picocli'
@@ -68,6 +64,7 @@ jar {
       'Implementation-Version': calculateVersion()
       )
   }
-  from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+  from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
   exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA'
+  duplicatesStrategy(DuplicatesStrategy.INCLUDE)
 }

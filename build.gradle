@@ -19,16 +19,16 @@ import net.ltgt.gradle.errorprone.CheckSeverity
 plugins {
   id 'com.diffplug.spotless' version '6.12.0'
   id 'com.github.ben-manes.versions' version '0.42.0'
-  id 'com.github.hierynomus.license' version '0.15.0'
+  id 'com.github.hierynomus.license' version '0.16.1'
   id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-  id 'net.ltgt.errorprone' version '1.1.1'
+  id 'net.ltgt.errorprone' version '2.0.2'
   id "de.undercouch.download" version '5.3.1'
   id "maven-publish"
 }
 
 if (!JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_17)) {
   throw new GradleException("Java 17 or later is required to build Besu.\n" +
-          "  Detected version ${JavaVersion.current()}")
+  "  Detected version ${JavaVersion.current()}")
 }
 
 allprojects {
@@ -61,7 +61,7 @@ allprojects {
   version = rootProject.version
 
   jacoco {
-    toolVersion = '0.8.5'
+    toolVersion = '0.8.8'
   }
 
   task sourcesJar(type: Jar, dependsOn: classes) {
@@ -78,7 +78,6 @@ allprojects {
   targetCompatibility = 17
 
   repositories {
-    jcenter()
     mavenCentral()
     mavenLocal()
     maven { url "https://hyperledger.jfrog.io/hyperledger/besu-maven" }
@@ -282,11 +281,11 @@ task checkSpdxHeader(type: CheckSpdxHeader) {
   spdxHeader = "* SPDX-License-Identifier: Apache-2.0"
   filesRegex = "(.*.java)|(.*.groovy)"
   excludeRegex = [
-          "(.*/.gradle/.*)",
-          "(.*/.idea/.*)",
-          "(.*/out/.*)",
-          "(.*/build/.*)",
-          "(.*/src/[^/]+/generated/.*)",
+    "(.*/.gradle/.*)",
+    "(.*/.idea/.*)",
+    "(.*/out/.*)",
+    "(.*/build/.*)",
+    "(.*/src/[^/]+/generated/.*)",
   ].join("|")
 
 }
