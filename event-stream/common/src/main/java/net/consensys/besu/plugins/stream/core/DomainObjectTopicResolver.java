@@ -32,7 +32,7 @@ public class DomainObjectTopicResolver implements TopicResolver {
   /**
    * Creates a Domain Object topic resolver from the given supplier
    *
-   * @param prefixSupplier
+   * @param prefixSupplier supplier for the prefix
    */
   public DomainObjectTopicResolver(final Supplier<String> prefixSupplier) {
     this(prefixSupplier.get());
