@@ -31,7 +31,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.tuweni.bytes.Bytes32;
 
+/** Common event stream configuration */
 public class CommonConfiguration implements EventStreamConfiguration {
+  /** Logger */
   private static final Logger LOGGER = LogManager.getLogger(MethodHandles.lookup().lookupClass());
 
   protected boolean enabled = false;
@@ -106,35 +108,75 @@ public class CommonConfiguration implements EventStreamConfiguration {
             .orElse(eventSchemas);
   }
 
+  /**
+   * setter for enabled
+   *
+   * @param enabled whether this config is enabled
+   */
   public void setEnabled(final boolean enabled) {
     this.enabled = enabled;
   }
 
+  /**
+   * setter for topic
+   *
+   * @param topic the topic
+   */
   public void setTopic(final String topic) {
     this.topic = topic;
   }
 
-  public void setBrokerUrl(String brokerUrl) {
+  /**
+   * setter for broker URL
+   *
+   * @param brokerUrl the broker URL
+   */
+  public void setBrokerUrl(final String brokerUrl) {
     this.brokerUrl = brokerUrl;
   }
 
-  public void setMetadataDBEnabled(boolean metadataDBEnabled) {
+  /**
+   * setter for metadata DB enabled
+   *
+   * @param metadataDBEnabled whether to enable the metadata DB
+   */
+  public void setMetadataDBEnabled(final boolean metadataDBEnabled) {
     this.metadataDBEnabled = metadataDBEnabled;
   }
 
-  public void setEnabledTopics(List<DomainObjectType> enabledTopics) {
+  /**
+   * setter for enabled topics
+   *
+   * @param enabledTopics the topics to enable
+   */
+  public void setEnabledTopics(final List<DomainObjectType> enabledTopics) {
     this.enabledTopics = Optional.of(enabledTopics);
   }
 
-  public void setLogFilterTopicsWrapper(LogFilterTopicsWrapper logFilterTopicsWrapper) {
+  /**
+   * setter for log filter topics
+   *
+   * @param logFilterTopicsWrapper the wrapped log filter topics to set
+   */
+  public void setLogFilterTopicsWrapper(final LogFilterTopicsWrapper logFilterTopicsWrapper) {
     this.logFilterTopicsWrapper = logFilterTopicsWrapper;
   }
 
-  public void setLogFilterAddresses(List<Address> logFilterAddresses) {
+  /**
+   * setter for log filter addresses
+   *
+   * @param logFilterAddresses the addresses to filter logs
+   */
+  public void setLogFilterAddresses(final List<Address> logFilterAddresses) {
     this.logFilterAddresses = logFilterAddresses;
   }
 
-  public void setEventSchemasFile(File eventSchemasFile) {
+  /**
+   * setter for event schemas file
+   *
+   * @param eventSchemasFile the file for hte event schemas
+   */
+  public void setEventSchemasFile(final File eventSchemasFile) {
     this.eventSchemasFile = eventSchemasFile;
   }
 }
