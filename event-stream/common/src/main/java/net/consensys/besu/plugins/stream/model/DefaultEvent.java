@@ -120,18 +120,38 @@ public class DefaultEvent<T> implements Event {
     return getType();
   }
 
+  /**
+   * get the type
+   *
+   * @return the type
+   */
   public String getType() {
     return type;
   }
 
+  /**
+   * get uuid
+   *
+   * @return the uuid
+   */
   public String getUuid() {
     return uuid;
   }
 
+  /**
+   * get the timestamp
+   *
+   * @return the timestamp
+   */
   public long getTimestamp() {
     return timestamp;
   }
 
+  /**
+   * get Event
+   *
+   * @return the event
+   */
   public T getEvent() {
     return event;
   }

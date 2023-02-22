@@ -18,6 +18,7 @@ import net.consensys.besu.plugins.types.Address;
 
 import picocli.CommandLine.ITypeConverter;
 
+/** Converter for address type in CLI. */
 public class AddressTypeConverter implements ITypeConverter<Address> {
 
   @Override

@@ -23,25 +23,36 @@ import java.util.List;
 
 import org.apache.tuweni.bytes.Bytes32;
 
+/** Event stream configuration interface */
 public interface EventStreamConfiguration {
 
+  /** get the broker URL */
   String getBrokerUrl();
 
+  /** get the topic */
   String getTopic();
 
+  /** is the stream enabled */
   boolean isEnabled();
 
+  /** is the metadata DB enabled */
   boolean isMetadataDBEnabled();
 
+  /** return the enabled topics */
   List<DomainObjectType> getEnabledTopics();
 
+  /** return the log filter addresses */
   List<Address> getLogFilterAddresses();
 
+  /** return the log filter topics */
   List<List<Bytes32>> getLogFilterTopics();
 
+  /** return the event schemas */
   EventSchemas getEventSchemas();
 
+  /** return the event schemas file */
   File getEventSchemasFile();
 
+  /** load the schemas */
   void loadEventSchemas();
 }

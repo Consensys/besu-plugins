@@ -25,11 +25,22 @@ public class BlockPayload {
   private final BlockHeader blockHeader;
   private final Optional<UInt256> totalDifficulty;
 
-  public BlockPayload(BlockHeader blockHeader, UInt256 totalDifficulty) {
+  /**
+   * Create a block payload
+   *
+   * @param blockHeader the {@link BlockHeader}
+   * @param totalDifficulty the total difficulty
+   */
+  public BlockPayload(final BlockHeader blockHeader, final UInt256 totalDifficulty) {
     this.blockHeader = blockHeader;
     this.totalDifficulty = Optional.ofNullable(totalDifficulty);
   }
 
+  /**
+   * Create a block payload with empty difficulty
+   *
+   * @param blockHeader the {@link BlockHeader}
+   */
   public BlockPayload(BlockHeader blockHeader) {
     this.blockHeader = blockHeader;
     totalDifficulty = Optional.empty();

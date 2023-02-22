@@ -22,12 +22,18 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
+/** Domain Object topic resolver */
 public class DomainObjectTopicResolver implements TopicResolver {
 
   private final String prefix;
   private static final String DEFAULT_TOPIC = "default";
   private final Map<DomainObjectType, String> topics = new HashMap<>();
 
+  /**
+   * Creates a Domain Object topic resolver from the given supplier
+   *
+   * @param prefixSupplier
+   */
   public DomainObjectTopicResolver(final Supplier<String> prefixSupplier) {
     this(prefixSupplier.get());
   }

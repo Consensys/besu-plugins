@@ -34,6 +34,7 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.web3j.abi.TypeReference;
 import org.web3j.abi.datatypes.Type;
 
+/** Event Schema */
 public class EventSchema {
   static {
     Security.addProvider(new BouncyCastleProvider());
@@ -61,6 +62,12 @@ public class EventSchema {
     this.topic = topic();
   }
 
+  /**
+   * Construct an event schema from the given inputs
+   *
+   * @param parseTarget
+   * @return the event schema
+   */
   @SuppressWarnings({"rawtypes", "unchecked"})
   protected static EventSchema from(final SingleEventParseTarget parseTarget) {
     final List<ParameterDefinition> indexedParameterDefinitions =
@@ -106,6 +113,11 @@ public class EventSchema {
         parameterTypes);
   }
 
+  /**
+   * Gets the hash of the event topic
+   *
+   * @return the {@link Hash}
+   */
   @SuppressWarnings("rawtypes")
   private Hash topic() {
     try {
@@ -142,14 +154,29 @@ public class EventSchema {
     }
   }
 
+  /**
+   * gitter for the ID
+   *
+   * @return identifier for the event
+   */
   public String getId() {
     return id;
   }
 
+  /**
+   * getter for the contract address
+   *
+   * @return Address of the contract
+   */
   public Address getContractAddress() {
     return contractAddress;
   }
 
+  /**
+   * getter for the event name
+   *
+   * @return name for the event
+   */
   public String getEventName() {
     return eventName;
   }
@@ -184,6 +211,11 @@ public class EventSchema {
     return topic;
   }
 
+  /**
+   * getter for the parameter types
+   *
+   * @return
+   */
   @SuppressWarnings("rawtypes")
   public List<TypeReference<Type>> getParameterTypes() {
     return parameterTypes;

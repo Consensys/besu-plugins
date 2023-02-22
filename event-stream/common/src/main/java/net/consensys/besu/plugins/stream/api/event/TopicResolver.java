@@ -18,8 +18,16 @@ import net.consensys.besu.plugins.stream.model.DomainObjectType;
 
 import java.util.function.Supplier;
 
+/** Topic Resolver functional interface */
 @FunctionalInterface
 public interface TopicResolver {
+  /**
+   * Resolve the given object type to a topic
+   *
+   * @param domainObjectType the type corresponding to a topic
+   * @param event currently ignored
+   * @return A string representing the topic, if successfully resolved
+   */
   String resolve(final DomainObjectType domainObjectType, final Event event);
 
   class Fixed implements TopicResolver {

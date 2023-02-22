@@ -20,6 +20,7 @@ import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+/** Subscription to Besu Events */
 public class BesuEventSubscription {
   private final String listenerName;
   private final Function<BesuEventListener, Long> subscriber;
@@ -27,11 +28,18 @@ public class BesuEventSubscription {
 
   private Optional<Long> subscriptionId = Optional.empty();
 
+  /**
+   * Create an event subscription
+   *
+   * @param listenerName String identifying the subscriber
+   * @param subscriber function to apply on subscribe
+   * @param unsubscriber function to apply on unsubscribe
+   */
   private BesuEventSubscription(
-      final String subscriberName,
+      final String listenerName,
       final Function<BesuEventListener, Long> subscriber,
       final Consumer<Long> unsubscriber) {
-    this.listenerName = subscriberName;
+    this.listenerName = listenerName;
     this.subscriber =
         pluginEventListener -> {
           subscriptionId = Optional.of(subscriber.apply(pluginEventListener));
@@ -40,21 +48,43 @@ public class BesuEventSubscription {
     this.unsubscriber = unsubscriber;
   }
 
+  /**
+   * Create an event subscription
+   *
+   * @param listenerName String identifying the subscriber
+   * @param subscriber function to apply on subscribe
+   * @param unsubscriber function to apply on unsubscribe
+   */
   public static BesuEventSubscription of(
       final String listenerName,
       final Function<BesuEventListener, Long> subscriber,
-      final Consumer<Long> remover) {
-    return new BesuEventSubscription(listenerName, subscriber, remover);
+      final Consumer<Long> unsubscriber) {
+    return new BesuEventSubscription(listenerName, subscriber, unsubscriber);
   }
 
+  /**
+   * gets the listener name
+   *
+   * @return the listener name
+   */
   public String getListenerName() {
     return listenerName;
   }
 
+  /**
+   * gets the subscriber
+   *
+   * @return the subscriber
+   */
   public Function<BesuEventListener, Long> getSubscriber() {
     return subscriber;
   }
 
+  /**
+   * gets the unsubscriber
+   *
+   * @return the unsubscriber
+   */
   public Consumer<Long> getUnsubscriber() {
     return unsubscriber;
   }
