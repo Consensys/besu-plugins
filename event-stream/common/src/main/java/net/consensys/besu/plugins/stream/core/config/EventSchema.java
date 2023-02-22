@@ -65,7 +65,7 @@ public class EventSchema {
   /**
    * Construct an event schema from the given inputs
    *
-   * @param parseTarget
+   * @param parseTarget the representation of the event to target
    * @return the event schema
    */
   @SuppressWarnings({"rawtypes", "unchecked"})
@@ -214,7 +214,7 @@ public class EventSchema {
   /**
    * getter for the parameter types
    *
-   * @return
+   * @return the list of parameter types
    */
   @SuppressWarnings("rawtypes")
   public List<TypeReference<Type>> getParameterTypes() {

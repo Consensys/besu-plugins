@@ -40,16 +40,16 @@ public class DecodedLogWithMetadata implements LogWithMetadata {
   /**
    * Construct a Decoded Log with Metadata from the given inputs
    *
-   * @param logIndex
-   * @param blockNumber
-   * @param blockHash
-   * @param transactionHash
-   * @param transactionIndex
-   * @param address
-   * @param data
-   * @param topics
-   * @param removed
-   * @param decoded
+   * @param logIndex the log index
+   * @param blockNumber the block number
+   * @param blockHash the block hash
+   * @param transactionHash the transaction hash
+   * @param transactionIndex the transaction index
+   * @param address the address
+   * @param data the data
+   * @param topics the topics
+   * @param removed boolean indicating removed
+   * @param decoded boolean indicating decoded
    */
   DecodedLogWithMetadata(
       final int logIndex,
@@ -77,8 +77,8 @@ public class DecodedLogWithMetadata implements LogWithMetadata {
   /**
    * Construct a Decoded Log with Metadata from the given Log with Metadata
    *
-   * @param baseLogWithMetadata
-   * @param decoded
+   * @param baseLogWithMetadata the log including representing the metadata
+   * @param decoded boolean indicating decoded
    */
   public DecodedLogWithMetadata(final LogWithMetadata baseLogWithMetadata, final String decoded) {
     this(

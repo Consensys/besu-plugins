@@ -20,7 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 /**
  * Functional Interface for event serializer
  *
- * @param <T>
+ * @param <T> the type for the event
  */
 @FunctionalInterface
 public interface EventSerializer<T> {

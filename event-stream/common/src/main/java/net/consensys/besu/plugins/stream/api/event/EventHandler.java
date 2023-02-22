@@ -21,7 +21,7 @@ public interface EventHandler {
   /**
    * Apply the given event
    *
-   * @param event
+   * @param event the event
    */
   void apply(final String event);
 }

@@ -17,7 +17,7 @@ package net.consensys.besu.plugins.stream.api.monitoring;
 /**
  * Functional Interface to check health of plugin
  *
- * @param <T>
+ * @param <T> the type for the configuration
  */
 @FunctionalInterface
 public interface HealthCheck<T> {

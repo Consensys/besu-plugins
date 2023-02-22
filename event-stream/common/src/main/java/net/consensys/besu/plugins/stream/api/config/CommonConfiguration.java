@@ -111,7 +111,7 @@ public class CommonConfiguration implements EventStreamConfiguration {
   /**
    * setter for enabled
    *
-   * @param enabled
+   * @param enabled whether this config is enabled
    */
   public void setEnabled(final boolean enabled) {
     this.enabled = enabled;
@@ -120,7 +120,7 @@ public class CommonConfiguration implements EventStreamConfiguration {
   /**
    * setter for topic
    *
-   * @param topic
+   * @param topic the topic
    */
   public void setTopic(final String topic) {
     this.topic = topic;
@@ -129,7 +129,7 @@ public class CommonConfiguration implements EventStreamConfiguration {
   /**
    * setter for broker URL
    *
-   * @param brokerUrl
+   * @param brokerUrl the broker URL
    */
   public void setBrokerUrl(final String brokerUrl) {
     this.brokerUrl = brokerUrl;
@@ -138,7 +138,7 @@ public class CommonConfiguration implements EventStreamConfiguration {
   /**
    * setter for metadata DB enabled
    *
-   * @param metadataDBEnabled
+   * @param metadataDBEnabled whether to enable the metadata DB
    */
   public void setMetadataDBEnabled(final boolean metadataDBEnabled) {
     this.metadataDBEnabled = metadataDBEnabled;
@@ -147,7 +147,7 @@ public class CommonConfiguration implements EventStreamConfiguration {
   /**
    * setter for enabled topics
    *
-   * @param enabledTopics
+   * @param enabledTopics the topics to enable
    */
   public void setEnabledTopics(final List<DomainObjectType> enabledTopics) {
     this.enabledTopics = Optional.of(enabledTopics);
@@ -156,7 +156,7 @@ public class CommonConfiguration implements EventStreamConfiguration {
   /**
    * setter for log filter topics
    *
-   * @param logFilterTopicsWrapper
+   * @param logFilterTopicsWrapper the wrapped log filter topics to set
    */
   public void setLogFilterTopicsWrapper(final LogFilterTopicsWrapper logFilterTopicsWrapper) {
     this.logFilterTopicsWrapper = logFilterTopicsWrapper;
@@ -165,7 +165,7 @@ public class CommonConfiguration implements EventStreamConfiguration {
   /**
    * setter for log filter addresses
    *
-   * @param logFilterAddresses
+   * @param logFilterAddresses the addresses to filter logs
    */
   public void setLogFilterAddresses(final List<Address> logFilterAddresses) {
     this.logFilterAddresses = logFilterAddresses;
@@ -174,7 +174,7 @@ public class CommonConfiguration implements EventStreamConfiguration {
   /**
    * setter for event schemas file
    *
-   * @param eventSchemasFile
+   * @param eventSchemasFile the file for hte event schemas
    */
   public void setEventSchemasFile(final File eventSchemasFile) {
     this.eventSchemasFile = eventSchemasFile;
