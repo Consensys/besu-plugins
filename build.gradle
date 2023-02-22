@@ -26,7 +26,7 @@ plugins {
 }
 
 if (!JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_17)) {
-  throw new GradleException("Java 17 or later is required to build Besu.\n" +
+  throw new GradleException("Java 17 or later is required to build Besu Plugins.\n" +
   "  Detected version ${JavaVersion.current()}")
 }
 
