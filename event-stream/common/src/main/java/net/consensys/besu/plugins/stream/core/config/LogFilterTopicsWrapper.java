@@ -25,6 +25,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
 import org.apache.tuweni.bytes.Bytes32;
 
+/** log filter topics wrapper */
 public class LogFilterTopicsWrapper {
 
   private final List<List<Bytes32>> topics;
@@ -33,6 +34,13 @@ public class LogFilterTopicsWrapper {
     this.topics = topics;
   }
 
+  /**
+   * parse the given input
+   *
+   * @param input string representing the json input
+   * @return the wrapped log filter topics
+   * @throws IOException if the string could not be parsed as JSON
+   */
   public static LogFilterTopicsWrapper parse(final String input) throws IOException {
     final JsonNode topicsNode =
         new ObjectMapper()
@@ -62,14 +70,30 @@ public class LogFilterTopicsWrapper {
     return new LogFilterTopicsWrapper(topics);
   }
 
+  /**
+   * empty wrapper
+   *
+   * @return empty wrapper
+   */
   public static LogFilterTopicsWrapper empty() {
     return new LogFilterTopicsWrapper(emptyList());
   }
 
+  /**
+   * getter for the topics
+   *
+   * @return the list of topics
+   */
   public List<List<Bytes32>> getTopics() {
     return topics;
   }
 
+  /**
+   * ensure the given string is a JSON array
+   *
+   * @param input the string
+   * @return the string as a JSON array
+   */
   private static String ensureJSONArray(final String input) {
     return input.replaceAll("\"", "").replaceAll("(0x[a-fA-F0-9]+)", "\"$1\"");
   }

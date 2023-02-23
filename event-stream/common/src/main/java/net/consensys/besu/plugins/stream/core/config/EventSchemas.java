@@ -26,18 +26,36 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.google.common.annotations.VisibleForTesting;
 
+/** Represents a set of event schemas */
 public class EventSchemas {
   private final Set<EventSchema> schemas;
 
+  /**
+   * constructs a new EventSchemas
+   *
+   * @param schemas the set of event schemas
+   */
   @VisibleForTesting
   public EventSchemas(final Set<EventSchema> schemas) {
     this.schemas = schemas;
   }
 
+  /**
+   * create a new empty set of event schemas
+   *
+   * @return the empty EventSchemas
+   */
   public static EventSchemas empty() {
     return new EventSchemas(emptySet());
   }
 
+  /**
+   * create a new set of event schemas from the given yaml file
+   *
+   * @param eventSchemasYamlFile a yaml file representing the event schemas definitions
+   * @throws IOException if the file cannot be parsed
+   * @return the newly created EventSchemas object
+   */
   public static EventSchemas from(final File eventSchemasYamlFile) throws IOException {
     ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
     mapper.findAndRegisterModules();
@@ -49,6 +67,11 @@ public class EventSchemas {
             .collect(toUnmodifiableSet()));
   }
 
+  /**
+   * getter for the set of EventSchema objects
+   *
+   * @return the Set of EventSchema objects
+   */
   public Set<EventSchema> getSchemas() {
     return schemas;
   }
