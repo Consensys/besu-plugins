@@ -16,8 +16,16 @@ package net.consensys.besu.plugins.stream.api.event;
 
 import net.consensys.besu.plugins.stream.model.DomainObjectType;
 
+/** functional interface for the publisher */
 @FunctionalInterface
 public interface Publisher {
+  /**
+   * publish the given event
+   *
+   * @param domainObjectType the type of event
+   * @param topicResolver the topic resolver for the event
+   * @param event the event to publish
+   */
   void publish(
       final DomainObjectType domainObjectType,
       final TopicResolver topicResolver,

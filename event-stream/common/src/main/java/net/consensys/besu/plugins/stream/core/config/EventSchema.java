@@ -49,6 +49,14 @@ public class EventSchema {
 
   private final Hash topic;
 
+  /**
+   * Create an event schema from the given inputs
+   *
+   * @param id the id for the schema
+   * @param contractAddress address of the contract
+   * @param eventName name of the event
+   * @param parameterTypes list of parameter types
+   */
   @VisibleForTesting
   public EventSchema(
       final String id,
@@ -207,6 +215,11 @@ public class EventSchema {
     return Objects.hash(id, contractAddress, eventName);
   }
 
+  /**
+   * getter for the topic hash
+   *
+   * @return hash representing the topic
+   */
   public Hash getTopic() {
     return topic;
   }

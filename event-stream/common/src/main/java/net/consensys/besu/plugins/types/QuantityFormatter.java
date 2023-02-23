@@ -18,16 +18,35 @@ import java.math.BigInteger;
 
 import org.hyperledger.besu.plugin.data.Quantity;
 
+/** Quantity formatter */
 public class QuantityFormatter {
 
+  /**
+   * format the given long as a String
+   *
+   * @param value the long representing a quantity
+   * @return the string representing the quantity
+   */
   public static String format(final long value) {
     return "0x".concat(Long.toHexString(value));
   }
 
+  /**
+   * format the given BigInteger as a String
+   *
+   * @param value the BigInteger quantity
+   * @return the string representing the quantity
+   */
   public static String format(final BigInteger value) {
     return "0x".concat(value.toString(16));
   }
 
+  /**
+   * format the given {@link Quantity} as a String
+   *
+   * @param quantity the Quantity
+   * @return the string representing the quantity
+   */
   public static String format(final Quantity quantity) {
     final Number value = quantity.getValue();
     if (value instanceof BigInteger) {

@@ -36,9 +36,18 @@ import org.hyperledger.besu.plugin.data.LogWithMetadata;
 import org.hyperledger.besu.plugin.data.SyncStatus;
 import org.hyperledger.besu.plugin.data.Transaction;
 
+/** Interface for the Serializer */
 public interface Serializer {
+  /** logger */
   Logger LOG = LogManager.getLogger();
 
+  /**
+   * serialize to JSON
+   *
+   * @param mapper the mapper to use
+   * @param maybeSyncStatus the optional {@link SyncStatus} to serialize
+   * @return the serialized JSON
+   */
   static JsonNode serialize(final ObjectMapper mapper, final Optional<SyncStatus> maybeSyncStatus) {
     if (maybeSyncStatus.isPresent()) {
       final SyncStatus syncStatus = maybeSyncStatus.get();
@@ -53,6 +62,13 @@ public interface Serializer {
     }
   }
 
+  /**
+   * serialize to JSON
+   *
+   * @param mapper the mapper to use
+   * @param blockHeader the {@link BlockHeader} to serialize
+   * @return the serialized JSON
+   */
   static JsonNode serialize(final ObjectMapper mapper, final BlockHeader blockHeader) {
     final ObjectNode eventNode = mapper.createObjectNode();
     eventNode
@@ -76,6 +92,13 @@ public interface Serializer {
     return eventNode;
   }
 
+  /**
+   * serialize to JSON
+   *
+   * @param mapper the mapper to use
+   * @param transaction the {@link Transaction} to serialize
+   * @return the serialized JSON
+   */
   static JsonNode serialize(final ObjectMapper mapper, final Transaction transaction) {
     final ObjectNode eventNode = mapper.createObjectNode();
     eventNode
@@ -113,6 +136,13 @@ public interface Serializer {
     return eventNode;
   }
 
+  /**
+   * serialize to JSON
+   *
+   * @param mapper the mapper to use
+   * @param blockPayload the {@link BlockPayload} to serialize
+   * @return the serialized JSON
+   */
   static JsonNode serialize(final ObjectMapper mapper, final BlockPayload blockPayload) {
     ObjectNode objectNode =
         mapper
@@ -127,6 +157,13 @@ public interface Serializer {
     return objectNode;
   }
 
+  /**
+   * serialize to JSON
+   *
+   * @param mapper the mapper to use
+   * @param transactionPayload the {@link TransactionPayload} to serialize
+   * @return the serialized JSON
+   */
   static JsonNode serialize(
       final ObjectMapper mapper, final TransactionPayload transactionPayload) {
     final ObjectNode eventNode = mapper.createObjectNode();
@@ -140,6 +177,13 @@ public interface Serializer {
     return eventNode;
   }
 
+  /**
+   * serialize to JSON
+   *
+   * @param mapper the mapper to use
+   * @param logWithMetadata the {@link LogWithMetadata} to serialize
+   * @return the serialized JSON
+   */
   static JsonNode serialize(final ObjectMapper mapper, final LogWithMetadata logWithMetadata) {
     final ObjectNode result =
         mapper
