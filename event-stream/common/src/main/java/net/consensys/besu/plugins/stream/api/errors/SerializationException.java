@@ -14,8 +14,14 @@
  */
 package net.consensys.besu.plugins.stream.api.errors;
 
+/** Serialization Exception */
 public class SerializationException extends Exception {
 
+  /**
+   * new SerializationException
+   *
+   * @param cause the cause of the exception
+   */
   public SerializationException(final Throwable cause) {
     super(cause);
   }

@@ -35,9 +35,18 @@ import org.web3j.abi.FunctionReturnDecoder;
 import org.web3j.abi.TypeReference;
 import org.web3j.abi.datatypes.Type;
 
+/** log decoder */
 public class LogDecoder {
   private LogDecoder() {}
 
+  /**
+   * decodes the given inputs if possible, returning {@link DecodedLogWithMetadata}
+   *
+   * @param eventSchemas event schemas
+   * @param logWithMetadata log with metadata
+   * @return if decoding was successful, {@link DecodedLogWithMetadata}, otherwise the passed in
+   *     logWithMetadata
+   */
   @SuppressWarnings({"rawtypes", "unchecked"})
   public static LogWithMetadata decode(
       final EventSchemas eventSchemas, final LogWithMetadata logWithMetadata) {

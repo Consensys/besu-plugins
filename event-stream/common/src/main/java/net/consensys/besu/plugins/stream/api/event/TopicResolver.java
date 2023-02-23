@@ -30,13 +30,26 @@ public interface TopicResolver {
    */
   String resolve(final DomainObjectType domainObjectType, final Event event);
 
+  /** Fixed topic resolver */
   class Fixed implements TopicResolver {
     private Supplier<String> topicSupplier;
 
+    /**
+     * create a new fixed topic resolver
+     *
+     * @param topicSupplier supplies the topic
+     */
     public Fixed(final Supplier<String> topicSupplier) {
       this.topicSupplier = topicSupplier;
     }
 
+    /**
+     * resolve the topic from the given inputs
+     *
+     * @param domainObjectType the type corresponding to a topic, currently ignored
+     * @param event currently ignored
+     * @return
+     */
     @Override
     public String resolve(final DomainObjectType domainObjectType, final Event event) {
       return topicSupplier.get();

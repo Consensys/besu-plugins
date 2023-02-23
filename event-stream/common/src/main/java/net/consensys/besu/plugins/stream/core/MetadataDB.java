@@ -30,6 +30,7 @@ import org.hyperledger.besu.plugin.services.storage.KeyValueStorage;
 import org.hyperledger.besu.plugin.services.storage.KeyValueStorageTransaction;
 import org.hyperledger.besu.plugin.services.storage.SegmentIdentifier;
 
+/** Metadata DB */
 public class MetadataDB {
   private static final Logger LOG = LogManager.getLogger();
 
