@@ -21,7 +21,7 @@ import org.junit.jupiter.api.Test;
 
 public class AddressTest {
 
-  private final String ADDRESS = "0x0000000000000000000000000000000000101010";;
+  private final String ADDRESS = "0x0000000000000000000000000000000000101010";
 
   @Test
   public void accountAddressToString() {

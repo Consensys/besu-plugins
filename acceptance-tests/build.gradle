@@ -12,6 +12,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
+
 apply plugin: 'java-library'
 apply plugin: 'java-test-fixtures'
 
@@ -73,3 +74,4 @@ task acceptanceTest(type: Test) {
   useJUnitPlatform()
   testLogging.showStandardStreams = true
 }
+repositories { mavenCentral() }

@@ -13,7 +13,6 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-
 import net.ltgt.gradle.errorprone.CheckSeverity
 
 plugins {
@@ -26,10 +25,8 @@ plugins {
   id "maven-publish"
 }
 
-
-
-if (!JavaVersion.current().java11Compatible) {
-  throw new GradleException("Java 11 or later is required.\n" +
+if (!JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_17)) {
+  throw new GradleException("Java 17 or later is required to build Besu Plugins.\n" +
   "  Detected version ${JavaVersion.current()}")
 }
 
@@ -76,15 +73,15 @@ allprojects {
     from javadoc.destinationDir
   }
 
-  sourceCompatibility = 11
-  targetCompatibility = 11
+  sourceCompatibility = 17
+  targetCompatibility = 17
 
   repositories {
     mavenCentral()
     mavenLocal()
     maven { url "https://hyperledger.jfrog.io/hyperledger/besu-maven" }
     maven { url "https://artifacts.consensys.net/public/maven/maven/" }
-    maven { url  "https://dl.bintray.com/tuweni/tuweni/" }
+    maven { url "https://dl.bintray.com/tuweni/tuweni/" }
   }
 
   dependencies {
@@ -99,7 +96,7 @@ allprojects {
         exclude '**/.gradle/**'
       }
       removeUnusedImports()
-      googleJavaFormat('1.7')
+      googleJavaFormat('1.15.0')
       importOrder 'net.consensys', 'java', ''
       trimTrailingWhitespace()
       endWithNewline()
