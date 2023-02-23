@@ -53,6 +53,7 @@ public class EventSchemas {
    * create a new set of event schemas from the given yaml file
    *
    * @param eventSchemasYamlFile a yaml file representing the event schemas definitions
+   * @throws IOException if the file cannot be parsed
    * @return the newly created EventSchemas object
    */
   public static EventSchemas from(final File eventSchemasYamlFile) throws IOException {
