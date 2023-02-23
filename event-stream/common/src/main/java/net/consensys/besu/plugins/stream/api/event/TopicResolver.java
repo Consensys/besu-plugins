@@ -48,7 +48,7 @@ public interface TopicResolver {
      *
      * @param domainObjectType the type corresponding to a topic, currently ignored
      * @param event currently ignored
-     * @return
+     * @return the string representing the topic
      */
     @Override
     public String resolve(final DomainObjectType domainObjectType, final Event event) {
