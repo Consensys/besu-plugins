@@ -66,6 +66,14 @@ public abstract class EventStreamPlugin<T extends EventStreamConfiguration> impl
   private BesuContext context;
   private BesuEventSubscriptionManager subscriptionManager;
 
+  /**
+   * Create an event stream plugin from the given inputs
+   *
+   * @param name the name for the plugin
+   * @param configuration the configuration of the plugin
+   * @param publisherFactory the publisher factory
+   * @param health health check function
+   */
   protected EventStreamPlugin(
       final String name,
       final T configuration,
@@ -77,6 +85,13 @@ public abstract class EventStreamPlugin<T extends EventStreamConfiguration> impl
     this.health = health;
   }
 
+  /**
+   * Create an event stream plugin from the given inputs, with no health check function
+   *
+   * @param name the name for the plugin
+   * @param configuration the configuration of the plugin
+   * @param publisherFactory the publisher factory
+   */
   protected EventStreamPlugin(
       final String name, final T configuration, final Function<T, Publisher> publisherFactory) {
     this(name, configuration, publisherFactory, EventStreamPlugin::noopHealthCheck);

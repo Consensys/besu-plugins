@@ -14,8 +14,14 @@
  */
 package net.consensys.besu.plugins.stream.api.event;
 
+/** Functional Interface for Event Handler */
 @FunctionalInterface
 public interface EventHandler {
 
+  /**
+   * Apply the given event
+   *
+   * @param event the event
+   */
   void apply(final String event);
 }

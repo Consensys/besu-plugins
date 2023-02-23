@@ -17,7 +17,19 @@ package net.consensys.besu.plugins.stream.api.event;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * Functional Interface for event serializer
+ *
+ * @param <T> the type for the event
+ */
 @FunctionalInterface
 public interface EventSerializer<T> {
+  /**
+   * serialize the given event to JSON
+   *
+   * @param mapper the mapper
+   * @param payload the payload
+   * @return the JSON node representing the event
+   */
   JsonNode serialize(ObjectMapper mapper, T payload);
 }

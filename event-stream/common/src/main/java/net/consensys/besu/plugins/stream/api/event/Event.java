@@ -26,6 +26,11 @@ import java.nio.ByteBuffer;
  */
 public interface Event {
 
+  /**
+   * The type
+   *
+   * @return A string representing the type of the event
+   */
   String type();
 
   /**
