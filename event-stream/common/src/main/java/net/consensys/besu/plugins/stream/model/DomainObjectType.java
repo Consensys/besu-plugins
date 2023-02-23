@@ -14,11 +14,17 @@
  */
 package net.consensys.besu.plugins.stream.model;
 
+/** enumeration of object types */
 public enum DomainObjectType {
+  /** block */
   BLOCK("block"),
+  /** transaction */
   TRANSACTION("transaction"),
+  /** smart-contract */
   SMART_CONTRACT("smart-contract"),
+  /** node */
   NODE("node"),
+  /** log */
   LOG("log");
 
   private final String name;

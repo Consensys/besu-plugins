@@ -14,8 +14,15 @@
  */
 package net.consensys.besu.plugins.stream.api.event;
 
+/** Functional Interface for the Subscriber */
 @FunctionalInterface
 public interface Subscriber {
 
+  /**
+   * subscribe
+   *
+   * @param topic topic to subscribe to
+   * @param eventHandler event handler {@link EventHandler}
+   */
   void subscribe(final String topic, final EventHandler eventHandler);
 }

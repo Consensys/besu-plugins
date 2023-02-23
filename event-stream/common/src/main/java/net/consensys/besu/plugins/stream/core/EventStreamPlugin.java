@@ -232,16 +232,33 @@ public abstract class EventStreamPlugin<T extends EventStreamConfiguration> impl
     return CompletableFuture.completedFuture(null);
   }
 
+  /**
+   * getter for the configuration
+   *
+   * @return the configuration
+   */
   @VisibleForTesting
   public T getConfiguration() {
     return configuration;
   }
 
+  /**
+   * getter for the topic resolver
+   *
+   * @return the TopicResolver
+   */
   @VisibleForTesting
   public TopicResolver getTopicResolver() {
     return topicResolver;
   }
 
+  /**
+   * Health Check util that always returns true
+   *
+   * @param configuration ignored configuration
+   * @param <T> ignored type of configuration
+   * @return true
+   */
   @VisibleForTesting
   public static <T> boolean noopHealthCheck(final T configuration) {
     return true;

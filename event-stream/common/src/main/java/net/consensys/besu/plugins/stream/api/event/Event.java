@@ -58,14 +58,23 @@ public interface Event {
     return wrap(bytes());
   }
 
+  /** event types */
   class Type {
+    /** block propagated */
     public static final String BLOCK_PROPAGATED = "BlockPropagated";
+    /** block added */
     public static final String BLOCK_ADDED = "BlockAdded";
+    /** block reorg */
     public static final String BLOCK_REORG = "BlockReorg";
+    /** transaction added */
     public static final String TRANSACTION_ADDED = "TransactionAdded";
+    /** transaction dropped */
     public static final String TRANSACTION_DROPPED = "TransactionDropped";
+    /** transaction reverted */
     public static final String TRANSACTION_REVERTED = "TransactionReverted";
+    /** sync status changed. Start or stop syncing. */
     public static final String SYNC_STATUS_CHANGED = "SyncStatusChanged";
+    /** log emitted */
     public static final String LOG_EMITTED = "LogEmitted";
   }
 }

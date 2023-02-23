@@ -10,7 +10,7 @@ executors:
     working_directory: ~/project
   besu_plugins_docker_executor:
     docker:
-      - image: cimg/openjdk:11.0
+      - image: cimg/openjdk:17.0
     working_directory: ~/project
     environment:
       TERM: dumb
@@ -19,7 +19,7 @@ executors:
       GRADLE_MAX_TEST_FORKS: 2
   small_executor:
     docker:
-      - image: cimg/openjdk:11.0
+      - image: cimg/openjdk:17.0
     working_directory: ~/project
     environment:
       JAVA_TOOL_OPTIONS: -Xmx2g
@@ -196,13 +196,10 @@ jobs:
       - prepare
 
       - run:
-          name: Install openjdk 11
+          name: Install Java_17
           command: |
-            sudo add-apt-repository -y ppa:openjdk-r/ppa
-            sudo apt update
-            sudo apt install -y openjdk-11-jdk
-            sudo update-java-alternatives -s java-1.11.0-openjdk-amd64
-            java -version
+            sudo apt install -q --assume-yes openjdk-17-jre-headless openjdk-17-jdk-headless
+            sudo update-java-alternatives -a
 
       - run:
           name: Running acceptance tests

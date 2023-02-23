@@ -90,6 +90,11 @@ public class BesuEventSubscription {
     return unsubscriber;
   }
 
+  /**
+   * gets the subscription id
+   *
+   * @return optional subscription ID
+   */
   public Optional<Long> getSubscriptionId() {
     return subscriptionId;
   }

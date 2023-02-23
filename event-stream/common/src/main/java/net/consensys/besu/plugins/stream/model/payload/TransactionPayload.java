@@ -26,13 +26,26 @@ public class TransactionPayload {
   private final Optional<BlockHeader> blockHeader;
   private final Optional<String> revertReason;
 
-  public TransactionPayload(Transaction transaction, BlockHeader blockHeader, String revertReason) {
+  /**
+   * Create a new transaction payload
+   *
+   * @param transaction the transaction
+   * @param blockHeader the block header
+   * @param revertReason the revert reason
+   */
+  public TransactionPayload(
+      final Transaction transaction, final BlockHeader blockHeader, final String revertReason) {
     this.transaction = transaction;
     this.blockHeader = Optional.ofNullable(blockHeader);
     this.revertReason = Optional.ofNullable(revertReason);
   }
 
-  public TransactionPayload(Transaction transaction) {
+  /**
+   * Create a new transaction payload with empty block header and revert reason
+   *
+   * @param transaction the transaction
+   */
+  public TransactionPayload(final Transaction transaction) {
     this.transaction = transaction;
     blockHeader = Optional.empty();
     revertReason = Optional.empty();

@@ -16,6 +16,7 @@ package net.consensys.besu.plugins.stream.core.config;
 
 import picocli.CommandLine.ITypeConverter;
 
+/** CLI Converter for topics */
 public class TopicTypeConverter implements ITypeConverter<LogFilterTopicsWrapper> {
 
   @Override
