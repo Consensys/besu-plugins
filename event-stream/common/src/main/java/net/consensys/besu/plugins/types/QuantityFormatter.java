@@ -14,9 +14,9 @@
  */
 package net.consensys.besu.plugins.types;
 
-import java.math.BigInteger;
+import org.hyperledger.besu.datatypes.Quantity;
 
-import org.hyperledger.besu.plugin.data.Quantity;
+import java.math.BigInteger;
 
 /** Quantity formatter */
 public class QuantityFormatter {
@@ -42,7 +42,7 @@ public class QuantityFormatter {
   }
 
   /**
-   * format the given {@link Quantity} as a String
+   * format the given {@link org.hyperledger.besu.datatypes.Quantity} as a String
    *
    * @param quantity the Quantity
    * @return the string representing the quantity

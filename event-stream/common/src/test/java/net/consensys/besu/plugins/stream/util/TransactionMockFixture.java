@@ -17,7 +17,6 @@ package net.consensys.besu.plugins.stream.util;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import net.consensys.besu.plugins.types.Address;
 import net.consensys.besu.plugins.types.BigIntegerQuantity;
 import net.consensys.besu.plugins.types.Fixture;
 
@@ -25,8 +24,9 @@ import java.math.BigInteger;
 import java.util.Optional;
 
 import org.apache.tuweni.bytes.Bytes;
-import org.hyperledger.besu.plugin.data.Hash;
-import org.hyperledger.besu.plugin.data.Transaction;
+import org.hyperledger.besu.datatypes.Address;
+import org.hyperledger.besu.datatypes.Hash;
+import org.hyperledger.besu.datatypes.Transaction;
 
 public final class TransactionMockFixture {
 

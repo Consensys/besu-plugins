@@ -20,7 +20,6 @@ import net.consensys.besu.plugins.stream.core.config.DomainObjectTypeConverter;
 import net.consensys.besu.plugins.stream.core.config.LogFilterTopicsWrapper;
 import net.consensys.besu.plugins.stream.core.config.TopicTypeConverter;
 import net.consensys.besu.plugins.stream.model.DomainObjectType;
-import net.consensys.besu.plugins.types.Address;
 
 import java.io.File;
 import java.util.List;
@@ -29,6 +28,7 @@ import java.util.Properties;
 
 import com.google.common.annotations.VisibleForTesting;
 import org.apache.kafka.clients.producer.ProducerConfig;
+import org.hyperledger.besu.datatypes.Address;
 import picocli.CommandLine.Option;
 
 /**

@@ -17,7 +17,6 @@ package net.consensys.besu.plugin.kafka;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import net.consensys.besu.plugins.stream.model.DomainObjectType;
-import net.consensys.besu.plugins.types.Address;
 
 import java.io.File;
 import java.util.Arrays;
@@ -25,6 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.hyperledger.besu.datatypes.Address;
 import org.junit.jupiter.api.Test;
 import picocli.CommandLine;
 

@@ -48,16 +48,16 @@ import java.util.Set;
 import com.google.common.util.concurrent.MoreExecutors;
 import org.apache.tuweni.bytes.Bytes;
 import org.apache.tuweni.units.bigints.UInt256;
+import org.hyperledger.besu.datatypes.Address;
+import org.hyperledger.besu.datatypes.Hash;
+import org.hyperledger.besu.datatypes.Quantity;
+import org.hyperledger.besu.datatypes.Transaction;
 import org.hyperledger.besu.plugin.data.AddedBlockContext;
-import org.hyperledger.besu.plugin.data.Address;
 import org.hyperledger.besu.plugin.data.BlockBody;
 import org.hyperledger.besu.plugin.data.BlockHeader;
-import org.hyperledger.besu.plugin.data.Hash;
 import org.hyperledger.besu.plugin.data.LogWithMetadata;
 import org.hyperledger.besu.plugin.data.PropagatedBlockContext;
-import org.hyperledger.besu.plugin.data.Quantity;
 import org.hyperledger.besu.plugin.data.SyncStatus;
-import org.hyperledger.besu.plugin.data.Transaction;
 import org.hyperledger.besu.plugin.data.TransactionReceipt;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -234,7 +234,7 @@ class BesuEventListenerTest {
                 Set.of(
                     new EventSchema(
                         "randomRealLog",
-                        net.consensys.besu.plugins.types.Address.fromHexString(
+                        Address.fromHexString(
                             logWithMetadata.getLogger().toHexString()),
                         "Transfer",
                         List.of(

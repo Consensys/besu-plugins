@@ -18,11 +18,13 @@ import net.consensys.besu.plugins.stream.model.DomainObjectType;
 
 import picocli.CommandLine.ITypeConverter;
 
+import java.util.Locale;
+
 /** Converter for domain object type on CLI */
 public class DomainObjectTypeConverter implements ITypeConverter<DomainObjectType> {
 
   @Override
   public DomainObjectType convert(String value) throws Exception {
-    return DomainObjectType.valueOf(value.toUpperCase());
+    return DomainObjectType.valueOf(value.toUpperCase(Locale.ROOT));
   }
 }

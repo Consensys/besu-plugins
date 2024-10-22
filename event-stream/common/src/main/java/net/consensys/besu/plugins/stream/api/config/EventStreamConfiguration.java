@@ -16,12 +16,12 @@ package net.consensys.besu.plugins.stream.api.config;
 
 import net.consensys.besu.plugins.stream.core.config.EventSchemas;
 import net.consensys.besu.plugins.stream.model.DomainObjectType;
-import net.consensys.besu.plugins.types.Address;
 
 import java.io.File;
 import java.util.List;
 
 import org.apache.tuweni.bytes.Bytes32;
+import org.hyperledger.besu.datatypes.Address;
 
 /** Event stream configuration interface */
 public interface EventStreamConfiguration {

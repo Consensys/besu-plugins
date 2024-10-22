@@ -15,6 +15,7 @@
 package net.consensys.besu.plugins.types;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import org.hyperledger.besu.datatypes.Address;
 
 import org.apache.tuweni.bytes.Bytes;
 import org.junit.jupiter.api.Test;

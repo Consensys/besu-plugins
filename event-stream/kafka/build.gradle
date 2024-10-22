@@ -54,7 +54,7 @@ dependencies {
 
 //create a single Jar with all dependencies
 jar {
-  //dependsOn checkLicenses
+  dependsOn(':event-stream:common:jar')
   archiveBaseName = project.name + '-plugin'
   manifest {
     attributes(

@@ -17,7 +17,6 @@ package net.consensys.besu.plugins.stream.api.config;
 import net.consensys.besu.plugins.stream.core.config.EventSchemas;
 import net.consensys.besu.plugins.stream.core.config.LogFilterTopicsWrapper;
 import net.consensys.besu.plugins.stream.model.DomainObjectType;
-import net.consensys.besu.plugins.types.Address;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,6 +29,7 @@ import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.tuweni.bytes.Bytes32;
+import org.hyperledger.besu.datatypes.Address;
 
 /** Common event stream configuration */
 public class CommonConfiguration implements EventStreamConfiguration {

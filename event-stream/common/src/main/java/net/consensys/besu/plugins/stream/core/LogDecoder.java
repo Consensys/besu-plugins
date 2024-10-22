@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import org.apache.tuweni.bytes.Bytes32;
-import org.hyperledger.besu.plugin.data.Address;
+import org.hyperledger.besu.datatypes.Address;
 import org.hyperledger.besu.plugin.data.LogWithMetadata;
 import org.web3j.abi.FunctionReturnDecoder;
 import org.web3j.abi.TypeReference;

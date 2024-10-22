@@ -17,9 +17,6 @@ package net.consensys.besu.plugins.stream.core.config;
 import static java.util.stream.Collectors.toUnmodifiableList;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import net.consensys.besu.plugins.types.Address;
-import net.consensys.besu.plugins.types.Hash;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,6 +24,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import org.hyperledger.besu.datatypes.Address;
+import org.hyperledger.besu.datatypes.Hash;
 import org.junit.jupiter.api.Test;
 import org.web3j.abi.TypeReference;
 import org.web3j.abi.datatypes.Type;

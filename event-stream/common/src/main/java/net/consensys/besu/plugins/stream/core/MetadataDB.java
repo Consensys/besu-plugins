@@ -21,8 +21,8 @@ import java.util.Optional;
 import com.google.common.primitives.Longs;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hyperledger.besu.datatypes.Hash;
 import org.hyperledger.besu.plugin.BesuContext;
-import org.hyperledger.besu.plugin.data.Hash;
 import org.hyperledger.besu.plugin.services.BesuConfiguration;
 import org.hyperledger.besu.plugin.services.MetricsSystem;
 import org.hyperledger.besu.plugin.services.StorageService;
@@ -118,6 +118,16 @@ public class MetadataDB {
       @Override
       public byte[] getId() {
         return id;
+      }
+
+      @Override
+      public boolean containsStaticData() {
+        return false;
+      }
+
+      @Override
+      public boolean isEligibleToHighSpecFlag() {
+        return false;
       }
     };
   }

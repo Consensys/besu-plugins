@@ -19,10 +19,10 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import net.consensys.besu.plugin.kafka.KafkaPluginConfiguration;
 import net.consensys.besu.plugins.dsl.cli.CommandLineTest;
-import net.consensys.besu.plugins.types.Address;
 
 import java.util.AbstractMap;
 
+import org.hyperledger.besu.datatypes.Address;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import picocli.CommandLine;

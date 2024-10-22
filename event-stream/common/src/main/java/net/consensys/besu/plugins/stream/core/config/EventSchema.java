@@ -18,19 +18,20 @@ import static com.google.common.base.Preconditions.checkState;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.stream.Collectors.toUnmodifiableList;
 
-import net.consensys.besu.plugins.types.Address;
-import net.consensys.besu.plugins.types.Hash;
-
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.Security;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.stream.IntStream;
 
 import com.google.common.annotations.VisibleForTesting;
+import org.apache.tuweni.bytes.Bytes32;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import org.hyperledger.besu.datatypes.Address;
+import org.hyperledger.besu.datatypes.Hash;
 import org.web3j.abi.TypeReference;
 import org.web3j.abi.datatypes.Type;
 
@@ -130,7 +131,7 @@ public class EventSchema {
   private Hash topic() {
     try {
       final MessageDigest digest = MessageDigest.getInstance("KECCAK-256");
-      return Hash.wrap(
+      return Hash.wrap(Bytes32.wrap(
           digest.digest(
               String.format(
                       "%s%s",
@@ -153,10 +154,10 @@ public class EventSchema {
                           // reformat the java toString output to be in the form that is expected by
                           // the keccak hash
                           .replace(" ", "")
-                          .toLowerCase()
+                          .toLowerCase(Locale.ROOT)
                           .replace('[', '(')
                           .replace(']', ')'))
-                  .getBytes(UTF_8)));
+                  .getBytes(UTF_8))));
     } catch (final NoSuchAlgorithmException e) {
       throw new RuntimeException(e);
     }
