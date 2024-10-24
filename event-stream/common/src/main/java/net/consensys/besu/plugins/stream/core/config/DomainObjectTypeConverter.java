@@ -16,9 +16,9 @@ package net.consensys.besu.plugins.stream.core.config;
 
 import net.consensys.besu.plugins.stream.model.DomainObjectType;
 
-import picocli.CommandLine.ITypeConverter;
-
 import java.util.Locale;
+
+import picocli.CommandLine.ITypeConverter;
 
 /** Converter for domain object type on CLI */
 public class DomainObjectTypeConverter implements ITypeConverter<DomainObjectType> {

@@ -15,14 +15,15 @@
 package net.consensys.besu.plugins.types;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import org.hyperledger.besu.datatypes.Address;
 
 import org.apache.tuweni.bytes.Bytes;
+import org.hyperledger.besu.datatypes.Address;
 import org.junit.jupiter.api.Test;
 
 public class AddressTest {
 
-  private final String ADDRESS = "0x0000000000000000000000000000000000101010";;
+  private final String ADDRESS = "0x0000000000000000000000000000000000101010";
+  ;
 
   @Test
   public void accountAddressToString() {

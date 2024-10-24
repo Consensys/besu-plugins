@@ -63,8 +63,7 @@ public class LogFilterTopicsWrapper {
         }
         topics.add(childItems);
       } else {
-        topics.add(
-            singletonList(Hash.fromHexString(child.textValue())));
+        topics.add(singletonList(Hash.fromHexString(child.textValue())));
       }
     }
 

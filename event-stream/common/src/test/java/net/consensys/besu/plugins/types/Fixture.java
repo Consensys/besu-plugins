@@ -14,14 +14,12 @@
  */
 package net.consensys.besu.plugins.types;
 
-
 import java.util.List;
 import java.util.stream.Stream;
 
-import org.hyperledger.besu.datatypes.Hash;
-import org.hyperledger.besu.datatypes.Address;
-
 import org.apache.tuweni.bytes.Bytes;
+import org.hyperledger.besu.datatypes.Address;
+import org.hyperledger.besu.datatypes.Hash;
 import org.hyperledger.besu.plugin.data.LogWithMetadata;
 
 public class Fixture {
@@ -33,8 +31,7 @@ public class Fixture {
     return new LogWithMetadata() {
       @Override
       public Address getLogger() {
-        return Address.fromHexString(
-            "0x1dea979ae76f26071870f824088da78979eb91c8");
+        return Address.fromHexString("0x1dea979ae76f26071870f824088da78979eb91c8");
       }
 
       @Override

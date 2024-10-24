@@ -34,7 +34,6 @@ import java.util.function.Function;
 import com.google.common.annotations.VisibleForTesting;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.hyperledger.besu.datatypes.Address;
 import org.hyperledger.besu.plugin.BesuContext;
 import org.hyperledger.besu.plugin.BesuPlugin;
 import org.hyperledger.besu.plugin.services.BesuEvents;
@@ -188,8 +187,7 @@ public abstract class EventStreamPlugin<T extends EventStreamConfiguration> impl
                         "log",
                         listener ->
                             events.addLogListener(
-                                configuration.getLogFilterAddresses().stream()
-                                    .toList(),
+                                configuration.getLogFilterAddresses().stream().toList(),
                                 configuration.getLogFilterTopics(),
                                 listener),
                         events::removeLogListener) // add log listener from command line

@@ -14,9 +14,9 @@
  */
 package net.consensys.besu.plugins.types;
 
-import org.hyperledger.besu.datatypes.Quantity;
-
 import java.math.BigInteger;
+
+import org.hyperledger.besu.datatypes.Quantity;
 
 /** Quantity formatter */
 public class QuantityFormatter {

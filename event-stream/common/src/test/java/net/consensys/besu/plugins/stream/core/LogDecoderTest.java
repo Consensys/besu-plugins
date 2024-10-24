@@ -14,7 +14,6 @@
  */
 package net.consensys.besu.plugins.stream.core;
 
-import static java.util.stream.Collectors.toUnmodifiableList;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.when;
 

@@ -19,9 +19,9 @@ import java.util.List;
 import com.google.common.base.MoreObjects;
 import org.apache.tuweni.bytes.Bytes;
 import org.apache.tuweni.bytes.Bytes32;
-import org.hyperledger.besu.plugin.data.LogWithMetadata;
-import org.hyperledger.besu.datatypes.Hash;
 import org.hyperledger.besu.datatypes.Address;
+import org.hyperledger.besu.datatypes.Hash;
+import org.hyperledger.besu.plugin.data.LogWithMetadata;
 
 /** Decoded Log with Metadata */
 public class DecodedLogWithMetadata implements LogWithMetadata {

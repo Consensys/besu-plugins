@@ -131,33 +131,35 @@ public class EventSchema {
   private Hash topic() {
     try {
       final MessageDigest digest = MessageDigest.getInstance("KECCAK-256");
-      return Hash.wrap(Bytes32.wrap(
-          digest.digest(
-              String.format(
-                      "%s%s",
-                      eventName,
-                      parameterTypes.stream()
-                          // get the solidity type name from the parameter types
-                          .map(
-                              typeReference -> {
-                                try {
-                                  return typeReference.getClassType();
-                                } catch (ClassNotFoundException e) {
-                                  throw new RuntimeException(e);
-                                }
-                              })
-                          .map(Class::getSimpleName)
-                          .map(String::toLowerCase)
-                          .map(typeName -> typeName.replaceFirst("^utf8", ""))
-                          .collect(toUnmodifiableList())
-                          .toString()
-                          // reformat the java toString output to be in the form that is expected by
-                          // the keccak hash
-                          .replace(" ", "")
-                          .toLowerCase(Locale.ROOT)
-                          .replace('[', '(')
-                          .replace(']', ')'))
-                  .getBytes(UTF_8))));
+      return Hash.wrap(
+          Bytes32.wrap(
+              digest.digest(
+                  String.format(
+                          "%s%s",
+                          eventName,
+                          parameterTypes.stream()
+                              // get the solidity type name from the parameter types
+                              .map(
+                                  typeReference -> {
+                                    try {
+                                      return typeReference.getClassType();
+                                    } catch (ClassNotFoundException e) {
+                                      throw new RuntimeException(e);
+                                    }
+                                  })
+                              .map(Class::getSimpleName)
+                              .map(String::toLowerCase)
+                              .map(typeName -> typeName.replaceFirst("^utf8", ""))
+                              .collect(toUnmodifiableList())
+                              .toString()
+                              // reformat the java toString output to be in the form that is
+                              // expected by
+                              // the keccak hash
+                              .replace(" ", "")
+                              .toLowerCase(Locale.ROOT)
+                              .replace('[', '(')
+                              .replace(']', ')'))
+                      .getBytes(UTF_8))));
     } catch (final NoSuchAlgorithmException e) {
       throw new RuntimeException(e);
     }

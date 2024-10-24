@@ -234,8 +234,7 @@ class BesuEventListenerTest {
                 Set.of(
                     new EventSchema(
                         "randomRealLog",
-                        Address.fromHexString(
-                            logWithMetadata.getLogger().toHexString()),
+                        Address.fromHexString(logWithMetadata.getLogger().toHexString()),
                         "Transfer",
                         List.of(
                             TypeReference.makeTypeReference("address", true, true),
