@@ -1,7 +1,7 @@
-# Contributing to Quorum Besu Plugins
+# Contributing to Besu Plugins
 :+1::tada: First off, thanks for taking the time to contribute! :tada::+1:
 
-Welcome to the Quorum Besu Plugins repository!  The following is a set of guidelines for contributing to this repo and its packages. These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request.
+Welcome to the Besu Plugins repository!  The following is a set of guidelines for contributing to this repo and its packages. These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request.
 
 #### Table Of Contents
 
@@ -20,11 +20,11 @@ Welcome to the Quorum Besu Plugins repository!  The following is a set of guidel
 
 ## Code of Conduct
 
-This project and everyone participating in it is governed by the [Quorum Besu Plugins Code of Conduct](CODE-OF-CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [quorum@consensys.net].
+This project and everyone participating in it is governed by the [Besu Plugins Code of Conduct](CODE-OF-CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [quorum@consensys.net].
 
 ## I just have a quick question
 
-You'll find us on [Discord](https://discord.com/invite/TCtK3YM) and that's the fastest way to get an answer. 
+You'll find us on [Discord](https://discord.gg/hyperledger) and that's the fastest way to get an answer. 
 
 ## How To Contribute
 
@@ -47,7 +47,7 @@ In general a commit serves a single purpose and diffs should be easily comprehen
 
 ### Architectural Best Practices
 
-Questions on architectural best practices will be guided by the principles set forth in [Effective Java](http://index-of.es/Java/Effective%20Java.pdf) by Joshua Bloch
+Questions on architectural best practices will be guided by the principles set forth in [Effective Java](https://github.com/GunterMueller/Books-3/blob/master/Effective%20Java%20(3rd%20Edition).pdf) by Joshua Bloch
 
 ### Automated Test coverage
 All code submissions must be accompanied by appropriate automated tests.  The goal is to provide confidence in the code’s robustness, while avoiding redundant tests.
@@ -64,8 +64,7 @@ The process described here has several goals:
 
 Please follow these steps to have your contribution considered by the approvers:
 
-1. Complete the CLA, as described in [CLA.md]
-2. Follow all instructions in [PULL-REQUEST-TEMPLATE.md](.github/pull_request_template.md)
+1. all instructions in [PULL-REQUEST-TEMPLATE.md](.github/pull_request_template.md)
 3. Include appropriate test coverage.  Testing is 100% automated.  There is no such thing as a manual test.
 4. Follow the [Style Guides](#style-guides)
 5. After you submit your pull request, verify that all [status checks](https://help.github.com/articles/about-status-checks/) are passing <details><summary>What if the status checks are failing?</summary>If a status check is failing, and you believe that the failure is unrelated to your change, please leave a comment on the pull request explaining why you believe the failure is unrelated. A maintainer will re-run the status check for you. If we conclude that the failure was a false positive, then we will open an issue to track that problem with our status check suite.</details>

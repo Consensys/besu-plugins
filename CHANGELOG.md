@@ -1,5 +1,14 @@
 # Changelog
 
+## 24.10.0
+### Additions and Improvements
+* example plugin for private mempool detection
+
+### Bug Fixes
+* updates java to 21
+* updates gradle to 8
+* dependency updates
+
 ## 21.12.0
 
 ### Additions and Improvements
