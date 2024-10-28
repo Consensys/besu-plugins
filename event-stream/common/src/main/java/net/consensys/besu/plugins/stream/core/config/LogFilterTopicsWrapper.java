@@ -24,6 +24,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
 import org.apache.tuweni.bytes.Bytes32;
+import org.hyperledger.besu.datatypes.Hash;
 
 /** log filter topics wrapper */
 public class LogFilterTopicsWrapper {
@@ -62,8 +63,7 @@ public class LogFilterTopicsWrapper {
         }
         topics.add(childItems);
       } else {
-        topics.add(
-            singletonList(net.consensys.besu.plugins.types.Hash.fromHexString(child.textValue())));
+        topics.add(singletonList(Hash.fromHexString(child.textValue())));
       }
     }
 

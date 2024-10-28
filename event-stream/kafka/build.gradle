@@ -18,6 +18,7 @@ plugins {
   id 'java-library'
 }
 
+/*
 sourceSets {
   test {
     resources {
@@ -25,6 +26,8 @@ sourceSets {
     }
   }
 }
+*/
+
 
 dependencies {
   api project(':event-stream:common')
@@ -54,7 +57,7 @@ dependencies {
 
 //create a single Jar with all dependencies
 jar {
-  //dependsOn checkLicenses
+  dependsOn(':event-stream:common:jar')
   archiveBaseName = project.name + '-plugin'
   manifest {
     attributes(
@@ -64,7 +67,11 @@ jar {
       'Implementation-Version': calculateVersion()
       )
   }
-  from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+  from {
+    configurations.runtimeClasspath.collect {
+      it.isDirectory() ? it : zipTree(it)
+    }
+  }
   exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA'
   duplicatesStrategy(DuplicatesStrategy.INCLUDE)
 }

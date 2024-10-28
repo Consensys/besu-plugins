@@ -14,8 +14,7 @@
  */
 package net.consensys.besu.plugins.stream.core.config;
 
-import net.consensys.besu.plugins.types.Address;
-
+import org.hyperledger.besu.datatypes.Address;
 import picocli.CommandLine.ITypeConverter;
 
 /** Converter for address type in CLI. */

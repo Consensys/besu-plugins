@@ -22,10 +22,10 @@ import net.consensys.besu.plugins.types.Fixture;
 import java.math.BigInteger;
 
 import org.apache.tuweni.bytes.Bytes;
-import org.hyperledger.besu.plugin.data.Address;
+import org.hyperledger.besu.datatypes.Address;
+import org.hyperledger.besu.datatypes.Hash;
+import org.hyperledger.besu.datatypes.Quantity;
 import org.hyperledger.besu.plugin.data.BlockHeader;
-import org.hyperledger.besu.plugin.data.Hash;
-import org.hyperledger.besu.plugin.data.Quantity;
 
 public final class BlockHeaderMockFixture {
 

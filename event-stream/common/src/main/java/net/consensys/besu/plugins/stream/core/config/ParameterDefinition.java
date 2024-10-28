@@ -14,6 +14,8 @@
  */
 package net.consensys.besu.plugins.stream.core.config;
 
+import java.util.Locale;
+
 class ParameterDefinition {
   private int position;
   private String type;
@@ -31,6 +33,6 @@ class ParameterDefinition {
   }
 
   public void setType(final String type) {
-    this.type = type.toLowerCase();
+    this.type = type.toLowerCase(Locale.ROOT);
   }
 }

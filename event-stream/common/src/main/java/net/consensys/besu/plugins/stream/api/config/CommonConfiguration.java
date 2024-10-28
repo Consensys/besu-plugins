@@ -17,7 +17,6 @@ package net.consensys.besu.plugins.stream.api.config;
 import net.consensys.besu.plugins.stream.core.config.EventSchemas;
 import net.consensys.besu.plugins.stream.core.config.LogFilterTopicsWrapper;
 import net.consensys.besu.plugins.stream.model.DomainObjectType;
-import net.consensys.besu.plugins.types.Address;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,6 +29,7 @@ import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.tuweni.bytes.Bytes32;
+import org.hyperledger.besu.datatypes.Address;
 
 /** Common event stream configuration */
 public class CommonConfiguration implements EventStreamConfiguration {
@@ -38,18 +38,25 @@ public class CommonConfiguration implements EventStreamConfiguration {
 
   /** whether this config is enabled */
   protected boolean enabled = false;
+
   /** topic for this config */
   protected String topic = "pegasys-stream";
+
   /** broker URL for this config */
   protected String brokerUrl = "127.0.0.1:9092";
+
   /** whether metadata DB is enabled */
   protected boolean metadataDBEnabled = true;
+
   /** list of addresses to filter on */
   protected List<Address> logFilterAddresses = new ArrayList<>();
+
   /** wrapped filter topics */
   protected LogFilterTopicsWrapper logFilterTopicsWrapper = LogFilterTopicsWrapper.empty();
+
   /** topics that are enabled */
   protected Optional<List<DomainObjectType>> enabledTopics = Optional.empty();
+
   /** file for the event schemas */
   protected File eventSchemasFile;
 

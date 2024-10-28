@@ -14,13 +14,12 @@
  */
 package net.consensys.besu.plugins.types;
 
-import static java.util.stream.Collectors.toUnmodifiableList;
-
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.apache.tuweni.bytes.Bytes;
-import org.hyperledger.besu.plugin.data.Address;
-import org.hyperledger.besu.plugin.data.Hash;
+import org.hyperledger.besu.datatypes.Address;
+import org.hyperledger.besu.datatypes.Hash;
 import org.hyperledger.besu.plugin.data.LogWithMetadata;
 
 public class Fixture {
@@ -32,8 +31,7 @@ public class Fixture {
     return new LogWithMetadata() {
       @Override
       public Address getLogger() {
-        return net.consensys.besu.plugins.types.Address.fromHexString(
-            "0x1dea979ae76f26071870f824088da78979eb91c8");
+        return Address.fromHexString("0x1dea979ae76f26071870f824088da78979eb91c8");
       }
 
       @Override
@@ -54,13 +52,13 @@ public class Fixture {
 
       @Override
       public Hash getBlockHash() {
-        return net.consensys.besu.plugins.types.Hash.fromHexString(
+        return Hash.fromHexString(
             "0x8478d0924e106a2e6ee040842316d015fa6a3b87b252060e975153ea238fb0f3");
       }
 
       @Override
       public Hash getTransactionHash() {
-        return net.consensys.besu.plugins.types.Hash.fromHexString(
+        return Hash.fromHexString(
             "0xabc0e2d93e34b8a6f093bb44e102684accd3e45a036df43e5d83b18aa74d40fa");
       }
 
@@ -71,13 +69,12 @@ public class Fixture {
 
       @Override
       public List<Hash> getTopics() {
-        return List.of(
+        return Stream.of(
                 "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
                 "0x000000000000000000000000c2ca8977e5c582f938c30f7a5328ac1d101bd564",
                 "0x00000000000000000000000006e01587ad6b033d4b05156003c3412e8997bfe3")
-            .stream()
-            .map(net.consensys.besu.plugins.types.Hash::fromHexString)
-            .collect(toUnmodifiableList());
+            .map(Hash::fromHexString)
+            .toList();
       }
 
       @Override
@@ -85,13 +82,5 @@ public class Fixture {
         return false;
       }
     };
-  }
-
-  public static Hash createHash(final long value) {
-    return net.consensys.besu.plugins.types.Hash.fromUnsignedLong(value);
-  }
-
-  public static Address createAddress(final long value) {
-    return net.consensys.besu.plugins.types.Address.fromUnsignedLong(value);
   }
 }

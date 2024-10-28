@@ -14,20 +14,20 @@
  */
 package net.consensys.besu.plugins.stream.core;
 
-import static java.util.stream.Collectors.toUnmodifiableList;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.when;
 
 import net.consensys.besu.plugins.stream.core.config.EventSchema;
 import net.consensys.besu.plugins.stream.core.config.EventSchemas;
-import net.consensys.besu.plugins.types.Address;
 import net.consensys.besu.plugins.types.DecodedLogWithMetadata;
-import net.consensys.besu.plugins.types.Hash;
 
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import org.apache.tuweni.bytes.Bytes;
+import org.hyperledger.besu.datatypes.Address;
+import org.hyperledger.besu.datatypes.Hash;
 import org.hyperledger.besu.plugin.data.LogWithMetadata;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -53,13 +53,12 @@ public class LogDecoderTest {
   @Test
   public void testDecode() throws ClassNotFoundException {
     doReturn(
-            List.of(
+            Stream.of(
                     "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
                     "0x000000000000000000000000c2ca8977e5c582f938c30f7a5328ac1d101bd564",
                     "0x00000000000000000000000006e01587ad6b033d4b05156003c3412e8997bfe3")
-                .stream()
                 .map(Hash::fromHexString)
-                .collect(toUnmodifiableList()))
+                .toList())
         .when(logWithMetadata)
         .getTopics();
     when(logWithMetadata.getLogger()).thenReturn(Address.fromHexString(ADDRESS));
@@ -91,12 +90,11 @@ public class LogDecoderTest {
   @Test
   public void testDecodeAnonymous() throws ClassNotFoundException {
     doReturn(
-            List.of(
+            Stream.of(
                     "0x000000000000000000000000c2ca8977e5c582f938c30f7a5328ac1d101bd564",
                     "0x00000000000000000000000006e01587ad6b033d4b05156003c3412e8997bfe3")
-                .stream()
                 .map(Hash::fromHexString)
-                .collect(toUnmodifiableList()))
+                .toList())
         .when(logWithMetadata)
         .getTopics();
     when(logWithMetadata.getLogger()).thenReturn(Address.fromHexString(ADDRESS));
@@ -136,12 +134,11 @@ public class LogDecoderTest {
   @Test()
   public void testDecodeTooManyMatches() throws ClassNotFoundException {
     doReturn(
-            List.of(
+            Stream.of(
                     "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
                     "0x00000000000000000000000006e01587ad6b033d4b05156003c3412e8997bfe3")
-                .stream()
                 .map(Hash::fromHexString)
-                .collect(toUnmodifiableList()))
+                .toList())
         .when(logWithMetadata)
         .getTopics();
     when(logWithMetadata.getLogger()).thenReturn(Address.fromHexString(ADDRESS));

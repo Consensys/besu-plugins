@@ -16,8 +16,8 @@ package net.consensys.besu.plugins.stream.model.payload;
 
 import java.util.Optional;
 
+import org.hyperledger.besu.datatypes.Transaction;
 import org.hyperledger.besu.plugin.data.BlockHeader;
-import org.hyperledger.besu.plugin.data.Transaction;
 
 /** This class defines the payload that is sent during an Event linked to a transaction */
 public class TransactionPayload {

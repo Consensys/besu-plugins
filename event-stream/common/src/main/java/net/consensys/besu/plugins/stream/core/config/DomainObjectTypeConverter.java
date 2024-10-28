@@ -16,6 +16,8 @@ package net.consensys.besu.plugins.stream.core.config;
 
 import net.consensys.besu.plugins.stream.model.DomainObjectType;
 
+import java.util.Locale;
+
 import picocli.CommandLine.ITypeConverter;
 
 /** Converter for domain object type on CLI */
@@ -23,6 +25,6 @@ public class DomainObjectTypeConverter implements ITypeConverter<DomainObjectTyp
 
   @Override
   public DomainObjectType convert(String value) throws Exception {
-    return DomainObjectType.valueOf(value.toUpperCase());
+    return DomainObjectType.valueOf(value.toUpperCase(Locale.ROOT));
   }
 }

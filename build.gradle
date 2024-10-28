@@ -17,20 +17,18 @@
 import net.ltgt.gradle.errorprone.CheckSeverity
 
 plugins {
-  id 'com.diffplug.spotless' version '6.15.0'
-  id 'com.github.ben-manes.versions' version '0.26.0'
+  id 'com.diffplug.spotless' version '6.25.0'
+  id 'com.github.ben-manes.versions' version '0.51.0'
   id 'com.github.hierynomus.license' version '0.16.1'
-  id 'io.spring.dependency-management' version '1.1.0'
-  id 'net.ltgt.errorprone' version '2.0.2'
-  id "de.undercouch.download" version '5.3.1'
+  id 'io.spring.dependency-management' version '1.1.5'
+  id 'net.ltgt.errorprone' version '4.1.0'
+  id "de.undercouch.download" version '5.6.0'
   id "maven-publish"
 }
 
-
-
-if (!JavaVersion.current().java11Compatible) {
-  throw new GradleException("Java 11 or later is required.\n" +
-  "  Detected version ${JavaVersion.current()}")
+if (!JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_21)) {
+  throw new GradleException("Java 21 or later is required to build Besu.\n" +
+   "  Detected version ${JavaVersion.current()}")
 }
 
 allprojects {
@@ -63,7 +61,7 @@ allprojects {
   version = rootProject.version
 
   jacoco {
-    toolVersion = '0.8.8'
+    toolVersion = '0.8.12'
   }
 
   task sourcesJar(type: Jar, dependsOn: classes) {
@@ -76,30 +74,32 @@ allprojects {
     from javadoc.destinationDir
   }
 
-  sourceCompatibility = 11
-  targetCompatibility = 11
+  sourceCompatibility = 21
+  targetCompatibility = 21
 
   repositories {
-    mavenCentral()
-    mavenLocal()
     maven { url "https://hyperledger.jfrog.io/hyperledger/besu-maven" }
     maven { url "https://artifacts.consensys.net/public/maven/maven/" }
-    maven { url  "https://dl.bintray.com/tuweni/tuweni/" }
+    mavenCentral()
+    mavenLocal()
   }
 
   dependencies {
-    errorprone("com.google.errorprone:error_prone_core") }
+    errorprone("com.google.errorprone:error_prone_core")
+  }
 
   apply plugin: 'com.diffplug.spotless'
+
   spotless {
     java {
       // This path needs to be relative to each project
       target fileTree('.') {
-        include '**/*.java'
+        include 'src/**/*.java'
         exclude '**/.gradle/**'
+        exclude '**/*.gradle'
       }
       removeUnusedImports()
-      googleJavaFormat('1.7')
+      googleJavaFormat('1.17.0')
       importOrder 'net.consensys', 'java', ''
       trimTrailingWhitespace()
       endWithNewline()
@@ -143,16 +143,6 @@ allprojects {
       check('UnnecessaryParentheses', CheckSeverity.OFF)
       // Lazy impl causes excess CPU usage O(n) of non-final field when it should be O(1).
       check('FieldCanBeFinal', CheckSeverity.OFF)
-
-      // This check is broken in Java 12.  See https://github.com/google/error-prone/issues/1257
-      if (JavaVersion.current() == JavaVersion.VERSION_12) {
-        check('Finally', CheckSeverity.OFF)
-      }
-      // This check is broken after Java 12.  See https://github.com/google/error-prone/issues/1352
-      if (JavaVersion.current() > JavaVersion.VERSION_12) {
-        check('TypeParameterUnusedInFormals', CheckSeverity.OFF)
-      }
-
       check('InsecureCryptoUsage', CheckSeverity.WARN)
       check('WildcardImport', CheckSeverity.WARN)
     }
@@ -210,7 +200,6 @@ allprojects {
     options.addStringOption('Xwerror', '-html5')
     options.encoding = 'UTF-8'
   }
-
 }
 
 test {
@@ -234,13 +223,18 @@ javadoc {
   options.encoding = 'UTF-8'
 }
 
-configurations { installedJars{ transitive = false } }
+configurations {
+  installedJars{
+    transitive = false
+  }
+}
 
 dependencies {
   installedJars (
     project(":event-stream:common"),
     project(":event-stream:kafka"),
-    )}
+    )
+}
 
 task downloadLatestBesu(type: Download) {
   ext.besuIdentifier = "besu-" + besuVersion
@@ -288,7 +282,6 @@ task checkSpdxHeader(type: CheckSpdxHeader) {
     "(.*/build/.*)",
     "(.*/src/[^/]+/generated/.*)",
   ].join("|")
-
 }
 task installDist(type: Copy) {
   dependsOn distTar
@@ -304,9 +297,8 @@ task distZip(type: Zip) {
   dependsOn installDist
 
   archiveBaseName = distributionIdentifier
+  archiveExtension = 'zip'
   from installDist.outputs.getFiles()
-  archiveBaseName
-  extension 'zip'
 }
 
 
@@ -434,4 +426,7 @@ tasks.register("verifyDistributions") {
 
 
 check.dependsOn checkSpdxHeader
+spotlessJava.dependsOn checkLicenses
+spotlessJava.dependsOn spotlessGroovy
+spotlessJava.dependsOn spotlessGroovyGradle
 apply plugin: 'groovy'

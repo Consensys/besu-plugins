@@ -100,14 +100,11 @@ public class DefaultEvent<T> implements Event {
   public boolean equals(Object other) {
     if (this == other) return true;
     if (other == null || getClass() != other.getClass()) return false;
-    if (other instanceof DefaultEvent<?>) {
-      final DefaultEvent<?> that = (DefaultEvent<?>) other;
-      return timestamp == that.timestamp
-          && Objects.equals(uuid, that.uuid)
-          && Objects.equals(type, that.type)
-          && Objects.equals(event, that.event);
-    }
-    return false;
+    final DefaultEvent<?> that = (DefaultEvent<?>) other;
+    return timestamp == that.timestamp
+        && Objects.equals(uuid, that.uuid)
+        && Objects.equals(type, that.type)
+        && Objects.equals(event, that.event);
   }
 
   @Override

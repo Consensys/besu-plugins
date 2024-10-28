@@ -28,3 +28,5 @@ include 'event-stream'
 include 'event-stream:common'
 include 'event-stream:kafka'
 include 'integration-tests'
+include 'private-tx'
+
