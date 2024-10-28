@@ -1,0 +1,9 @@
+network="holesky"
+engine-jwt-disabled=true
+data-path="/Users/jflo/execution_data/holesky"
+p2p-port=50505
+nat-method="UPNP"
+metrics-enabled=true
+metrics-host="127.0.0.1"
+metrics-port=9545
+metrics-categories=["BLOCK_PROCESSING"]

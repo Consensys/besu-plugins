@@ -25,16 +25,13 @@ import org.hyperledger.besu.plugin.services.BesuEvents;
 import org.hyperledger.besu.plugin.services.MetricsSystem;
 import org.hyperledger.besu.plugin.services.PicoCLIOptions;
 import org.hyperledger.besu.plugin.services.metrics.Counter;
-import org.hyperledger.besu.plugin.services.metrics.LabelledGauge;
 import org.hyperledger.besu.plugin.services.metrics.LabelledMetric;
 import org.hyperledger.besu.plugin.services.metrics.MetricCategory;
 import org.hyperledger.besu.plugin.services.metrics.MetricCategoryRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.nio.charset.Charset;
 import java.util.HashSet;
-import java.util.Locale;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
@@ -110,7 +107,7 @@ public class PrivateTxPlugin implements BesuPlugin, BesuEvents.BlockAddedListene
     private final MetricCategory metricCategory = new MetricCategory() {
         @Override
         public String getName() {
-            return metricName;
+            return "block_processing";
         }
 
         @Override
@@ -120,7 +117,13 @@ public class PrivateTxPlugin implements BesuPlugin, BesuEvents.BlockAddedListene
     };
 
     private void registerMetrics(final MetricCategoryRegistry metricCategoryRegistry) {
+        LOG.info(metricCategoryRegistry.toString());
         metricCategoryRegistry.addMetricCategory(metricCategory);
+    }
+
+    @Override
+    public void beforeExternalServices() {
+        LOG.info("PrivateTxPlugin beforeExternalServices");
     }
 
     Counter privateTxInBlock;
