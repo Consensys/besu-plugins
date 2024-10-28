@@ -20,7 +20,6 @@ import org.hyperledger.besu.datatypes.Transaction;
 import org.hyperledger.besu.plugin.BesuContext;
 import org.hyperledger.besu.plugin.BesuPlugin;
 import org.hyperledger.besu.plugin.data.AddedBlockContext;
-import org.hyperledger.besu.plugin.data.SyncStatus;
 import org.hyperledger.besu.plugin.services.BesuEvents;
 import org.hyperledger.besu.plugin.services.MetricsSystem;
 import org.hyperledger.besu.plugin.services.PicoCLIOptions;
@@ -40,7 +39,7 @@ import com.github.benmanes.caffeine.cache.Caffeine;
 import picocli.CommandLine;
 
 @AutoService(BesuPlugin.class)
-public class PrivateTxPlugin implements BesuPlugin, BesuEvents.BlockAddedListener, BesuEvents.TransactionAddedListener, BesuEvents.SyncStatusListener {
+public class PrivateTxPlugin implements BesuPlugin, BesuEvents.BlockAddedListener, BesuEvents.TransactionAddedListener {
 
     private static String PLUGIN_NAME = "private-tx-detection";
     private BesuContext context;
@@ -48,8 +47,6 @@ public class PrivateTxPlugin implements BesuPlugin, BesuEvents.BlockAddedListene
     private long blockListenerId;
     private long txListenerId;
     private Logger LOG = LoggerFactory.getLogger(PrivateTxPlugin.class);
-    private long syncStatusId;
-    private Optional<SyncStatus> syncStatus = Optional.empty();
 
     @Override
     public Optional<String> getName() {
@@ -93,14 +90,12 @@ public class PrivateTxPlugin implements BesuPlugin, BesuEvents.BlockAddedListene
 
     @Override
     public void onBlockAdded(final AddedBlockContext addedBlockContext) {
-        if(this.syncStatus.isPresent() ) {
-            HashSet<Transaction> possiblyPrivate = new HashSet<>(addedBlockContext.getBlockBody().getTransactions());
-            possiblyPrivate.removeAll(miniMemPool.asMap().values());
-            if (possiblyPrivate.size() > 0) {
-                LOG.info(possiblyPrivate.size() + " txs from block " + addedBlockContext.getBlockHeader().getNumber() + " with hash " + addedBlockContext.getBlockHeader().getBlockHash());
-                privateTxInBlock.inc(possiblyPrivate.size());
-                privateTxCountLastBlock = possiblyPrivate.size();
-            }
+        HashSet<Transaction> possiblyPrivate = new HashSet<>(addedBlockContext.getBlockBody().getTransactions());
+        possiblyPrivate.removeAll(miniMemPool.asMap().values());
+        if (possiblyPrivate.size() > 0) {
+            LOG.info(possiblyPrivate.size() + " txs from block " + addedBlockContext.getBlockHeader().getNumber() + " with hash " + addedBlockContext.getBlockHeader().getBlockHash());
+            privateTxInBlock.inc(possiblyPrivate.size());
+            privateTxCountLastBlock = possiblyPrivate.size();
         }
     }
 
@@ -121,11 +116,6 @@ public class PrivateTxPlugin implements BesuPlugin, BesuEvents.BlockAddedListene
         metricCategoryRegistry.addMetricCategory(metricCategory);
     }
 
-    @Override
-    public void beforeExternalServices() {
-        LOG.info("PrivateTxPlugin beforeExternalServices");
-    }
-
     Counter privateTxInBlock;
     private int privateTxCountLastBlock = 0;
 
@@ -143,9 +133,6 @@ public class PrivateTxPlugin implements BesuPlugin, BesuEvents.BlockAddedListene
                 () -> privateTxCountLastBlock);
     }
 
-    @CommandLine.Option(names = "--plugin-private-tx-detection-metric-name")
-    public String metricName = "private_tx_metrics";
-
     @CommandLine.Option(names = "--plugin-private-tx-detection-prefix")
     public String metricPrefix = "demo_";
 
@@ -156,13 +143,11 @@ public class PrivateTxPlugin implements BesuPlugin, BesuEvents.BlockAddedListene
     private void startEvents(final BesuEvents besuEvents) {
         this.blockListenerId = besuEvents.addBlockAddedListener(this);
         this.txListenerId = besuEvents.addTransactionAddedListener(this);
-        this.syncStatusId = besuEvents.addSyncStatusListener(this);
     }
 
     private void stopEvents(final BesuEvents besuEvents) {
         besuEvents.removeBlockAddedListener(this.blockListenerId);
         besuEvents.removeTransactionAddedListener(this.txListenerId);
-        besuEvents.removeSyncStatusListener(this.syncStatusId);
     }
 
     @Override
@@ -170,8 +155,4 @@ public class PrivateTxPlugin implements BesuPlugin, BesuEvents.BlockAddedListene
         miniMemPool.put(transaction.getHash(), transaction);
     }
 
-    @Override
-    public void onSyncStatusChanged(final Optional<SyncStatus> syncStatus) {
-        this.syncStatus = syncStatus;
-    }
 }

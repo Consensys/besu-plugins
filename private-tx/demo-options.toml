@@ -6,4 +6,3 @@ nat-method="UPNP"
 metrics-enabled=true
 metrics-host="127.0.0.1"
 metrics-port=9545
-metrics-categories=["BLOCK_PROCESSING"]
