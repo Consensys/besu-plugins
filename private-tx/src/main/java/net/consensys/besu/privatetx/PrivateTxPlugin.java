@@ -102,7 +102,7 @@ public class PrivateTxPlugin implements BesuPlugin, BesuEvents.BlockAddedListene
     private final MetricCategory metricCategory = new MetricCategory() {
         @Override
         public String getName() {
-            return "block_processing";
+            return "PRIVATE_TX_DETECTION";
         }
 
         @Override
