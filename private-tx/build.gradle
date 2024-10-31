@@ -1,0 +1,29 @@
+plugins {
+    id 'com.gradleup.shadow' version '8.3.3'
+    id 'java'
+}
+
+group = 'net.consensys.besu.plugins'
+version = '24.10.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    implementation 'com.google.auto.service:auto-service-annotations:1.1.1'
+    implementation 'org.hyperledger.besu:plugin-api'
+    implementation 'org.apache.logging.log4j:log4j-api'
+    implementation 'org.apache.logging.log4j:log4j-slf4j-impl'
+    implementation 'com.github.ben-manes.caffeine:caffeine:3.1.8'
+    implementation 'info.picocli:picocli:4.7.6'
+
+    annotationProcessor 'com.google.auto.service:auto-service'
+}
+
+test {
+    useJUnitPlatform()
+}
