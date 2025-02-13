@@ -1,37 +1,47 @@
 # Quorum Besu Plugins
 
-[![CircleCI](https://circleci.com/gh/ConsenSys/besu-plugins/tree/master.svg?style=svg)](https://circleci.com/gh/ConsenSys/besu-plugins/tree/master)
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/ConsenSys/besu-plugins/blob/master/LICENSE)
-[![Discord](https://img.shields.io/badge/Chat-on%20Discord-blue)](https://discord.com/invite/TCtK3YM)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/ConsenSys/besu-plugins/blob/main/LICENSE)
+[![Discord](https://img.shields.io/badge/Chat-on%20Discord-blue)](https://discord.gg/hyperledger)
 
-**Quorum Besu Plugins** extends the Hyperledger Besu functionality. 
-It uses the Plugin API to retrieve data from any Besu network, public or permissioned and feed it into an application or system.
+**Besu Plugins** extend the [Besu](https://github.com/hyperledger/besu) to hook into events happening on the blockchain. 
+It uses the Plugin API to retrieve data from any Besu network, public or permissioned, and feeds it into an application or system.
 
-This API exposes data about the following components:
+The API allows into the following events of the blockchain:
 
 - Blocks
-- Balances
 - Transactions
 - Smart contracts
 - Execution results
 - Logs
-- Syncing state.
+- Syncing state
+- Trace transactions
 
-**The current Besu recommended version is 20.10.0**
+It further allows for the creation of custom plugins to extend the functionality of Besu, like adding new RPC endpoints, custom transaction selection strategies, or added new metrics.
+
+The API allows to add extension for:
+
+- JSON-RPC
+- Metrics
+- P2P permissions
+- Transaction selection
+- Transaction validation
+- CLI commands
+
+**The current Besu recommended version is [24.10.0](https://github.com/hyperledger/besu/releases/tag/24.10.0)**
 
 We recommend using plugins with the last minor (i.e. 20.X) Besu version in production. That version will have undergone the most extensive testing with plugins. While patch releases of Besu should work with plugins, they are not put through the same QA cycle and are only tested by automatic tests. If you have a problem using plugins with a Besu patch release, please open an issue.
 
 ## Useful Links
 
 * [Besu User Documentation](https://besu.hyperledger.org)
-* [Plugins User Documentation](https://docs.quorumplugins.consensys.net/)
+* [Plugins User Documentation](https://besu.hyperledger.org/private-networks/reference/plugin-api-interfaces)
 * [Plugins Issues](https://github.com/ConsenSys/besu-plugins/issues)
 * [Contribution guidelines](CONTRIBUTING.md)
 * [Plugins Changelog](CHANGELOG.md)
 
 ## Plugins 
 
- ### Event streams
+### Event streams
  
 This plugin will listen to events occurring on the Ethereum network and will broadcast them to Kafka. Core broadcasting logic has been extracted to a [common folder](https://github.com/ConsenSys/besu-plugins/tree/master/event-stream/common) to facilitate the addition of support for other message brokers.
 
@@ -47,12 +57,9 @@ This plugin will listen to events occurring on the Ethereum network and will bro
 - Transaction Reverted
 - Sync Status Changed
 - Log Emitted
+- TrieLog Added
 
-## Quorum Besu Plugins users 
-
-See our [user documentation](https://docs.quorumplugins.consensys.net/Concepts/Besu-Plugins/Event-Streams). 
-
-## Quorum Besu Plugins developers 
+## Besu Plugins developers 
 
 * [Contribution Guidelines](CONTRIBUTING.md)
 * [Coding Conventions](https://github.com/hyperledger/besu/blob/master/CODING-CONVENTIONS.md)
@@ -61,7 +68,7 @@ See our [user documentation](https://docs.quorumplugins.consensys.net/Concepts/B
 
 ### Install Prerequisites
 
-* Java 11
+* Java 21
 
 ### Build and Dist
 
